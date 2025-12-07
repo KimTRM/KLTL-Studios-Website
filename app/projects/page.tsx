@@ -37,18 +37,18 @@ const projects = [
         image: "/Happy Teachers Day/res/Sir_Marvin.png",
         link: "/Happy Teachers Day/index.html",
     },
-    // {
-    //     title: "Birthday Game Gift",
-    //     description: "A website I made for a birthday game gift to my friend",
-    //     image: "/HappyBirthday/Icon.svg",
-    //     link: "/HappyBirthday/index.html",
-    // },
-    // {
-    //     title: "Design Showcase",
-    //     description: "From UI/UX to visual branding, see how I bring ideas to life through design.",
-    //     image: "/res/icon/KLTL_Studios.svg",
-    //     link: "projects/design",
-    // },
+    {
+        title: "Birthday Game Gift",
+        description: "A website I made for a birthday game gift to my friend",
+        image: "/HappyBirthday/Icon.svg",
+        link: "/HappyBirthday/index.html",
+    },
+    {
+        title: "Design Showcase",
+        description: "From UI/UX to visual branding, see how I bring ideas to life through design.",
+        image: "/res/icon/KLTL_Studios.svg",
+        link: "projects/design",
+    },
 ];
 
 export default function Projects() {
