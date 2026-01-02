@@ -41,3 +41,79 @@ section {
 .socials a:hover {
     text-decoration: underline;
 }
+
+.contact-form {
+    width: 100%;
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #444;
+    border-radius: 8px;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s, background 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #dc143c;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form .btn {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.contact-form .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.success-message {
+    color: #4caf50;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.error-message {
+    color: #ff6b6b;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.contact-divider {
+    margin: 2rem 0;
+    color: #888;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}

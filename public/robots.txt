@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow certain paths if needed
+Disallow: /api/
+Disallow: /_next/
+
+# Sitemap
+Sitemap: https://kltl-studios.github.io/sitemap.xml

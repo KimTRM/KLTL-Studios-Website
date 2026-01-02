@@ -14,8 +14,8 @@ export default function HeroSection() {
                     <p className="tagline">Developer · Designer · Musician</p>
                     <p className="tagline">Ad Astra Per Aspera</p>
                     <div className="hero-buttons">
-                        <a href="#portfolio" className="btn">View Portfolio</a>
-                        <a href="#contact" className="btn-outline">Contact Me</a>
+                        <a href="#portfolio" className="btn" aria-label="View my portfolio projects">View Portfolio</a>
+                        <a href="#contact" className="btn-outline" aria-label="Contact me via form or email">Contact Me</a>
                     </div>
                 </div>
             </section>

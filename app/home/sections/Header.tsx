@@ -22,7 +22,8 @@ export default function Header() {
             </Link>
             <button
                 className="hamburger"
-                aria-label="Open navigation"
+                aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={open}
                 onClick={() => {
                     setOpen((prev) => {
                         const next = !prev;

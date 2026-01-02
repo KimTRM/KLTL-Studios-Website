@@ -19,12 +19,40 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: url("/res/star-bg.png") no-repeat center center fixed;
   background-size: cover;
   background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Focus visible for better accessibility */
+*:focus-visible {
+  outline: 2px solid #dc143c;
+  outline-offset: 2px;
+}
+
+/* Skip to main content link for keyboard navigation */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1rem 1.5rem;
+  background-color: #dc143c;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0 0 8px 0;
+}
+
+.skip-to-main:focus {
+  left: 0;
+  top: 0;
 }
 
 .main-header {

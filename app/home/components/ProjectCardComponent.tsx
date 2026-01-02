@@ -11,12 +11,14 @@ interface Props {
 
 export default function ProjectCardComponent(props: Props) {
     return (
-        <Link href={props.link} className="project-card">
-            <div className="project-icon">
-                <Image src={props.image} alt={props.title + " Icon"} width={460} height={160} />
-            </div>
-            <b>{props.title}</b>
-            <p>{props.description}</p>
+        <Link href={props.link} className="project-card" aria-label={`View details about ${props.title} project`}>
+            <article>
+                <div className="project-icon">
+                    <Image src={props.image} alt={props.title + " Icon"} width={460} height={160} />
+                </div>
+                <b>{props.title}</b>
+                <p>{props.description}</p>
+            </article>
         </Link>
     );
 }
