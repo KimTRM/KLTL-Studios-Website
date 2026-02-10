@@ -1,5 +1,5 @@
 import "../css/ProjectSection.css";
-import ProjectCardComponent from "../components/ProjectCardComponent";
+import ProjectCard from "./ProjectCard";
 
 interface Project {
     title: string;
@@ -21,7 +21,7 @@ export default function ProjectsSection(props: Props) {
 
                     <div className="project-grid">
                         {props.projects.map((project, idx) => (
-                            <ProjectCardComponent
+                            <ProjectCard
                                 key={idx}
                                 title={project.title}
                                 description={project.description}

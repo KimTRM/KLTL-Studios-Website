@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "./home/sections/Header";
+import Header from "@/features/site/components/Header";
+import Footer from "@/features/site/components/Footer";
 
 export const metadata: Metadata = {
   title: {
@@ -71,18 +72,7 @@ export default function RootLayout({
         <main id="main-content">
           {children}
         </main>
-        <footer className="nav-bottom">
-          <div className="nav-bottom-left">
-            <h2> &copy; 2025 KLTL Studios.</h2>
-          </div>
-          <div className="nav-bottom-right">
-            <a href="https://github.com/kimtrm" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile">GitHub</a>
-            |
-            <a href="https://www.linkedin.com/in/kim-louise-labrador/" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile">LinkedIn</a>
-            |
-            <a href="https://youtube.com/@kltlstudios" target="_blank" rel="noopener noreferrer" aria-label="Visit YouTube channel">YouTube</a>
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   );

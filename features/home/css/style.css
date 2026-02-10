@@ -1,6 +1,6 @@
 /* GENERAL CONTAINER STYLE FOR SECTIONS */
 section{
-    background-color: rgba(18, 18, 18, 0.85);
+    background-color: var(--surface-section);
     /* semi-transparent charcoal */
     margin: 2rem auto;
     border-radius: 12px;
@@ -12,7 +12,7 @@ section{
 }
 
 .container h2 {
-    color: #ffffff;
+    color: var(--text-white);
     text-align: center; 
     font-size: 1.2rem;
     font-style: italic;
@@ -30,7 +30,7 @@ h1,
 h2,
 h3,
 h4 {
-    color: #ffffff;
+    color: var(--text-white);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -51,39 +51,39 @@ h4 {
 }
 
 .btn {
-    background: #dc143c;
+    background: var(--primary);
     color: white;
 }
 
 .btn:hover {
-    background: #ff3259;
+    background: var(--primary-light);
 }
 
 .btn-outline {
     background: transparent;
-    border: 2px solid #dc143c;
-    color: #dc143c;
+    border: 2px solid var(--primary);
+    color: var(--primary);
 }
 
 .btn-outline:hover {
-    background: #dc143c;
+    background: var(--primary);
     color: white;
 }
 
 .btn-small {
-    background: #333;
+    background: var(--btn-small-bg);
     color: white;
     font-size: 0.85rem;
 }
 
 /* ABOUT */
 .about {
-    color: #dddddd;
-    border-left: 4px solid #dc143c;
+    color: var(--text-body);
+    border-left: 4px solid var(--primary);
 }
 
 .link {
-    color: #dc143c;
+    color: var(--primary);
     text-decoration: none;
     font-weight: bold;
 }
@@ -94,7 +94,7 @@ h4 {
 
 /* SERVICES */
 .services {
-    background-color: rgba(26, 26, 26, 0.85);
+    background-color: var(--surface-services);
 }
 
 .services-grid {
@@ -105,15 +105,15 @@ h4 {
 }
 
 .services-grid div {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--surface-card);
     padding: 1.2rem;
-    border: 2px dashed #555;
+    border: 2px dashed var(--border-light);
     border-radius: 10px;
     text-align: center;
 }
 
 .services-grid h4 {
-    color: #ff6d6d;
+    color: var(--primary-soft);
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 0.5rem;

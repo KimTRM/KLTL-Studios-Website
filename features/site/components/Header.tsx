@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import "../../globals.css";
+import "@/app/globals.css";
 
 export default function Header() {
     const [open, setOpen] = useState(false);

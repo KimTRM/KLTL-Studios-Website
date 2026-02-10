@@ -1,4 +1,4 @@
-import "../css/style.css";
+import "@/features/home/css/style.css";
 import Link from "next/link";
 
 export default function ResumeSection() {

@@ -1,5 +1,5 @@
 "use client"
-import styles from "../css/ProjectPage.module.css";
+import styles from "@/features/projects/css/ProjectPage.module.css";
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";

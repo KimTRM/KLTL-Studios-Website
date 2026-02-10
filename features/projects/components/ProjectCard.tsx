@@ -9,7 +9,7 @@ interface Props {
     link: string;
 }
 
-export default function ProjectCardComponent(props: Props) {
+export default function ProjectCard(props: Props) {
     return (
         <Link href={props.link} className="project-card" aria-label={`View details about ${props.title} project`}>
             <article>

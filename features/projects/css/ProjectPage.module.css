@@ -6,7 +6,7 @@
 }
 
 .container {
-    background-color: rgba(18, 18, 18, 0.85);
+    background-color: var(--surface-section);
     border-radius: 12px;
     padding: 2.5rem;
     max-width: 1000px;
@@ -19,12 +19,12 @@
 .title {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    color: #fff;
+    color: var(--text-white);
     text-transform: uppercase;
 }
 
 .subtitle {
-    color: #ccc;
+    color: var(--text-muted);
     font-style: italic;
     margin-bottom: 2rem;
 }
@@ -51,10 +51,10 @@
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
     padding: 0.3rem 0.8rem;
-    background: #333;
-    border: 1px solid #dc143c;
+    background: var(--btn-small-bg);
+    border: 1px solid var(--primary);
     border-radius: 20px;
-    color: #dc143c;
+    color: var(--primary);
     font-size: 0.9rem;
     font-weight: bold;
 }
@@ -66,7 +66,7 @@
 }
 
 .btn {
-    background: #dc143c;
+    background: var(--primary);
     color: white;
     padding: 0.8rem 1.6rem;
     border-radius: 10px;
@@ -76,13 +76,13 @@
 }
 
 .btn:hover {
-    background: #ff3c5c;
+    background: var(--primary-light);
 }
 
 .btnOutline {
     background: transparent;
-    border: 2px solid #dc143c;
-    color: #dc143c;
+    border: 2px solid var(--primary);
+    color: var(--primary);
     padding: 0.8rem 1.6rem;
     border-radius: 10px;
     text-decoration: none;
@@ -91,7 +91,7 @@
 }
 
 .btnOutline:hover {
-    background: #dc143c;
+    background: var(--primary);
     color: white;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .gallery::-webkit-scrollbar-thumb {
-    background: #dc143c;
+    background: var(--primary);
     border-radius: 10px;
 }
 
@@ -133,7 +133,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(18, 18, 18, 0.9);
+    background: var(--surface-overlay);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -165,7 +165,7 @@
 }
 
 .closeBtn:hover {
-    background: #ff4d5c;
+    background: var(--error-hover);
 }
 
 /* Full-size preview image */

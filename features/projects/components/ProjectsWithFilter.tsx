@@ -1,7 +1,7 @@
 "use client"
 import { useState, useMemo } from "react";
-import ProjectCardComponent from "../home/components/ProjectCardComponent";
-import "../home/css/ProjectSection.css";
+import ProjectCard from "./ProjectCard";
+import "../css/ProjectSection.css";
 import { Project } from "../types/project";
 
 interface Props {
@@ -138,7 +138,7 @@ export default function ProjectsWithFilter({ projects }: Props) {
                 <div className="project-grid">
                     {filteredProjects.length > 0 ? (
                         filteredProjects.map((project, idx) => (
-                            <ProjectCardComponent
+                            <ProjectCard
                                 key={idx}
                                 title={project.title}
                                 description={project.description}

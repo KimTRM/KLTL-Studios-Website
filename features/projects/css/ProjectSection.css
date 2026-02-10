@@ -1,5 +1,5 @@
 .projects {
-    background-color: rgba(24, 24, 24, 0.9);
+    background-color: var(--surface-projects);
 }
 
 .project-grid {
@@ -10,9 +10,9 @@
 }
 
 .project-card {
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--surface-card);
     padding: 1.5rem;
-    border: 1px solid #444;
+    border: 1px solid var(--border);
     border-radius: 10px;
     text-align: center;
     transition: transform 0.2s ease;
@@ -24,11 +24,11 @@
 .project-card b {
     margin-bottom: 0.8rem;
     font-size: 1.4rem;
-    color: #f6f6f6;
+    color: var(--text-card-title);
 }
 
 .project-card p {
-    color: #c4c4c4;
+    color: var(--text-card);
     margin-bottom: 1rem;
 }
 

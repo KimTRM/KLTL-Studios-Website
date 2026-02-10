@@ -1,5 +1,5 @@
-import ProjectsWithFilter from "../components/ProjectsWithFilter";
-import { allProjects } from "../data/projects";
+import ProjectsWithFilter from "@/features/projects/components/ProjectsWithFilter";
+import { allProjects } from "@/features/projects/data/projects";
 
 export default function Projects() {
     return (
