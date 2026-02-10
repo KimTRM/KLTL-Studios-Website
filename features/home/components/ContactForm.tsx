@@ -1,8 +1,11 @@
 "use client"
 import { useState, FormEvent } from "react";
 import "../css/ContactSection.css";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 export default function ContactForm() {
+    const contact = useQuery(api.siteMeta.getContact);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -10,12 +13,16 @@ export default function ContactForm() {
     });
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
+    const email = contact?.email ?? "kimlabrador71@gmail.com";
+    const heading = contact?.heading ?? "Let's Work Together";
+    const subheading = contact?.subheading ?? "Have a project in mind or just want to say hi? Let's talk!";
+
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setStatus('sending');
 
         // Create mailto link as fallback
-        const mailtoLink = `mailto:kimlabrador71@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+        const mailtoLink = `mailto:${email}?subject=Portfolio Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
 
         try {
             // Open email client
@@ -43,8 +50,8 @@ export default function ContactForm() {
     return (
         <section id="contact" className="contact">
             <div className="containerc">
-                <h2>Let&apos;s Work Together</h2>
-                <p>Have a project in mind or just want to say hi? Let&apos;s talk!</p>
+                <h2>{heading}</h2>
+                <p>{subheading}</p>
 
                 <form onSubmit={handleSubmit} className="contact-form">
                     <div className="form-group">
@@ -101,13 +108,13 @@ export default function ContactForm() {
                         <p className="success-message">Message sent successfully! I&apos;ll get back to you soon.</p>
                     )}
                     {status === 'error' && (
-                        <p className="error-message">Something went wrong. Please email me directly at kimlabrador71@gmail.com</p>
+                        <p className="error-message">Something went wrong. Please email me directly at {email}</p>
                     )}
                 </form>
 
                 <div className="contact-divider">or</div>
 
-                <a href="mailto:kimlabrador71@gmail.com" className="btn">Email Me Directly</a>
+                <a href={`mailto:${email}`} className="btn">Email Me Directly</a>
             </div>
         </section>
     );

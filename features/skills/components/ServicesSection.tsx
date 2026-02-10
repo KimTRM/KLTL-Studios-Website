@@ -1,7 +1,11 @@
+"use client";
+
 import "@/features/home/css/style.css"
 import SkillsGroup from "./SkillsGroup";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
-const skills = [
+const defaultSkills = [
     { title: "Game Development", description: "Godot, Unity, C#, Java, GDScript" },
     { title: "Web Development", description: "Django, Python, React, HTML, CSS, TypeScript, JavaScript, PHP, MySQL, PostgresSQL" },
     { title: "UI/UX Design", description: "Figma, Photoshop" },
@@ -10,13 +14,17 @@ const skills = [
 ];
 
 export default function ServicesSection() {
+    const skills = useQuery(api.skills.getAll);
+
+    const data = skills ?? defaultSkills;
+
     return (
         <>
             <section className="services">
                 <div className="container">
                     <h2>What I Do</h2>
                     <div className="services-grid">
-                        {skills.map((skill, idx) => (
+                        {data.map((skill, idx) => (
                             <SkillsGroup
                                 key={idx}
                                 title={skill.title}

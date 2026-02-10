@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/features/site/components/Header";
 import Footer from "@/features/site/components/Footer";
+import ConvexClientProvider from "./ConvexClientProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -65,14 +66,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <a href="#main-content" className="skip-to-main">
-          Skip to main content
-        </a>
-        <Header />
-        <main id="main-content">
-          {children}
-        </main>
-        <Footer />
+        <ConvexClientProvider>
+          <a href="#main-content" className="skip-to-main">
+            Skip to main content
+          </a>
+          <Header />
+          <main id="main-content">
+            {children}
+          </main>
+          <Footer />
+        </ConvexClientProvider>
       </body>
     </html>
   );

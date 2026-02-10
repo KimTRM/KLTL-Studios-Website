@@ -2,15 +2,16 @@
 import { useState, useMemo } from "react";
 import ProjectCard from "./ProjectCard";
 import "../css/ProjectSection.css";
-import { Project } from "../types/project";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
-interface Props {
-    projects: Project[];
-}
-
-export default function ProjectsWithFilter({ projects }: Props) {
+export default function ProjectsWithFilter() {
+    const allProjects = useQuery(api.projects.getAllProjects);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedFilter, setSelectedFilter] = useState<string>("all");
+
+    // Safe default while loading
+    const projects = allProjects ?? [];
 
     // Extract unique categories from projects
     const categories = useMemo(() => {
