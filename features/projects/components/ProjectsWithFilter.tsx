@@ -71,7 +71,7 @@ export default function ProjectsWithFilter() {
                 <div style={{
                     display: 'flex',
                     gap: '1rem',
-                    marginBottom: '2rem',
+                    marginBottom: '1.5rem',
                     flexWrap: 'wrap',
                     justifyContent: 'center'
                 }}>
@@ -84,12 +84,13 @@ export default function ProjectsWithFilter() {
                         style={{
                             padding: '0.7rem 1.2rem',
                             borderRadius: '8px',
-                            border: '2px solid #444',
-                            background: 'rgba(255, 255, 255, 0.1)',
-                            color: '#ffffff',
+                            border: '2px solid var(--border)',
+                            background: 'var(--surface-input)',
+                            color: 'var(--text-white)',
                             fontSize: '1rem',
                             flex: '1 1 250px',
-                            maxWidth: '400px'
+                            maxWidth: '400px',
+                            transition: 'border-color 0.25s ease'
                         }}
                         aria-label="Search projects by name or description"
                     />
@@ -104,18 +105,8 @@ export default function ProjectsWithFilter() {
                             <button
                                 key={category}
                                 onClick={() => setSelectedFilter(category)}
-                                style={{
-                                    padding: '0.7rem 1.5rem',
-                                    borderRadius: '8px',
-                                    border: '2px solid #dc143c',
-                                    background: selectedFilter === category ? '#dc143c' : 'transparent',
-                                    color: selectedFilter === category ? 'white' : '#dc143c',
-                                    fontSize: '0.9rem',
-                                    fontWeight: 'bold',
-                                    cursor: 'pointer',
-                                    textTransform: 'capitalize',
-                                    transition: 'all 0.2s ease'
-                                }}
+                                className={selectedFilter === category ? "btn" : "btn-outline"}
+                                style={{ margin: 0, fontSize: '0.85rem', padding: '0.5rem 1.2rem' }}
                                 aria-label={`Filter by ${category} projects`}
                                 aria-pressed={selectedFilter === category}
                             >
@@ -126,18 +117,30 @@ export default function ProjectsWithFilter() {
                 </div>
 
                 {/* Results Count */}
-                <p style={{
-                    textAlign: 'center',
-                    color: '#aaa',
-                    marginBottom: '1rem',
-                    fontSize: '0.95rem'
-                }}>
-                    Showing {filteredProjects.length} of {projects.length} projects
-                </p>
+                {projects.length > 0 && (
+                    <p style={{
+                        textAlign: 'center',
+                        color: 'var(--text-faint)',
+                        marginBottom: '1rem',
+                        fontSize: '0.85rem'
+                    }}>
+                        {filteredProjects.length} of {projects.length} projects
+                    </p>
+                )}
 
                 {/* Project Grid */}
                 <div className="project-grid">
-                    {filteredProjects.length > 0 ? (
+                    {allProjects === undefined ? (
+                        <p style={{
+                            gridColumn: '1 / -1',
+                            textAlign: 'center',
+                            color: 'var(--text-dim)',
+                            fontSize: '1rem',
+                            padding: '2rem'
+                        }}>
+                            Loading projects&hellip;
+                        </p>
+                    ) : filteredProjects.length > 0 ? (
                         filteredProjects.map((project, idx) => (
                             <ProjectCard
                                 key={idx}
@@ -147,15 +150,26 @@ export default function ProjectsWithFilter() {
                                 link={project.link}
                             />
                         ))
+                    ) : projects.length === 0 ? (
+                        <p style={{
+                            gridColumn: '1 / -1',
+                            textAlign: 'center',
+                            color: 'var(--text-dim)',
+                            fontSize: '1.1rem',
+                            padding: '3rem 1rem',
+                            lineHeight: '1.7'
+                        }}>
+                            No projects here yet — check back soon.
+                        </p>
                     ) : (
                         <p style={{
                             gridColumn: '1 / -1',
                             textAlign: 'center',
-                            color: '#888',
-                            fontSize: '1.2rem',
+                            color: 'var(--text-dim)',
+                            fontSize: '1.1rem',
                             padding: '2rem'
                         }}>
-                            No projects found matching your search.
+                            No matches found. Try a different search.
                         </p>
                     )}
                 </div>

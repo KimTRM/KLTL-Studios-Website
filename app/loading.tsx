@@ -26,17 +26,9 @@ export default function Loading() {
                 }} />
                 <p style={{
                     color: '#ffffff',
-                    fontSize: '1.2rem',
-                    fontWeight: 'bold'
-                }}>Loading...</p>
-                <style dangerouslySetInnerHTML={{
-                    __html: `
-                        @keyframes spin {
-                            0% { transform: rotate(0deg); }
-                            100% { transform: rotate(360deg); }
-                        }
-                    `
-                }} />
+                    fontSize: '1.1rem',
+                    fontWeight: 500
+                }}>Getting things ready&hellip;</p>
             </div>
         </div>
     );

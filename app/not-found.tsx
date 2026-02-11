@@ -21,43 +21,33 @@ export default function NotFound() {
                 boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)'
             }}>
                 <h1 style={{
-                    fontSize: '6rem',
-                    color: '#dc143c',
-                    marginBottom: '1rem',
-                    fontWeight: 'bold'
+                    fontSize: '5rem',
+                    color: 'var(--primary)',
+                    marginBottom: '0.5rem',
+                    fontWeight: 'bold',
+                    lineHeight: 1
                 }}>404</h1>
                 <h2 style={{
                     color: '#ffffff',
-                    fontSize: '2rem',
+                    fontSize: '1.5rem',
                     marginBottom: '1rem',
-                    textTransform: 'uppercase'
-                }}>Page Not Found</h2>
+                    fontWeight: 600
+                }}>Nothing here — yet.</h2>
                 <p style={{
-                    color: '#dddddd',
-                    fontSize: '1.1rem',
+                    color: 'var(--text-body)',
+                    fontSize: '1.05rem',
                     marginBottom: '2rem',
-                    lineHeight: '1.6'
+                    lineHeight: '1.7',
+                    maxWidth: '45ch',
+                    margin: '0 auto 2rem'
                 }}>
-                    Oops! The page you&apos;re looking for doesn&apos;t exist. It might have been moved or deleted.
+                    This page doesn&apos;t exist. It may have moved, or maybe it never was. Either way, let&apos;s get you back on track.
                 </p>
                 <Link
                     href="/"
-                    style={{
-                        display: 'inline-block',
-                        background: '#dc143c',
-                        color: 'white',
-                        padding: '0.8rem 2rem',
-                        borderRadius: '10px',
-                        textDecoration: 'none',
-                        fontWeight: 'bold',
-                        textTransform: 'uppercase',
-                        transition: 'background 0.2s ease',
-                        fontFamily: "'Courier New', monospace"
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = '#ff3259'}
-                    onMouseLeave={(e) => e.currentTarget.style.background = '#dc143c'}
+                    className="btn"
                 >
-                    Return Home
+                    Back to Home
                 </Link>
             </section>
         </div>

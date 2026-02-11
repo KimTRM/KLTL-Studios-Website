@@ -9,10 +9,9 @@ const project = {
     title: "Design Showcase",
     subtitle: "UI/UX Design, Visual Branding & Creative Work",
     description: `
-    A collection of my design work spanning UI/UX design, visual branding, and creative projects.
-    From interface mockups to brand identity systems, this showcase demonstrates my approach to
-    creating visually compelling and user-friendly experiences. Each piece reflects my commitment
-    to combining aesthetics with functionality.
+    A collection of my design work — UI/UX, visual branding, and creative experiments.
+    Each piece reflects my approach: combine aesthetics with clarity, and let the work
+    speak before the explanation does. Most of this started from curiosity, not a brief.
 `,
     tags: [
         "UI/UX Design",
@@ -75,9 +74,9 @@ export default function DesignShowcase() {
 
                     <div className={styles.links}>
                         <Link
-                            href="/"
+                            href="/projects"
                             className={styles.btnOutline}>
-                            Back to Home
+                            ← All Projects
                         </Link>
                     </div>
                 </div>

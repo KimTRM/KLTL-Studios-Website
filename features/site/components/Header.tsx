@@ -42,13 +42,13 @@ export default function Header() {
                     setOpen(false);
                 }}>
                 <Link href="/" className="default-btn" onClick={() => { setOpen(false); setHovered(false); }}>
-                    <h1>Home</h1>
+                    Home
                 </Link>
                 <Link href="/about" className="default-btn" onClick={() => { setOpen(false); setHovered(false); }}>
-                    <h1>About</h1>
+                    About
                 </Link>
                 <Link href="/projects" className="default-btn" onClick={() => { setOpen(false); setHovered(false); }}>
-                    <h1>My Projects</h1>
+                    Projects
                 </Link>
             </nav>
         </header >

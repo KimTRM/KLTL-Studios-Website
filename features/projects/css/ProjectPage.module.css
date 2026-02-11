@@ -14,6 +14,12 @@
     color: #f2f2f2;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(6px);
+    animation: fadeUp 0.4s ease-out;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .title {
@@ -37,9 +43,10 @@
 }
 
 .description {
-    font-size: 1.1rem;
-    line-height: 1.7;
+    font-size: 1.05rem;
+    line-height: 1.8;
     margin-bottom: 2rem;
+    max-width: 65ch;
 }
 
 .tagList {
@@ -72,11 +79,16 @@
     border-radius: 10px;
     text-decoration: none;
     font-weight: bold;
-    transition: background 0.3s;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .btn:hover {
     background: var(--primary-light);
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
 }
 
 .btnOutline {
@@ -87,12 +99,17 @@
     border-radius: 10px;
     text-decoration: none;
     font-weight: bold;
-    transition: background 0.3s;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
 
 .btnOutline:hover {
     background: var(--primary);
     color: white;
+    transform: translateY(-1px);
+}
+
+.btnOutline:active {
+    transform: translateY(0);
 }
 
 .gallery {
@@ -118,12 +135,13 @@
     flex: 0 0 auto;
     object-fit: cover;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
 }
 
 .galleryImage:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 /* Overlay background */

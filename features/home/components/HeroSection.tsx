@@ -20,7 +20,7 @@ export default function HeroSection() {
             <section className="hero">
                 <div className="containerh">
                     <div className="hero-circle">
-                        <Image src={image} alt="Hero Image" width={300} height={300} className="hero-image" />
+                        <Image src={image} alt="Hero Image" width={300} height={300} className="hero-image" priority />
                     </div>
                     <h1><b>{title}</b></h1>
                     <p className="tagline">{subtitle}</p>

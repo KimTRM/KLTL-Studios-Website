@@ -27,15 +27,7 @@ export default function Loading() {
                 <p style={{
                     color: '#ffffff',
                     fontSize: '1rem'
-                }}>Loading projects...</p>
-                <style dangerouslySetInnerHTML={{
-                    __html: `
-                        @keyframes spin {
-                            0% { transform: rotate(0deg); }
-                            100% { transform: rotate(360deg); }
-                        }
-                    `
-                }} />
+                }}>Loading projects&hellip;</p>
             </div>
         </div>
     );

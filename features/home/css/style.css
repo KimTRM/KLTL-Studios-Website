@@ -14,15 +14,11 @@ section{
 .container h2 {
     color: var(--text-white);
     text-align: center; 
-    font-size: 1.2rem;
-    font-style: italic;
-    font-weight: 540;    
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 600;    
     margin-bottom: 1.4rem;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    letter-spacing: 1px;
 }
 
 /* HEADINGS */
@@ -47,7 +43,9 @@ h4 {
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
-    transition: 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .btn {
@@ -57,6 +55,11 @@ h4 {
 
 .btn:hover {
     background: var(--primary-light);
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
 }
 
 .btn-outline {
@@ -68,6 +71,11 @@ h4 {
 .btn-outline:hover {
     background: var(--primary);
     color: white;
+    transform: translateY(-1px);
+}
+
+.btn-outline:active {
+    transform: translateY(0);
 }
 
 .btn-small {
@@ -82,13 +90,20 @@ h4 {
     border-left: 4px solid var(--primary);
 }
 
+.about p {
+    line-height: 1.8;
+    max-width: 65ch;
+}
+
 .link {
     color: var(--primary);
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.2s ease;
 }
 
 .link:hover {
+    color: var(--primary-light);
     text-decoration: underline;
 }
 
@@ -110,6 +125,13 @@ h4 {
     border: 2px dashed var(--border-light);
     border-radius: 10px;
     text-align: center;
+    transition: border-color 0.25s ease, transform 0.2s ease, background 0.25s ease;
+}
+
+.services-grid div:hover {
+    border-color: var(--primary-soft);
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
 }
 
 .services-grid h4 {

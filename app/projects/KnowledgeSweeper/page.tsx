@@ -2,6 +2,7 @@
 import styles from "@/features/projects/css/ProjectPage.module.css";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 
@@ -9,7 +10,7 @@ const project = {
     title: "Knowledge Sweeper",
     subtitle: "Minesweeper but it has a twist, a quiz to keep your life",
     description:
-        `This game is just like a normal Minesweeper but it has a twist where if you pick a square with a bomb in it a question will pop up when you answer it correctly you don’t lose a life and you can continue but if answered wrong you lose a life as a consequence.`,
+        `Classic Minesweeper with a twist: hit a bomb, and you get a quiz question. Answer correctly and you keep your life — answer wrong and you lose it. The idea was simple: take a game people already know and layer learning on top of it, so the stakes feel real without being stressful.`,
     tags: [
         "Java",
         "Minesweeper",
@@ -88,6 +89,9 @@ export default function ProjectPage() {
                             className={styles.btnOutline}>
                             Download
                         </a>
+                        <Link href="/projects" className={styles.btnOutline}>
+                            ← All Projects
+                        </Link>
                     </div>
                 </div>
             </main>

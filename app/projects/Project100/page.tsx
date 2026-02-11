@@ -2,15 +2,17 @@
 import styles from "@/features/projects/css/ProjectPage.module.css";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const project = {
     title: "Project 100",
     subtitle: "An RPG to Learn Programming with Block Code",
     description: `
-    Project 100 is a story-driven learning game that teaches programming fundamentals
-    using a fun RPG format. It's developed using Godot and designed for high school
-    students to learn variables, loops, conditions, and logic using visual blocks.
+    I wanted to make programming less intimidating for beginners. Project 100 is a
+    story-driven RPG that teaches fundamentals — variables, loops, conditions, and logic —
+    through visual block-based puzzles. Built in Godot and designed for high school students,
+    the goal was to make learning feel like play, not homework.
 `,
     tags: [
         "Godot",
@@ -85,12 +87,9 @@ export default function ProjectPage() {
                             className={styles.btn}>
                             View on GitHub
                         </a>
-                        {/* <a
-                            href={project.playLink}
-                            target="_blank"
-                            className={styles.btnOutline}>
-                            Play Demo
-                        </a> */}
+                        <Link href="/projects" className={styles.btnOutline}>
+                            ← All Projects
+                        </Link>
                     </div>
                 </div>
             </main>
