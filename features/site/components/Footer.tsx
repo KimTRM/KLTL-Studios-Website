@@ -6,7 +6,7 @@ import { api } from "@/convex/_generated/api";
 export default function Footer() {
     const footer = useQuery(api.siteMeta.queries.getFooter);
 
-    const text = footer?.text ?? "© 2026 KLTL Studios.";
+    const text = footer?.text ?? `© ${new Date().getUTCFullYear()} KLTL Studios.`;
     const githubUrl = footer?.githubUrl ?? "https://github.com/kimtrm";
     const linkedinUrl = footer?.linkedinUrl ?? "https://www.linkedin.com/in/kim-louise-labrador/";
     const youtubeUrl = footer?.youtubeUrl ?? "https://youtube.com/@kltlstudios";

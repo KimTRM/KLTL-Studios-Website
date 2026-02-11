@@ -1,47 +1,56 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #e0ddd8;
 
-  /* ── Primary palette ── */
+  /* ── Celestial palette ── */
+  --accent-maroon: #dc143c;
+  --accent-maroon-light: #ff3259;
+  --accent-maroon-dark: #a0102e;
+  --moon-white: #e8e4df;
+  --moon-gray: #c8c4bf;
+
+  /* ── Primary palette (crimson) ── */
   --primary: #dc143c;
   --primary-light: #ff3259;
-  --primary-dark: #b33a3a;
-  --primary-hover: #d95959;
-  --primary-glow: #f48181;
+  --primary-dark: #a0102e;
+  --primary-hover: #e83a5a;
+  --primary-glow: #ff5070;
   --primary-soft: #ff6d6d;
 
-  /* ── Text colors ── */
-  --text-white: #ffffff;
-  --text-body: #dddddd;
-  --text-muted: #cccccc;
-  --text-dim: #aaaaaa;
-  --text-faint: #888888;
-  --text-card: #c4c4c4;
-  --text-card-title: #f6f6f6;
-  --text-link-footer: #b2b2b2;
+  /* ── Text colors (warmer mid-tones) ── */
+  --text-white: #f0ece6;
+  --text-body: #c8c3bb;
+  --text-muted: #a8a29c;
+  --text-dim: #8a847e;
+  --text-faint: #645e58;
+  --text-card: #a8a29c;
+  --text-card-title: #f0ece6;
+  --text-link-footer: #8a847e;
 
-  /* ── Surface / Background colors ── */
-  --surface-section: rgba(18, 18, 18, 0.85);
-  --surface-card: rgba(255, 255, 255, 0.04);
-  --surface-overlay: rgba(18, 18, 18, 0.9);
-  --surface-header: #272727f5;
-  --surface-services: rgba(26, 26, 26, 0.85);
-  --surface-projects: rgba(24, 24, 24, 0.9);
-  --surface-contact: rgba(20, 20, 20, 0.8);
-  --surface-input: rgba(255, 255, 255, 0.1);
-  --surface-input-focus: rgba(255, 255, 255, 0.15);
+  /* ── Surface / Background colors (layered depth) ── */
+  --surface-section: rgba(18, 14, 16, 0.92);
+  --surface-elevated: rgba(28, 22, 25, 0.9);
+  --surface-card: rgba(255, 245, 240, 0.04);
+  --surface-overlay: rgba(14, 11, 13, 0.95);
+  --surface-header: rgba(16, 13, 15, 0.96);
+  --surface-services: rgba(22, 17, 20, 0.9);
+  --surface-projects: rgba(20, 15, 18, 0.92);
+  --surface-contact: rgba(18, 14, 16, 0.88);
+  --surface-input: rgba(255, 245, 240, 0.06);
+  --surface-input-focus: rgba(255, 245, 240, 0.1);
 
   /* ── Border colors ── */
-  --border: #444444;
-  --border-light: #555555;
+  --border: rgba(200, 190, 180, 0.12);
+  --border-light: rgba(200, 190, 180, 0.18);
+  --border-crimson: rgba(220, 20, 60, 0.15);
 
   /* ── Button colors ── */
-  --btn-default-bg: #6e6e6e;
-  --btn-default-text: #2e2e2e;
-  --btn-default-hover: #323232;
-  --btn-small-bg: #333333;
+  --btn-default-bg: rgba(200, 190, 180, 0.08);
+  --btn-default-text: var(--moon-white);
+  --btn-default-hover: rgba(200, 190, 180, 0.12);
+  --btn-small-bg: rgba(200, 190, 180, 0.06);
 
   /* ── Status colors ── */
   --success: #4caf50;
@@ -58,8 +67,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #080708;
+    --foreground: #e0ddd8;
   }
 }
 
@@ -133,9 +142,10 @@ p {
   justify-content: space-between;
   align-items: center;
   background: var(--surface-header);
-  border-bottom: 4px solid var(--primary-dark);
+  border-bottom: 1px solid rgba(200, 190, 180, 0.06);
   padding: 0.5rem 0.5vw;
-  margin: 0 0 1rem 0;
+  margin: 0;
+  backdrop-filter: blur(12px);
 }
 
 .header-nav {
@@ -150,10 +160,10 @@ p {
 
 .nav-bottom {
   background: var(--surface-header);
-  border-top: 4px solid var(--primary-dark);
-  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(200, 190, 180, 0.06);
+  box-shadow: none;
   padding: 0.75rem 2rem;
-  margin-top: 2rem;
+  margin-top: 0;
   font-size: 0.9rem;
   display: flex;
   align-items: center;
@@ -161,12 +171,15 @@ p {
   min-height: 56px;
   flex-wrap: wrap;
   gap: 0.5rem;
+  backdrop-filter: blur(12px);
 }
 
 .nav-bottom-left {
-  color: var(--primary-dark);
-  font-weight: 600;
+  color: var(--text-faint);
+  font-weight: 400;
   letter-spacing: 0.5px;
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
 }
 
 .nav-bottom-right {
@@ -196,42 +209,45 @@ p {
 }
 
 .default-btn {
-  background: var(--btn-default-bg);
-  color: var(--btn-default-text);
-  font-family: "Share Tech Mono", "Consolas", monospace;
-  font-size: 1.2rem;
-  font-weight: bold;
+  background: transparent;
+  color: var(--text-dim);
+  font-family: "Courier New", monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   border: none;
-  border-radius: 0.7rem;
-  padding: 0.5rem 2vw;
-  box-shadow: 3px 3px 0 var(--primary-glow);
+  border-radius: 4px;
+  padding: 0.5rem 1.2rem;
+  box-shadow: none;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  transition: color 0.3s ease, background 0.3s ease;
   white-space: nowrap;
 }
 
 .default-btn:hover {
-  background: var(--btn-default-hover);
-  color: var(--primary-dark);
-  box-shadow: 1px 1px 0 var(--primary-dark);
-  transform: translateY(-1px);
+  background: rgba(200, 190, 180, 0.06);
+  color: var(--moon-white);
+  box-shadow: none;
+  transform: none;
 }
 
 .default-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 0 0 var(--primary-dark);
+  transform: none;
+  box-shadow: none;
 }
 .hamburger {
   display: none;
   background: none;
   border: none;
-  font-size: 2rem;
-  color: var(--primary-dark);
+  font-size: 1.5rem;
+  color: var(--text-dim);
   cursor: pointer;
   margin-left: auto;
+  transition: color 0.3s ease;
 }
 .hamburger:hover{
-  color: var(--primary-hover);
+  color: var(--moon-white);
 }
 
 /* Responsive hamburger menu */

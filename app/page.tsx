@@ -1,17 +1,25 @@
-import AboutSection from "@/features/about/components/AboutSection";
-import ContactForm from "@/features/home/components/ContactForm";
-import HeroSection from "@/features/home/components/HeroSection";
-import ProjectsSection from "@/features/projects/components/ProjectsSection";
-import ServicesSection from "@/features/skills/components/ServicesSection";
+import HeroSection from "@/features/home/components/HeroSection.redesign";
+import AboutSection from "@/features/home/components/AboutSection.redesign";
+import FeaturedProjects from "@/features/home/components/FeaturedProjects";
+import WorksArchive from "@/features/home/components/WorksArchive";
+import StudioSection from "@/features/home/components/StudioSection";
+import ContactSection from "@/features/home/components/ContactSection.redesign";
+import SectionDivider from "@/features/home/components/SectionDivider";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
+      <SectionDivider variant="line" />
       <AboutSection />
-      <ProjectsSection />
-      <ServicesSection />
-      <ContactForm />
+      <SectionDivider variant="dots" />
+      <FeaturedProjects />
+      <SectionDivider variant="glow" />
+      <WorksArchive />
+      <SectionDivider variant="arc" />
+      <StudioSection />
+      <SectionDivider variant="drop" />
+      <ContactSection />
     </>
   );
 }

@@ -1,0 +1,158 @@
+/* ═══════════════════════════════════════════
+   Studio Section — Philosophy & Manifesto
+   ═══════════════════════════════════════════ */
+
+.studioSection {
+  position: relative;
+  padding: 6rem 8vw;
+  max-width: 1200px;
+  margin: 0 auto;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(220, 20, 60, 0.04) 0%, transparent 50%),
+    var(--surface-elevated);
+  box-shadow: none;
+  border-radius: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.studioInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2.5rem;
+}
+
+/* ── Symbol ── */
+.studioSymbol {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.studioSymbolRing {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(220, 20, 60, 0.2);
+  animation: studioRingSpin 50s linear infinite;
+  box-shadow: 0 0 30px rgba(220, 20, 60, 0.05);
+}
+
+.studioSymbolRing::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(220, 20, 60, 0.4);
+}
+
+@keyframes studioRingSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.studioSymbolInner {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(220, 20, 60, 0.1) 0%,
+    transparent 70%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.studioIcon {
+  font-size: 2rem;
+  color: var(--accent-maroon);
+  opacity: 0.85;
+  filter: drop-shadow(0 0 10px rgba(220, 20, 60, 0.2));
+}
+
+/* ── Text ── */
+.studioName {
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--accent-maroon);
+  opacity: 0.8;
+}
+
+.studioManifesto {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  color: var(--text-body);
+  line-height: 1.9;
+  max-width: 52ch;
+  margin: 0;
+}
+
+.studioValues {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.studioValue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.studioValueIcon {
+  font-size: 1.4rem;
+  color: var(--text-dim);
+  opacity: 0.7;
+  transition: opacity 0.4s ease, color 0.4s ease;
+}
+
+.studioValue:hover .studioValueIcon {
+  opacity: 0.8;
+  color: var(--accent-maroon);
+}
+
+.studioValueLabel {
+  font-family: "Courier New", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ── Ambient line ── */
+.studioLine {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    rgba(220, 20, 60, 0.35),
+    rgba(220, 20, 60, 0.05)
+  );
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .studioSection {
+    padding: 4rem 6vw;
+  }
+
+  .studioValues {
+    gap: 1.5rem;
+  }
+}
