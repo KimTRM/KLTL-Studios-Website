@@ -6,9 +6,11 @@ import Link from "next/link";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { FiArrowRight } from "react-icons/fi";
+import { motion } from "framer-motion";
 import AnimatedSection from "@/features/ui/AnimatedSection";
 import SectionHeader from "@/features/ui/SectionHeader";
 import EmptyState from "@/features/ui/EmptyState";
+import { cardHover, EASE_OUT_CUBIC } from "@/features/motion";
 
 export default function FeaturedProjects() {
     const featuredProjects = useQuery(api.projects.queries.getFeaturedProjects);
@@ -69,14 +71,20 @@ export default function FeaturedProjects() {
                                 : "#";
                     const isReverse = idx % 2 !== 0;
 
+                    const MotionLink = motion.create(Link);
+
                     return (
                         <AnimatedSection key={idx} delay={idx * 150} duration={900}>
-                            <Link
+                            <MotionLink
                                 href={href}
                                 className={
                                     isReverse ? "featuredCard featuredCardReverse" : "featuredCard"
                                 }
                                 aria-label={`View ${project.title}`}
+                                initial="rest"
+                                whileHover="hover"
+                                animate="rest"
+                                variants={cardHover}
                             >
                                 <div className="featuredImageWrap">
                                     <Image
@@ -116,7 +124,7 @@ export default function FeaturedProjects() {
                                 <span className="featuredArrow" aria-hidden="true">
                                     <FiArrowRight />
                                 </span>
-                            </Link>
+                            </MotionLink>
                         </AnimatedSection>
                     );
                 })}

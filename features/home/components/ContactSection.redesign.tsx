@@ -4,7 +4,10 @@ import "../css/ContactSection.redesign.css";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { FiGithub, FiLinkedin, FiYoutube, FiMail } from "react-icons/fi";
+import { motion } from "framer-motion";
 import AnimatedSection from "@/features/ui/AnimatedSection";
+import FloatingIcon from "@/features/ui/FloatingIcon";
+import { staggerContainer, staggerChild } from "@/features/motion";
 
 export default function ContactSectionRedesign() {
     const contact = useQuery(api.siteMeta.queries.getContact);
@@ -42,52 +45,62 @@ export default function ContactSectionRedesign() {
                     <div className="contactDivider" aria-hidden="true" />
                 </AnimatedSection>
 
-                {/* Icon links */}
-                <AnimatedSection delay={300} duration={900}>
-                    <div className="contactLinks">
-                        <a
+                {/* Icon links — staggered entrance with hover micro-interactions */}
+                <motion.div
+                    className="contactLinks"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    variants={staggerContainer}
+                >
+                    <motion.div variants={staggerChild}>
+                        <FloatingIcon
                             href={githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="contactLink"
-                            aria-label="GitHub"
+                            label="GitHub"
+                            glowColor="rgba(220, 20, 60, 0.3)"
+                            style={{ flexDirection: "column", gap: "0.4rem" }}
                         >
                             <FiGithub className="contactLinkIcon" />
                             <span className="contactLinkLabel">GitHub</span>
-                        </a>
+                        </FloatingIcon>
+                    </motion.div>
 
-                        <a
+                    <motion.div variants={staggerChild}>
+                        <FloatingIcon
                             href={linkedinUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="contactLink"
-                            aria-label="LinkedIn"
+                            label="LinkedIn"
+                            glowColor="rgba(220, 20, 60, 0.3)"
+                            style={{ flexDirection: "column", gap: "0.4rem" }}
                         >
                             <FiLinkedin className="contactLinkIcon" />
                             <span className="contactLinkLabel">LinkedIn</span>
-                        </a>
+                        </FloatingIcon>
+                    </motion.div>
 
-                        <a
+                    <motion.div variants={staggerChild}>
+                        <FloatingIcon
                             href={youtubeUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="contactLink"
-                            aria-label="YouTube"
+                            label="YouTube"
+                            glowColor="rgba(220, 20, 60, 0.3)"
+                            style={{ flexDirection: "column", gap: "0.4rem" }}
                         >
                             <FiYoutube className="contactLinkIcon" />
                             <span className="contactLinkLabel">YouTube</span>
-                        </a>
+                        </FloatingIcon>
+                    </motion.div>
 
-                        <a
+                    <motion.div variants={staggerChild}>
+                        <FloatingIcon
                             href={`mailto:${email}`}
-                            className="contactLink"
-                            aria-label="Send email"
+                            label="Send email"
+                            glowColor="rgba(220, 20, 60, 0.3)"
+                            style={{ flexDirection: "column", gap: "0.4rem" }}
                         >
                             <FiMail className="contactLinkIcon" />
                             <span className="contactLinkLabel">Email</span>
-                        </a>
-                    </div>
-                </AnimatedSection>
+                        </FloatingIcon>
+                    </motion.div>
+                </motion.div>
 
                 <AnimatedSection delay={450} duration={800}>
                     <a href={`mailto:${email}`} className="contactEmail">

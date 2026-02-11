@@ -5,6 +5,8 @@ import "../css/StudioSection.css";
 import { RiLightbulbLine, RiCodeSSlashLine, RiMusic2Line, RiPencilRuler2Line } from "react-icons/ri";
 import AnimatedSection from "@/features/ui/AnimatedSection";
 import FloatingIcon from "@/features/ui/FloatingIcon";
+import MotionText from "@/features/ui/MotionText";
+import { fadeOnly } from "@/features/motion";
 
 const VALUES = [
     { icon: <RiCodeSSlashLine />, label: "Craft" },
@@ -37,14 +39,12 @@ export default function StudioSection() {
                     <span className="studioName">KLTL Studios</span>
                 </AnimatedSection>
 
-                <AnimatedSection delay={300} duration={900}>
-                    <p className="studioManifesto">
-                        A one-person studio where code meets creativity.
-                        Every project is built with intention — designed to be felt,
-                        not just seen. No noise, no fluff. Just craft, purpose,
-                        and the quiet discipline behind meaningful work.
-                    </p>
-                </AnimatedSection>
+                <MotionText
+                    text="A one-person studio where code meets creativity. Every project is built with intention — designed to be felt, not just seen. No noise, no fluff. Just craft, purpose, and the quiet discipline behind meaningful work."
+                    as="p"
+                    className="studioManifesto"
+                    stagger={0.03}
+                />
 
                 <div className="studioLine" aria-hidden="true" />
 

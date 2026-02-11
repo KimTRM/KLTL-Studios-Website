@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, type ReactNode, type CSSProperties } from "react";
+import { type ReactNode, type CSSProperties } from "react";
+import { motion } from "framer-motion";
+import { iconHover } from "@/features/motion";
 
 interface FloatingIconProps {
     children: ReactNode;
@@ -17,7 +19,10 @@ interface FloatingIconProps {
 
 /**
  * Wraps an icon with subtle hover glow + scale animation.
- * Designed for monochrome icons with gentle interactivity.
+ * Uses Framer Motion for GPU-composited scale transform.
+ *
+ * WHY: Icons deserve micro-feedback — a gentle scale rewards curiosity.
+ *      The glow is CSS filter (composited), keeping everything smooth.
  */
 export default function FloatingIcon({
     children,
@@ -28,35 +33,41 @@ export default function FloatingIcon({
     label,
     href,
 }: FloatingIconProps) {
-    const [hovered, setHovered] = useState(false);
-
     const baseStyle: CSSProperties = {
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        transition:
-            "transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 600ms ease",
-        transform: hovered ? `scale(${hoverScale})` : "scale(1)",
-        filter: hovered ? `drop-shadow(0 0 8px ${glowColor})` : "none",
         cursor: href ? "pointer" : "default",
         ...style,
     };
 
+    const customHover = {
+        rest: { ...iconHover.rest, filter: "none" },
+        hover: {
+            scale: hoverScale,
+            filter: `drop-shadow(0 0 8px ${glowColor})`,
+            transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
+        },
+    };
+
     const Tag = href ? "a" : "span";
+    const MotionTag = motion.create(Tag);
     const linkProps = href
         ? { href, target: "_blank", rel: "noopener noreferrer" }
         : {};
 
     return (
-        <Tag
+        <MotionTag
             {...linkProps}
             className={className}
             style={baseStyle}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
+            initial="rest"
+            whileHover="hover"
+            animate="rest"
+            variants={customHover}
             aria-label={label}
         >
             {children}
-        </Tag>
+        </MotionTag>
     );
 }

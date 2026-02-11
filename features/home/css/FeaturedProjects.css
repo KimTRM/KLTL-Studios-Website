@@ -37,7 +37,6 @@
   transition:
     border-color 0.5s ease,
     background 0.5s ease,
-    transform 0.4s ease,
     box-shadow 0.5s ease;
   overflow: hidden;
 }
@@ -45,7 +44,6 @@
 .featuredCard:hover {
   border-color: rgba(220, 20, 60, 0.25);
   background: rgba(28, 22, 26, 0.95);
-  transform: translateY(-3px);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.3),
     0 0 0 1px rgba(220, 20, 60, 0.08);
@@ -174,7 +172,6 @@
   transition:
     border-color 0.5s ease,
     background 0.5s ease,
-    transform 0.4s ease,
     box-shadow 0.5s ease;
   overflow: hidden;
 }
@@ -182,7 +179,6 @@
 .featuredCardReverse:hover {
   border-color: rgba(220, 20, 60, 0.25);
   background: rgba(28, 22, 26, 0.95);
-  transform: translateY(-3px);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.3),
     0 0 0 1px rgba(220, 20, 60, 0.08);

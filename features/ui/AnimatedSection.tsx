@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
+import { type ReactNode, type CSSProperties } from "react";
+import { motion, type Variants } from "framer-motion";
+import { EASE_OUT_CUBIC } from "@/features/motion/variants";
 
 interface AnimatedSectionProps {
     children: ReactNode;
@@ -18,64 +20,70 @@ interface AnimatedSectionProps {
     /** HTML tag to render */
     as?: keyof HTMLElementTagNameMap;
     style?: CSSProperties;
+    /** Optional custom Framer Motion variants (overrides direction/distance) */
+    variants?: Variants;
 }
 
 /**
  * A wrapper that fades/slides children into view on scroll.
- * Uses IntersectionObserver — no third-party animation library needed.
+ * Powered by Framer Motion for GPU-optimised opacity + transform animation.
+ * Respects prefers-reduced-motion automatically.
+ *
+ * WHY Framer Motion over raw IntersectionObserver?
+ * - Automatic will-change management and GPU compositing
+ * - Built-in reduced-motion support
+ * - Consistent easing across the entire site via centralized variants
  */
 export default function AnimatedSection({
     children,
     className = "",
     delay = 0,
     direction = "up",
-    distance = 32,
+    distance = 28,
     duration = 800,
     threshold = 0.15,
     as: Tag = "div",
     style,
+    variants: customVariants,
 }: AnimatedSectionProps) {
-    const ref = useRef<HTMLDivElement>(null);
-    const [isVisible, setIsVisible] = useState(false);
+    // Build direction-based variants if no custom variants provided
+    const directionMap: Record<string, { x?: number; y?: number }> = {
+        up: { y: distance },
+        down: { y: -distance },
+        left: { x: distance },
+        right: { x: -distance },
+        none: {},
+    };
 
-    useEffect(() => {
-        const el = ref.current;
-        if (!el) return;
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    observer.unobserve(el);
-                }
+    const defaultVariants: Variants = {
+        hidden: { opacity: 0, ...directionMap[direction] },
+        visible: {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            transition: {
+                duration: duration / 1000,
+                ease: EASE_OUT_CUBIC,
+                delay: delay / 1000,
             },
-            { threshold }
-        );
-
-        observer.observe(el);
-        return () => observer.disconnect();
-    }, [threshold]);
-
-    const translateMap: Record<string, string> = {
-        up: `translateY(${distance}px)`,
-        down: `translateY(-${distance}px)`,
-        left: `translateX(${distance}px)`,
-        right: `translateX(-${distance}px)`,
-        none: "none",
+        },
     };
 
-    const baseStyle: CSSProperties = {
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translate(0, 0)" : translateMap[direction],
-        transition: `opacity ${duration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94) ${delay}ms, transform ${duration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94) ${delay}ms`,
-        willChange: "opacity, transform",
-        ...style,
-    };
+    const variants = customVariants ?? defaultVariants;
+
+    // Cast Tag to a motion-compatible component
+    const MotionTag = motion.create(Tag as "div");
 
     return (
-        // @ts-expect-error - dynamic tag
-        <Tag ref={ref} className={className} style={baseStyle}>
+        <MotionTag
+            className={className}
+            style={style}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: threshold }}
+            variants={variants}
+        >
             {children}
-        </Tag>
+        </MotionTag>
     );
 }

@@ -7,6 +7,8 @@ import { RiCompassDiscoverLine } from "react-icons/ri";
 import { FiArrowRight } from "react-icons/fi";
 import AnimatedSection from "@/features/ui/AnimatedSection";
 import SectionHeader from "@/features/ui/SectionHeader";
+import MotionText from "@/features/ui/MotionText";
+import { slideFromLeft } from "@/features/motion";
 
 export default function AboutSectionRedesign() {
     const sections = useQuery(api.about.queries.getAll);
@@ -24,12 +26,10 @@ export default function AboutSectionRedesign() {
     return (
         <section className="aboutSection" id="about" aria-label="About">
             <div className="aboutInner">
-                {/* Visual anchor */}
+                {/* Visual anchor — slides from left */}
                 <AnimatedSection
                     className="aboutVisual"
-                    direction="left"
-                    delay={200}
-                    duration={1000}
+                    variants={slideFromLeft}
                 >
                     <div className="aboutGlyph">
                         <RiCompassDiscoverLine className="aboutGlyphIcon" />
@@ -46,9 +46,12 @@ export default function AboutSectionRedesign() {
                         />
                     </AnimatedSection>
 
-                    <AnimatedSection delay={200} duration={900}>
-                        <p className="aboutBody">{primary.body}</p>
-                    </AnimatedSection>
+                    <MotionText
+                        text={primary.body}
+                        as="p"
+                        className="aboutBody"
+                        stagger={0.04}
+                    />
 
                     <AnimatedSection delay={400} duration={900}>
                         <a href="/about" className="aboutLink">

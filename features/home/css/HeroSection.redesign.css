@@ -126,8 +126,6 @@
   text-transform: uppercase;
   color: var(--accent-maroon);
   margin-bottom: 1rem;
-  opacity: 0;
-  animation: fadeSlideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
 }
 
 .heroTitle {
@@ -137,8 +135,6 @@
   color: var(--moon-white);
   letter-spacing: 1px;
   margin: 0 0 1rem;
-  opacity: 0;
-  animation: fadeSlideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
 }
 
 .heroSubtitle {
@@ -147,8 +143,6 @@
   line-height: 1.7;
   margin: 0 0 0.5rem;
   max-width: 45ch;
-  opacity: 0;
-  animation: fadeSlideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards;
 }
 
 .heroMotto {
@@ -158,15 +152,11 @@
   color: var(--text-dim);
   letter-spacing: 1px;
   margin: 0 0 2.5rem;
-  opacity: 0;
-  animation: fadeSlideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
 }
 
 .heroActions {
   display: flex;
   gap: 1rem;
-  opacity: 0;
-  animation: fadeSlideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards;
 }
 
 .heroBtnPrimary {
@@ -229,8 +219,6 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  opacity: 0;
-  animation: fadeSlideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.4s forwards;
 }
 
 .scrollLine {

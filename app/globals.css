@@ -102,6 +102,19 @@ p {
   100% { transform: rotate(360deg); }
 }
 
+/* ── Ambient gradient drift — very slow background motion ── */
+/* Used sparingly on section backgrounds for a living, breathing feel */
+@keyframes ambientDrift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ── Gentle pulse for decorative glows ── */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
 /* ── Respect reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

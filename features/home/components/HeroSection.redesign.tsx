@@ -3,6 +3,14 @@
 import "../css/HeroSection.redesign.css";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { motion } from "framer-motion";
+import {
+    heroStagger,
+    heroChild,
+    orbReveal,
+    orbitRingReveal,
+    scrollIndicatorReveal,
+} from "@/features/motion";
 
 export default function HeroSection() {
     const hero = useQuery(api.siteMeta.queries.getHero);
@@ -13,7 +21,7 @@ export default function HeroSection() {
 
     return (
         <section className="hero" aria-label="Hero">
-            {/* Ambient star particles */}
+            {/* Ambient star particles — CSS keyframes only, no FM overhead */}
             <div className="starField">
                 <span className="star" />
                 <span className="star" />
@@ -24,33 +32,66 @@ export default function HeroSection() {
                 <span className="star" />
             </div>
 
-            {/* Celestial orb (moon) */}
-            <div className="celestialOrb" aria-hidden="true" />
-            <div className="orbitRing" aria-hidden="true">
+            {/* Celestial orb — FM scale-in reveal, CSS perpetual float */}
+            <motion.div
+                className="celestialOrb"
+                aria-hidden="true"
+                initial="hidden"
+                animate="visible"
+                variants={orbReveal}
+            />
+
+            {/* Orbit ring — FM fade-in, CSS perpetual spin */}
+            <motion.div
+                className="orbitRing"
+                aria-hidden="true"
+                initial="hidden"
+                animate="visible"
+                variants={orbitRingReveal}
+            >
                 <span className="orbitDot" />
-            </div>
+            </motion.div>
 
-            {/* Left-aligned content */}
-            <div className="heroContent">
-                <span className="heroLabel">KLTL Studios</span>
-                <h1 className="heroTitle">{title}</h1>
-                <p className="heroSubtitle">{subtitle}</p>
-                <p className="heroMotto">&ldquo;{motto}&rdquo;</p>
+            {/* Left-aligned content — staggered text entrance */}
+            <motion.div
+                className="heroContent"
+                initial="hidden"
+                animate="visible"
+                variants={heroStagger}
+            >
+                <motion.span className="heroLabel" variants={heroChild}>
+                    KLTL Studios
+                </motion.span>
+                <motion.h1 className="heroTitle" variants={heroChild}>
+                    {title}
+                </motion.h1>
+                <motion.p className="heroSubtitle" variants={heroChild}>
+                    {subtitle}
+                </motion.p>
+                <motion.p className="heroMotto" variants={heroChild}>
+                    &ldquo;{motto}&rdquo;
+                </motion.p>
 
-                <div className="heroActions">
+                <motion.div className="heroActions" variants={heroChild}>
                     <a href="#works" className="heroBtnPrimary" aria-label="View my work">
                         View Work
                     </a>
                     <a href="/about" className="heroBtnSecondary" aria-label="Learn more about me">
                         About
                     </a>
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
 
-            {/* Scroll indicator */}
-            <div className="scrollIndicator" aria-hidden="true">
+            {/* Scroll indicator — late entrance */}
+            <motion.div
+                className="scrollIndicator"
+                aria-hidden="true"
+                initial="hidden"
+                animate="visible"
+                variants={scrollIndicatorReveal}
+            >
                 <span className="scrollLine" />
-            </div>
+            </motion.div>
         </section>
     );
 }

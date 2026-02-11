@@ -54,6 +54,7 @@
   border-radius: 50%;
   background: rgba(220, 20, 60, 0.4);
   box-shadow: 0 0 12px rgba(220, 20, 60, 0.2);
+  animation: glowPulse 5s ease-in-out infinite;
 }
 
 /* ── Variant: Arc / curved sweep ── */
@@ -135,6 +136,7 @@
     transparent
   );
   box-shadow: 0 0 20px rgba(220, 20, 60, 0.06);
+  animation: glowPulse 6s ease-in-out infinite;
 }
 
 /* ── Variant: Vertical drop ── */

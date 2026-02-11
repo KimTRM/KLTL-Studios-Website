@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
-import "../css/ProjectSection.css";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { cardHover } from "@/features/motion";
+import "../css/ProjectSection.css";
 
 interface Props {
     title: string;
@@ -9,9 +13,24 @@ interface Props {
     link: string;
 }
 
+/**
+ * Project card with Framer Motion hover lift.
+ * WHY: The hover gives tactile depth feedback — the card floats up slightly,
+ *      signaling interactivity without disrupting layout.
+ */
 export default function ProjectCard(props: Props) {
+    const MotionLink = motion.create(Link);
+
     return (
-        <Link href={props.link} className="project-card" aria-label={`View details about ${props.title} project`}>
+        <MotionLink
+            href={props.link}
+            className="project-card"
+            aria-label={`View details about ${props.title} project`}
+            initial="rest"
+            whileHover="hover"
+            animate="rest"
+            variants={cardHover}
+        >
             <article>
                 <div className="project-icon">
                     <Image
@@ -26,6 +45,6 @@ export default function ProjectCard(props: Props) {
                 <b>{props.title}</b>
                 <p>{props.description}</p>
             </article>
-        </Link>
+        </MotionLink>
     );
 }
