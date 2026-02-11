@@ -1,13 +1,12 @@
-import AboutSection from "@/features/about/components/AboutSection";
-import ServicesSection from "@/features/skills/components/ServicesSection";
-import ResumeSection from "@/features/about/components/ResumeSection";
+import type { Metadata } from "next";
+import AboutPage from "@/features/about/components/AboutPage";
+
+export const metadata: Metadata = {
+    title: "About",
+    description:
+        "Who is KLTL beyond the projects? A personal narrative on creativity, systems, and the philosophy behind the work.",
+};
 
 export default function About() {
-    return (
-        <>
-            <AboutSection />
-            <ServicesSection />
-            <ResumeSection />
-        </>
-    );
+    return <AboutPage />;
 }

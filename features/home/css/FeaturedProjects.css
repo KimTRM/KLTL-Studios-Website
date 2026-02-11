@@ -8,8 +8,9 @@
   max-width: 1200px;
   margin: 0 auto;
   background:
-    radial-gradient(ellipse at 70% 30%, rgba(220, 20, 60, 0.03) 0%, transparent 45%),
-    rgba(14, 11, 13, 0.6);
+    radial-gradient(ellipse at 70% 30%, rgba(184, 176, 168, 0.04) 0%, transparent 45%),
+    radial-gradient(ellipse at 20% 70%, rgba(184, 176, 168, 0.025) 0%, transparent 40%),
+    rgba(10, 9, 8, 0.6);
   box-shadow: none;
   border-radius: 0;
   width: 100%;
@@ -29,7 +30,7 @@
   gap: 3rem;
   align-items: center;
   padding: 2.5rem;
-  border: 1px solid rgba(200, 190, 180, 0.08);
+  border: 1px solid rgba(184, 176, 168, 0.08);
   border-radius: 8px;
   background: var(--surface-elevated);
   text-decoration: none;
@@ -42,11 +43,12 @@
 }
 
 .featuredCard:hover {
-  border-color: rgba(220, 20, 60, 0.25);
-  background: rgba(28, 22, 26, 0.95);
+  border-color: rgba(184, 176, 168, 0.2);
+  background: rgba(16, 15, 14, 0.95);
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(220, 20, 60, 0.08);
+    0 8px 32px rgba(10, 9, 8, 0.4),
+    0 0 0 1px rgba(184, 176, 168, 0.08),
+    0 0 40px rgba(184, 176, 168, 0.04);
 }
 
 /* ── Image area ── */
@@ -55,7 +57,7 @@
   border-radius: 6px;
   overflow: hidden;
   aspect-ratio: 16 / 10;
-  background: rgba(200, 190, 180, 0.03);
+  background: rgba(184, 176, 168, 0.03);
 }
 
 .featuredImage {
@@ -123,11 +125,11 @@
   font-size: 0.7rem;
   letter-spacing: 1px;
   padding: 0.25rem 0.6rem;
-  border: 1px solid rgba(220, 20, 60, 0.15);
+  border: 1px solid rgba(184, 176, 168, 0.15);
   border-radius: 3px;
   color: var(--text-dim);
   white-space: nowrap;
-  background: rgba(220, 20, 60, 0.04);
+  background: rgba(184, 176, 168, 0.04);
 }
 
 /* ── Year badge ── */
@@ -164,7 +166,7 @@
   gap: 3rem;
   align-items: center;
   padding: 2.5rem;
-  border: 1px solid rgba(200, 190, 180, 0.08);
+  border: 1px solid rgba(184, 176, 168, 0.08);
   border-radius: 8px;
   background: var(--surface-elevated);
   text-decoration: none;
@@ -177,11 +179,12 @@
 }
 
 .featuredCardReverse:hover {
-  border-color: rgba(220, 20, 60, 0.25);
-  background: rgba(28, 22, 26, 0.95);
+  border-color: rgba(184, 176, 168, 0.2);
+  background: rgba(16, 15, 14, 0.95);
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(220, 20, 60, 0.08);
+    0 8px 32px rgba(10, 9, 8, 0.4),
+    0 0 0 1px rgba(184, 176, 168, 0.08),
+    0 0 40px rgba(184, 176, 168, 0.04);
 }
 
 .featuredCardReverse .featuredImageWrap {

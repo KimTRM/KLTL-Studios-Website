@@ -1,0 +1,778 @@
+/**
+ * About Page — Celestial, nocturnal aesthetic (enhanced)
+ *
+ * Design principles:
+ * - Heavy negative space — let content breathe
+ * - Dark, layered surfaces with warm mid-tone typography
+ * - Crimson accent threading through every section
+ * - Ambient CSS keyframes for slow, meditative motion
+ * - Section-specific atmospheric radial glows for depth
+ * - Symbol-forward visuals (moon, orbit rings, veils)
+ * - Only animate opacity + transform (GPU-composited)
+ * - Respect prefers-reduced-motion
+ */
+
+/* ─── Page wrapper ──────────────────────────────────────── */
+.about-page {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dark veil — warm-black atmospheric overlay */
+.about-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 30% 20%, rgba(184, 176, 168, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 70%, rgba(184, 176, 168, 0.03) 0%, transparent 50%),
+        rgba(10, 9, 8, 0.85);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ─── Section base ──────────────────────────────────────── */
+.about-section {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 2rem;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.about-section--full {
+    min-height: 100vh;
+}
+
+.about-section__inner {
+    max-width: 720px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.about-section__inner--wide {
+    max-width: 960px;
+}
+
+/* ─── Section atmospheric glows — warm celestial depth ── */
+.opening-statement::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    transform: translateX(-50%);
+    background:
+        radial-gradient(circle, rgba(216, 210, 204, 0.06) 0%, transparent 30%),
+        radial-gradient(circle, rgba(184, 176, 168, 0.05) 0%, rgba(184, 176, 168, 0.02) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.creative-duality::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    height: 700px;
+    transform: translate(-50%, -50%);
+    background:
+        radial-gradient(circle, rgba(184, 176, 168, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 30% 40%, rgba(184, 36, 60, 0.03) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.personal-journey::before {
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    width: 500px;
+    height: 500px;
+    background:
+        radial-gradient(circle, rgba(184, 176, 168, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(184, 36, 60, 0.025) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.kltl-ethos::before {
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translateX(-50%);
+    background:
+        radial-gradient(circle, rgba(216, 210, 204, 0.04) 0%, transparent 35%),
+        radial-gradient(circle, rgba(184, 176, 168, 0.04) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ─── Opening Statement ─────────────────────────────────── */
+.opening-statement {
+    min-height: 100vh;
+    text-align: center;
+    padding-top: 12rem;
+    padding-bottom: 8rem;
+}
+
+.opening-statement__label {
+    display: block;
+    font-family: "Courier New", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 3rem;
+    opacity: 0.7;
+}
+
+.opening-statement__heading {
+    font-size: clamp(2rem, 5.5vw, 3.6rem);
+    font-weight: 200;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    color: var(--moon-white);
+    text-shadow: 0 0 40px rgba(216, 210, 204, 0.12), 0 0 80px rgba(184, 176, 168, 0.06);
+    max-width: 20ch;
+    margin: 0 auto 2.5rem;
+}
+
+.opening-statement__body {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: var(--text-body);
+    line-height: 1.9;
+    max-width: 48ch;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+/* ─── Moon Orb (visual anchor) ──────────────────────────── */
+.moon-orb {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 3.5rem;
+}
+
+.moon-orb__core {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 35% 35%,
+        rgba(216, 210, 204, 0.2) 0%,
+        rgba(216, 210, 204, 0.1) 25%,
+        rgba(184, 176, 168, 0.06) 50%,
+        rgba(184, 36, 60, 0.02) 70%,
+        transparent 100%
+    );
+    border: 1px solid rgba(216, 210, 204, 0.15);
+    box-shadow:
+        0 0 40px rgba(216, 210, 204, 0.1),
+        0 0 80px rgba(184, 176, 168, 0.06),
+        0 0 120px rgba(184, 176, 168, 0.03),
+        inset 0 0 30px rgba(216, 210, 204, 0.04);
+    animation: moonGlow 8s ease-in-out infinite;
+}
+
+.moon-orb__halo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+        circle,
+        rgba(216, 210, 204, 0.06) 0%,
+        rgba(184, 176, 168, 0.03) 30%,
+        transparent 60%
+    );
+    pointer-events: none;
+}
+
+.moon-orb__ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(216, 210, 204, 0.1);
+    animation: orbitPulse 12s ease-in-out infinite;
+}
+
+.moon-orb__ring--1 {
+    width: 220px;
+    height: 220px;
+    animation-delay: 0s;
+}
+
+.moon-orb__ring--2 {
+    width: 300px;
+    height: 300px;
+    animation-delay: -4s;
+    border-color: rgba(184, 176, 168, 0.06);
+}
+
+.moon-orb__ring--3 {
+    width: 400px;
+    height: 400px;
+    animation-delay: -8s;
+    border-color: rgba(184, 176, 168, 0.03);
+}
+
+/* ─── Creative Duality ──────────────────────────────────── */
+.creative-duality {
+    text-align: center;
+}
+
+.creative-duality__label {
+    display: block;
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+}
+
+.creative-duality__heading {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 200;
+    letter-spacing: 0.5px;
+    color: var(--moon-white);
+    text-shadow: 0 0 24px rgba(216, 210, 204, 0.1);
+    margin: 0 0 1.2rem;
+}
+
+.creative-duality__body {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 45ch;
+    margin: 0 auto 4rem;
+}
+
+.duality-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+.duality-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(184, 176, 168, 0.08);
+    background: rgba(184, 176, 168, 0.02);
+    transition: all 0.5s ease;
+    cursor: default;
+}
+
+.duality-node:hover {
+    background: rgba(184, 176, 168, 0.05);
+    border-color: rgba(184, 176, 168, 0.2);
+    box-shadow: 0 0 30px rgba(184, 176, 168, 0.08);
+    transform: translateY(-2px);
+}
+
+.duality-node__icon {
+    font-size: 2rem;
+    color: var(--text-dim);
+    transition: color 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+    line-height: 1;
+}
+
+.duality-node:hover .duality-node__icon {
+    color: var(--starlight);
+    filter: drop-shadow(0 0 16px rgba(184, 176, 168, 0.35));
+    transform: scale(1.1);
+}
+
+.duality-node__label {
+    font-size: 0.72rem;
+    font-family: "Courier New", monospace;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    transition: color 0.4s ease;
+}
+
+.duality-node:hover .duality-node__label {
+    color: var(--starlight);
+}
+
+/* ─── Personal Journey ──────────────────────────────────── */
+.personal-journey {
+    text-align: left;
+}
+
+.personal-journey__label {
+    display: block;
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+    text-align: center;
+}
+
+.personal-journey__heading {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 200;
+    letter-spacing: 0.5px;
+    color: var(--moon-white);
+    text-shadow: 0 0 24px rgba(216, 210, 204, 0.1);
+    margin: 0 0 1.2rem;
+    text-align: center;
+}
+
+.personal-journey__body {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 50ch;
+    margin: 0 auto 3.5rem;
+    text-align: center;
+}
+
+.milestone-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    padding-left: 2.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.milestone-list::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(184, 176, 168, 0.25) 10%,
+        rgba(184, 176, 168, 0.12) 50%,
+        rgba(184, 176, 168, 0.25) 90%,
+        transparent 100%
+    );
+}
+
+.milestone {
+    position: relative;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(184, 176, 168, 0.06);
+}
+
+.milestone:last-child {
+    border-bottom: none;
+}
+
+.milestone::before {
+    content: "";
+    position: absolute;
+    left: -2.5rem;
+    top: 2rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--starlight);
+    box-shadow: 0 0 12px rgba(184, 176, 168, 0.4), 0 0 24px rgba(184, 176, 168, 0.15);
+}
+
+.milestone::after {
+    content: "";
+    position: absolute;
+    left: calc(-2.5rem + 8px);
+    top: calc(2rem + 3px);
+    width: 1.5rem;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        rgba(184, 176, 168, 0.3),
+        rgba(184, 176, 168, 0.05)
+    );
+}
+
+.milestone__title {
+    font-size: 0.75rem;
+    font-family: "Courier New", monospace;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin: 0 0 0.6rem;
+    font-weight: 600;
+}
+
+.milestone__text {
+    font-size: 1rem;
+    color: var(--text-body);
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* ─── KLTL Ethos ────────────────────────────────────────── */
+.kltl-ethos {
+    text-align: center;
+}
+
+.kltl-ethos__label {
+    display: block;
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+}
+
+.kltl-ethos__heading {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 200;
+    letter-spacing: 0.5px;
+    color: var(--moon-white);
+    text-shadow: 0 0 24px rgba(216, 210, 204, 0.1);
+    margin: 0 0 1.2rem;
+}
+
+.kltl-ethos__body {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 50ch;
+    margin: 0 auto 3rem;
+}
+
+.ethos-motto {
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    font-family: "Courier New", monospace;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin: 3.5rem 0 0;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 0 20px rgba(184, 36, 60, 0.2);
+}
+
+.ethos-motto::before,
+.ethos-motto::after {
+    content: "✦";
+    margin: 0 1.2rem;
+    opacity: 0.5;
+    font-size: 0.6em;
+    vertical-align: middle;
+}
+
+.ethos-sigil {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 3rem;
+    position: relative;
+}
+
+.ethos-sigil__diamond {
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid rgba(184, 176, 168, 0.5);
+    box-shadow:
+        0 0 16px rgba(184, 176, 168, 0.25),
+        inset 0 0 8px rgba(184, 176, 168, 0.08);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -14px;
+    margin-top: -14px;
+    animation: sigilPulse 6s ease-in-out infinite;
+}
+
+.ethos-sigil__ring {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1.5px solid rgba(184, 176, 168, 0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: sigilRotate 30s linear infinite;
+}
+
+.ethos-sigil__ring--outer {
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    border: 1px solid rgba(184, 176, 168, 0.08);
+    animation-direction: reverse;
+    animation-duration: 45s;
+}
+
+/* ─── Quiet Close ───────────────────────────────────────── */
+.quiet-close {
+    min-height: 50vh;
+    text-align: center;
+}
+
+.quiet-close__text {
+    font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.9;
+    max-width: 30ch;
+    margin: 0 auto;
+    font-style: italic;
+}
+
+.quiet-close__divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(184, 176, 168, 0.4),
+        transparent
+    );
+    margin: 2.5rem auto 0;
+    box-shadow: 0 0 12px rgba(184, 176, 168, 0.15);
+}
+
+.quiet-close__symbol {
+    display: block;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--primary);
+    opacity: 0.4;
+}
+
+/* ─── Section dividers ──────────────────────────────────── */
+.about-divider {
+    width: 2px;
+    height: 120px;
+    margin: 0 auto;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(184, 176, 168, 0.35) 50%,
+        transparent 100%
+    );
+    box-shadow: 0 0 20px rgba(184, 176, 168, 0.12);
+    position: relative;
+    z-index: 2;
+}
+
+.about-divider::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--starlight);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 16px rgba(184, 176, 168, 0.4);
+}
+
+/* ─── Ambient background particles ──────────────────────── */
+.about-ambient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.about-ambient__mote {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    animation: moteDrift 20s ease-in-out infinite;
+}
+
+.about-ambient__mote:nth-child(odd) {
+    background: rgba(216, 210, 204, 0.12);
+}
+.about-ambient__mote:nth-child(even) {
+    background: rgba(184, 176, 168, 0.15);
+    width: 3px;
+    height: 3px;
+}
+
+.about-ambient__mote:nth-child(1) { left: 15%; top: 20%; animation-duration: 22s; animation-delay: 0s; }
+.about-ambient__mote:nth-child(2) { left: 75%; top: 35%; animation-duration: 28s; animation-delay: -6s; }
+.about-ambient__mote:nth-child(3) { left: 40%; top: 60%; animation-duration: 25s; animation-delay: -12s; }
+.about-ambient__mote:nth-child(4) { left: 85%; top: 75%; animation-duration: 30s; animation-delay: -18s; }
+.about-ambient__mote:nth-child(5) { left: 25%; top: 85%; animation-duration: 26s; animation-delay: -9s; }
+.about-ambient__mote:nth-child(6) { left: 60%; top: 15%; animation-duration: 24s; animation-delay: -3s; }
+.about-ambient__mote:nth-child(7) { left: 10%; top: 50%; animation-duration: 32s; animation-delay: -14s; }
+.about-ambient__mote:nth-child(8) { left: 90%; top: 10%; animation-duration: 27s; animation-delay: -8s; }
+
+/* ─── Keyframes — very slow, ambient only ───────────────── */
+
+@keyframes moonGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 40px rgba(216, 210, 204, 0.08),
+            0 0 80px rgba(184, 176, 168, 0.04),
+            0 0 120px rgba(184, 176, 168, 0.02),
+            inset 0 0 30px rgba(216, 210, 204, 0.03);
+    }
+    50% {
+        box-shadow:
+            0 0 60px rgba(216, 210, 204, 0.14),
+            0 0 100px rgba(184, 176, 168, 0.07),
+            0 0 140px rgba(184, 176, 168, 0.03),
+            inset 0 0 40px rgba(216, 210, 204, 0.05);
+    }
+}
+
+@keyframes orbitPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.03);
+    }
+}
+
+@keyframes sigilPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes sigilRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes moteDrift {
+    0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0.05;
+    }
+    25% {
+        transform: translate(20px, -25px);
+        opacity: 0.15;
+    }
+    50% {
+        transform: translate(-15px, -40px);
+        opacity: 0.05;
+    }
+    75% {
+        transform: translate(25px, -18px);
+        opacity: 0.12;
+    }
+}
+
+/* ─── Veil gradient (section transitions) ───────────────── */
+.about-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--background));
+    pointer-events: none;
+    z-index: 1;
+}
+
+.about-section:last-child::after {
+    display: none;
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 640px) {
+    .about-section {
+        padding: 5rem 1.5rem;
+        min-height: 70vh;
+    }
+
+    .opening-statement {
+        padding-top: 8rem;
+    }
+
+    .moon-orb {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 3rem;
+    }
+
+    .moon-orb__ring--1 { width: 160px; height: 160px; }
+    .moon-orb__ring--2 { width: 220px; height: 220px; }
+    .moon-orb__ring--3 { width: 300px; height: 300px; }
+
+    .duality-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .duality-node {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .milestone-list {
+        padding-left: 2rem;
+    }
+
+    .milestone::before {
+        left: -2rem;
+    }
+
+    .milestone::after {
+        left: calc(-2rem + 8px);
+        width: 1rem;
+    }
+
+    .ethos-sigil {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* ─── Reduced motion ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .moon-orb__core,
+    .moon-orb__ring,
+    .ethos-sigil__diamond,
+    .ethos-sigil__ring,
+    .about-ambient__mote {
+        animation: none !important;
+    }
+
+    .duality-node:hover {
+        transform: none;
+    }
+}

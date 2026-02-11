@@ -1,13 +1,13 @@
 /* GENERAL CONTAINER STYLE FOR SECTIONS */
 section{
     background-color: var(--surface-section);
-    /* semi-transparent charcoal */
+    /* deep navy semi-transparent */
     margin: 2rem auto;
     border-radius: 12px;
     padding: 1.5rem 2rem;
     width: 90%;
     max-width: 1100px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(10, 9, 8, 0.4), 0 0 0 1px rgba(184, 176, 168, 0.05);
     backdrop-filter: blur(5px);
 }
 
@@ -122,20 +122,20 @@ h4 {
 .services-grid div {
     background: var(--surface-card);
     padding: 1.2rem;
-    border: 2px dashed var(--border-light);
+    border: 2px dashed rgba(184, 176, 168, 0.12);
     border-radius: 10px;
     text-align: center;
     transition: border-color 0.25s ease, transform 0.2s ease, background 0.25s ease;
 }
 
 .services-grid div:hover {
-    border-color: var(--primary-soft);
-    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(184, 176, 168, 0.3);
+    background: rgba(184, 176, 168, 0.04);
     transform: translateY(-2px);
 }
 
 .services-grid h4 {
-    color: var(--primary-soft);
+    color: var(--starlight);
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 0.5rem;

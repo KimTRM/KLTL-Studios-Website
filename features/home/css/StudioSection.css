@@ -8,7 +8,8 @@
   max-width: 1200px;
   margin: 0 auto;
   background:
-    radial-gradient(ellipse at 50% 50%, rgba(220, 20, 60, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(184, 176, 168, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(216, 210, 204, 0.02) 0%, transparent 40%),
     var(--surface-elevated);
   box-shadow: none;
   border-radius: 0;
@@ -38,9 +39,9 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1px solid rgba(220, 20, 60, 0.2);
+  border: 1px solid rgba(184, 176, 168, 0.18);
   animation: studioRingSpin 50s linear infinite;
-  box-shadow: 0 0 30px rgba(220, 20, 60, 0.05);
+  box-shadow: 0 0 30px rgba(184, 176, 168, 0.05);
 }
 
 .studioSymbolRing::before {
@@ -52,7 +53,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(220, 20, 60, 0.4);
+  background: rgba(184, 176, 168, 0.4);
 }
 
 @keyframes studioRingSpin {
@@ -66,7 +67,7 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(220, 20, 60, 0.1) 0%,
+    rgba(184, 176, 168, 0.08) 0%,
     transparent 70%
   );
   display: flex;
@@ -79,7 +80,7 @@
   font-size: 2rem;
   color: var(--accent-maroon);
   opacity: 0.85;
-  filter: drop-shadow(0 0 10px rgba(220, 20, 60, 0.2));
+  filter: drop-shadow(0 0 10px rgba(184, 176, 168, 0.15));
 }
 
 /* ── Text ── */
@@ -141,8 +142,8 @@
   height: 80px;
   background: linear-gradient(
     to bottom,
-    rgba(220, 20, 60, 0.35),
-    rgba(220, 20, 60, 0.05)
+    rgba(184, 176, 168, 0.3),
+    rgba(184, 176, 168, 0.05)
   );
 }
 
