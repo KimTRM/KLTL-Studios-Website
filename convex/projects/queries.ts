@@ -1,4 +1,4 @@
-import { query } from "./_generated/server";
+import { query } from "../_generated/server";
 import { v } from "convex/values";
 
 /**
@@ -35,5 +35,12 @@ export const getProjectBySlug = query({
             .query("projects")
             .withIndex("by_slug", (q) => q.eq("slug", slug))
             .first();
+    },
+});
+
+/** ALL projects including archived, ordered by `order`. Admin use only. */
+export const getAllIncludingArchived = query({
+    handler: async (ctx) => {
+        return await ctx.db.query("projects").withIndex("by_order").collect();
     },
 });

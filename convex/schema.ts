@@ -25,6 +25,11 @@ import { v } from "convex/values";
  *   Key-value metadata for the site (hero title, hero subtitle, footer
  *   quote, contact email, social links, etc.).
  *   Index: by_key (unique lookup).
+ *
+ * adminSessions
+ *   Session tokens for single-user admin authentication.
+ *   Tokens are generated on login and validated on every mutation.
+ *   Index: by_token (unique lookup).
  */
 
 export default defineSchema({
@@ -74,4 +79,11 @@ export default defineSchema({
         key: v.string(),
         value: v.string(),
     }).index("by_key", ["key"]),
+
+    adminSessions: defineTable({
+        token: v.string(),
+        email: v.string(),
+        createdAt: v.number(),
+        expiresAt: v.number(),
+    }).index("by_token", ["token"]),
 });

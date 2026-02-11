@@ -4,7 +4,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 export default function Footer() {
-    const footer = useQuery(api.siteMeta.getFooter);
+    const footer = useQuery(api.siteMeta.queries.getFooter);
 
     const text = footer?.text ?? "© 2025 KLTL Studios.";
     const githubUrl = footer?.githubUrl ?? "https://github.com/kimtrm";

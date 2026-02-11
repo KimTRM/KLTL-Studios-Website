@@ -1,0 +1,443 @@
+/* ═══════════════════════════════════════════
+   Admin CSS — utilitarian, dev-tool aesthetic
+   ═══════════════════════════════════════════ */
+
+/* ── Hide public site chrome on admin pages ── */
+body:has(.admin-shell) > * > header.main-header,
+body:has(.admin-shell) > * > footer,
+body:has(.admin-shell) > * > .skip-to-main {
+    display: none !important;
+}
+
+body:has(.admin-shell) > * > main#main-content {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+body:has(.admin-login-wrapper) > * > header.main-header,
+body:has(.admin-login-wrapper) > * > footer,
+body:has(.admin-login-wrapper) > * > .skip-to-main {
+    display: none !important;
+}
+
+body:has(.admin-login-wrapper) > * > main#main-content {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* ── Layout ─────────────────────────────── */
+.admin-shell {
+    display: flex;
+    min-height: 100vh;
+    background: #111;
+    color: #d4d4d4;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.admin-sidebar {
+    width: 220px;
+    background: #1a1a1a;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    flex-shrink: 0;
+}
+
+.admin-sidebar-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+    padding: 0 1rem 0.75rem;
+    border-bottom: 1px solid #333;
+    margin-bottom: 0.5rem;
+}
+
+.admin-sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.admin-sidebar a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.875rem;
+    border-left: 3px solid transparent;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.admin-sidebar a:hover {
+    background: #222;
+    color: #eee;
+}
+
+.admin-sidebar a.active {
+    color: var(--primary-light, #ff3259);
+    border-left-color: var(--primary, #dc143c);
+    background: rgba(220, 20, 60, 0.08);
+}
+
+.admin-sidebar-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #333;
+    margin-top: auto;
+}
+
+.admin-logout-btn {
+    background: none;
+    border: 1px solid #555;
+    color: #aaa;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    transition: background 0.15s, color 0.15s;
+}
+
+.admin-logout-btn:hover {
+    background: #333;
+    color: #eee;
+}
+
+.admin-main {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    max-width: 960px;
+}
+
+/* ── Login ──────────────────────────────── */
+.admin-login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #111;
+}
+
+.admin-login-form {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 2rem;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.admin-login-form h1 {
+    font-size: 1.25rem;
+    color: #eee;
+    margin: 0 0 0.5rem;
+}
+
+/* ── Loading ────────────────────────────── */
+.admin-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #111;
+    color: #888;
+}
+
+/* ── Forms ──────────────────────────────── */
+.admin-login-form label,
+.admin-form label {
+    font-size: 0.8rem;
+    color: #aaa;
+    font-weight: 600;
+}
+
+.admin-login-form input,
+.admin-login-form textarea,
+.admin-login-form select,
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+    background: #222;
+    border: 1px solid #444;
+    color: #ddd;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.875rem;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+}
+
+.admin-login-form input:focus,
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus {
+    outline: none;
+    border-color: var(--primary, #dc143c);
+}
+
+.admin-login-form button[type="submit"],
+.admin-form button[type="submit"] {
+    background: var(--primary, #dc143c);
+    color: #fff;
+    border: none;
+    padding: 0.55rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-top: 0.25rem;
+}
+
+.admin-login-form button[type="submit"]:hover,
+.admin-form button[type="submit"]:hover {
+    background: var(--primary-hover, #d95959);
+}
+
+.admin-login-form button:disabled,
+.admin-form button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ── Feedback ───────────────────────────── */
+.admin-error {
+    background: rgba(255, 100, 100, 0.12);
+    border: 1px solid rgba(255, 100, 100, 0.3);
+    color: #ff6b6b;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.admin-success {
+    background: rgba(76, 175, 80, 0.12);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    color: #4caf50;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* ── Page Headers ───────────────────────── */
+.admin-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.75rem;
+}
+
+.admin-page-header h2 {
+    font-size: 1.25rem;
+    color: #eee;
+    margin: 0;
+}
+
+/* ── Tables / Lists ─────────────────────── */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 0.5rem 0.65rem;
+    border-bottom: 2px solid #333;
+    color: #888;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.admin-table td {
+    padding: 0.5rem 0.65rem;
+    border-bottom: 1px solid #272727;
+    vertical-align: middle;
+}
+
+.admin-table tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* ── Badges ─────────────────────────────── */
+.admin-badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.admin-badge-featured {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+}
+
+.admin-badge-archived {
+    background: rgba(150, 150, 150, 0.15);
+    color: #999;
+}
+
+.admin-badge-active {
+    background: rgba(76, 175, 80, 0.15);
+    color: #4caf50;
+}
+
+/* ── Buttons ────────────────────────────── */
+.admin-btn {
+    background: #333;
+    color: #ccc;
+    border: 1px solid #555;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.78rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.admin-btn:hover {
+    background: #444;
+    color: #eee;
+}
+
+.admin-btn-danger {
+    color: #ff6b6b;
+    border-color: rgba(255, 100, 100, 0.3);
+}
+
+.admin-btn-danger:hover {
+    background: rgba(255, 100, 100, 0.15);
+    color: #ff4d5c;
+}
+
+.admin-btn-primary {
+    background: var(--primary, #dc143c);
+    color: #fff;
+    border-color: var(--primary, #dc143c);
+}
+
+.admin-btn-primary:hover {
+    background: var(--primary-hover, #d95959);
+}
+
+.admin-btn-group {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+/* ── Form layout ────────────────────────── */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    max-width: 640px;
+}
+
+.admin-form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.admin-form-row > * {
+    flex: 1;
+}
+
+.admin-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.admin-field textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.admin-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-checkbox input[type="checkbox"] {
+    width: auto;
+    accent-color: var(--primary, #dc143c);
+}
+
+/* ── Move buttons ───────────────────────── */
+.admin-move-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.admin-move-btns button {
+    background: #2a2a2a;
+    border: 1px solid #444;
+    color: #aaa;
+    font-size: 0.7rem;
+    padding: 0 0.4rem;
+    cursor: pointer;
+    border-radius: 2px;
+    line-height: 1.4;
+}
+
+.admin-move-btns button:hover {
+    background: #3a3a3a;
+    color: #eee;
+}
+
+.admin-move-btns button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ── Dashboard cards ────────────────────── */
+.admin-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.admin-dashboard-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 1.25rem;
+    text-decoration: none;
+    color: #ccc;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.admin-dashboard-card:hover {
+    border-color: var(--primary, #dc143c);
+    background: #1e1e1e;
+}
+
+.admin-dashboard-card h3 {
+    font-size: 1rem;
+    color: #eee;
+    margin: 0 0 0.35rem;
+}
+
+.admin-dashboard-card p {
+    font-size: 0.8rem;
+    color: #888;
+    margin: 0;
+}

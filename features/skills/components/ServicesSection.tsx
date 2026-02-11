@@ -14,7 +14,7 @@ const defaultSkills = [
 ];
 
 export default function ServicesSection() {
-    const skills = useQuery(api.skills.getAll);
+    const skills = useQuery(api.skills.queries.getAll);
 
     const data = skills ?? defaultSkills;
 

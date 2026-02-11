@@ -7,7 +7,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 export default function HeroSection() {
-    const hero = useQuery(api.siteMeta.getHero);
+    const hero = useQuery(api.siteMeta.queries.getHero);
 
     // Use Convex data with safe defaults while loading
     const title = hero?.title ?? "Kim Louise Labrador";

@@ -6,7 +6,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 export default function ProjectsWithFilter() {
-    const allProjects = useQuery(api.projects.getAllProjects);
+    const allProjects = useQuery(api.projects.queries.getAllProjects);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedFilter, setSelectedFilter] = useState<string>("all");
 

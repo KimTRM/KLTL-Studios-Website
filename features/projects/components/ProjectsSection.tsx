@@ -6,7 +6,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 export default function ProjectsSection() {
-    const featuredProjects = useQuery(api.projects.getFeaturedProjects);
+    const featuredProjects = useQuery(api.projects.queries.getFeaturedProjects);
 
     // Safe defaults — mirrors original hard-coded featured projects
     const defaultProjects = [

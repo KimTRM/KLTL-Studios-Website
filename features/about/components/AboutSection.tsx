@@ -5,7 +5,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 export default function AboutSection() {
-    const sections = useQuery(api.aboutSections.getAll);
+    const sections = useQuery(api.about.queries.getAll);
 
     // Safe default while loading — mirrors original hard-coded content
     const defaultSections = [

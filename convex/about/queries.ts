@@ -1,4 +1,4 @@
-import { query } from "./_generated/server";
+import { query } from "../_generated/server";
 
 /**
  * About section queries — read-only.

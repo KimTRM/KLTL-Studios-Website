@@ -8,11 +8,18 @@
  * @module
  */
 
-import type * as aboutSections from "../aboutSections.js";
-import type * as projects from "../projects.js";
+import type * as about_mutations from "../about/mutations.js";
+import type * as about_queries from "../about/queries.js";
+import type * as auth_mutations from "../auth/mutations.js";
+import type * as auth_queries from "../auth/queries.js";
+import type * as lib_requireAuth from "../lib/requireAuth.js";
+import type * as projects_mutations from "../projects/mutations.js";
+import type * as projects_queries from "../projects/queries.js";
 import type * as seed from "../seed.js";
-import type * as siteMeta from "../siteMeta.js";
-import type * as skills from "../skills.js";
+import type * as siteMeta_mutations from "../siteMeta/mutations.js";
+import type * as siteMeta_queries from "../siteMeta/queries.js";
+import type * as skills_mutations from "../skills/mutations.js";
+import type * as skills_queries from "../skills/queries.js";
 
 import type {
   ApiFromModules,
@@ -21,11 +28,18 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
-  aboutSections: typeof aboutSections;
-  projects: typeof projects;
+  "about/mutations": typeof about_mutations;
+  "about/queries": typeof about_queries;
+  "auth/mutations": typeof auth_mutations;
+  "auth/queries": typeof auth_queries;
+  "lib/requireAuth": typeof lib_requireAuth;
+  "projects/mutations": typeof projects_mutations;
+  "projects/queries": typeof projects_queries;
   seed: typeof seed;
-  siteMeta: typeof siteMeta;
-  skills: typeof skills;
+  "siteMeta/mutations": typeof siteMeta_mutations;
+  "siteMeta/queries": typeof siteMeta_queries;
+  "skills/mutations": typeof skills_mutations;
+  "skills/queries": typeof skills_queries;
 }>;
 
 /**

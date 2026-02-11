@@ -5,7 +5,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 export default function ContactForm() {
-    const contact = useQuery(api.siteMeta.getContact);
+    const contact = useQuery(api.siteMeta.queries.getContact);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
