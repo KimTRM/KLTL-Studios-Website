@@ -1,98 +1,326 @@
+/* ═══════════════════════════════════════════
+   Hero Section — Celestial, Nocturnal Theme
+   ═══════════════════════════════════════════ */
+
 .hero {
-    font-family: 'Courier New', monospace;
-    text-align: center;
-    background-color: var(--surface-section);
-    display: flex;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 6rem 8vw 4rem;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(237, 237, 237, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(18, 18, 18, 0.8) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgba(22, 22, 22, 0.5) 0%, transparent 70%),
+    linear-gradient(180deg, #121212 0%, #121212 100%);
+  box-shadow: none;
+  border-radius: 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* ── Celestial orb (moon) ── */
+.celestialOrb {
+  position: absolute;
+  top: 8%;
+  right: 6%;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 40% 40%,
+    rgba(237, 237, 237, 0.10) 0%,
+    rgba(217, 217, 217, 0.05) 35%,
+    rgba(157, 152, 152, 0.02) 60%,
+    transparent 70%
+  );
+  box-shadow:
+    0 0 100px 30px rgba(237, 237, 237, 0.05),
+    0 0 200px 60px rgba(175, 52, 52, 0.02),
+    inset 0 0 80px rgba(237, 237, 237, 0.03);
+  animation: orbFloat 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.celestialOrb::after {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  border: 1px solid rgba(175, 52, 52, 0.08);
+  animation: orbitSpin 40s linear infinite;
+}
+
+/* ── Second orbit ring ── */
+.celestialOrb::before {
+  content: "";
+  position: absolute;
+  inset: -80px;
+  border-radius: 50%;
+  border: 1px dashed rgba(237, 237, 237, 0.03);
+  animation: orbitSpin 60s linear infinite reverse;
+}
+
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-18px) scale(1.02);
+  }
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Orbit ring ── */
+.orbitRing {
+  position: absolute;
+  top: 8%;
+  right: 6%;
+  width: 520px;
+  height: 520px;
+  transform: translate(18%, -10%);
+  border-radius: 50%;
+  border: 1px solid rgba(237, 237, 237, 0.05);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orbitDot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(175, 52, 52, 0.45);
+  box-shadow: 0 0 6px rgba(175, 52, 52, 0.25);
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: orbitSpin 30s linear infinite;
+  transform-origin: 50% 260px;
+}
+
+/* ── Text content ── */
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+}
+
+.heroLabel {
+  display: block;
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent-maroon);
+  margin-bottom: 1rem;
+}
+
+.heroTitle {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--moon-white);
+  letter-spacing: 1px;
+  margin: 0 0 1rem;
+}
+
+.heroSubtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-body);
+  line-height: 1.7;
+  margin: 0 0 0.5rem;
+  max-width: 45ch;
+}
+
+.heroMotto {
+  font-family: "Courier New", monospace;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  margin: 0 0 2.5rem;
+}
+
+.heroActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.heroBtnPrimary {
+  font-family: "Courier New", monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.75rem 1.8rem;
+  border: 1px solid #AF3434;
+  background: rgba(99, 19, 19, 0.25);
+  color: #EDEDED;
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.3s ease;
+}
+
+.heroBtnPrimary:hover {
+  background: rgba(175, 52, 52, 0.3);
+  box-shadow: 0 0 24px rgba(175, 52, 52, 0.15);
+  transform: translateY(-1px);
+}
+
+.heroBtnSecondary {
+  font-family: "Courier New", monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.75rem 1.8rem;
+  border: 1px solid rgba(175, 52, 52, 0.25);
+  background: transparent;
+  color: #9D9898;
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    color 0.4s ease,
+    border-color 0.4s ease,
+    transform 0.3s ease;
+}
+
+.heroBtnSecondary:hover {
+  color: #EDEDED;
+  border-color: #AF3434;
+  transform: translateY(-1px);
+}
+
+/* ── Scroll indicator ── */
+.scrollIndicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(
+    to bottom,
+    rgba(175, 52, 52, 0.3),
+    transparent
+  );
+  animation: scrollPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scaleY(1.2);
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Stars (very subtle ambient particles) ── */
+.starField {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(237, 237, 237, 0.30);
+  border-radius: 50%;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.star:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; }
+.star:nth-child(2) { top: 35%; left: 75%; animation-delay: 1.2s; }
+.star:nth-child(3) { top: 60%; left: 45%; animation-delay: 2.4s; }
+.star:nth-child(4) { top: 80%; left: 15%; animation-delay: 0.8s; }
+.star:nth-child(5) { top: 25%; left: 90%; animation-delay: 1.8s; }
+.star:nth-child(6) { top: 70%; left: 85%; animation-delay: 3.1s; }
+.star:nth-child(7) { top: 45%; left: 30%; animation-delay: 0.4s; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.65; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hero {
+    padding: 5rem 6vw 4rem;
+    align-items: flex-start;
+    min-height: 90vh;
+  }
+
+  .celestialOrb {
+    width: 220px;
+    height: 220px;
+    top: 5%;
+    right: -5%;
+    opacity: 0.7;
+  }
+
+  .orbitRing {
+    width: 300px;
+    height: 300px;
+    top: 5%;
+    right: -5%;
+  }
+
+  .heroActions {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    gap: 0.75rem;
+  }
 
-.hero h1 {
-    font-size: 2.8rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-white);
-    letter-spacing: 1.5px;
-}
-
-.tagline {
-    font-size: 1.15rem;
-    color: var(--text-muted);
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.5px;
-}
-
-.tagline:last-of-type {
-    font-style: italic;
-    color: var(--text-dim);
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  .heroBtnPrimary,
+  .heroBtnSecondary {
     text-align: center;
-}
+  }
 
-.hero-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-.containerh {
-    display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-}
-
-.hero-circle {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    border: 4px solid var(--primary);
-    display: flex;
-    justify-content: center;
-    transition: box-shadow 0.4s ease;
-}
-
-.hero-circle:hover {
-    box-shadow: 0 0 20px rgba(184, 176, 168, 0.2);
-}
-
-.hero-circle img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-@media (max-width: 600px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .tagline {
-        font-size: 0.95rem;
-    }
-
-    .tagline:last-of-type {
-        font-size: 0.9rem;
-    }
-
-    .hero-circle {
-        width: 150px;
-        height: 150px;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
+  .scrollIndicator {
+    display: none;
+  }
 }

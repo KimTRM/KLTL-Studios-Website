@@ -27,10 +27,10 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   padding: 0.45rem 1rem;
-  border: 1px solid rgba(160, 152, 144, 0.12);
+  border: 1px solid #2A2A2A;
   border-radius: 3px;
-  background: rgba(160, 152, 144, 0.03);
-  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.02);
+  color: #9D9898;
   cursor: pointer;
   transition:
     color 0.3s ease,
@@ -39,8 +39,8 @@
 }
 
 .filterBtn:hover {
-  color: var(--moon-white);
-  border-color: rgba(160, 152, 144, 0.2);
+  color: #EDEDED;
+  border-color: #AF3434;
 }
 
 .filterBtnActive {
@@ -51,10 +51,10 @@
   padding: 0.45rem 1rem;
   border-radius: 3px;
   cursor: pointer;
-  color: var(--moon-white);
-  border: 1px solid var(--starlight-soft);
-  background: rgba(184, 176, 168, 0.1);
-  box-shadow: 0 0 12px rgba(184, 176, 168, 0.08);
+  color: #EDEDED;
+  border: 1px solid #AF3434;
+  background: rgba(175, 52, 52, 0.1);
+  box-shadow: 0 0 12px rgba(175, 52, 52, 0.08);
   transition:
     color 0.3s ease,
     border-color 0.3s ease,
@@ -74,7 +74,7 @@
   grid-template-columns: 3fr 1fr 1fr 40px;
   align-items: center;
   padding: 1.1rem 0.5rem;
-  border-bottom: 1px solid rgba(160, 152, 144, 0.08);
+  border-bottom: 1px solid #2A2A2A;
   text-decoration: none;
   color: inherit;
   transition:
@@ -84,13 +84,13 @@
 }
 
 .archiveRow:hover {
-  background: rgba(184, 176, 168, 0.04);
+  background: rgba(175, 52, 52, 0.04);
   padding-left: 1rem;
-  border-color: rgba(184, 176, 168, 0.1);
+  border-color: rgba(175, 52, 52, 0.15);
 }
 
 .archiveRow:first-child {
-  border-top: 1px solid rgba(160, 152, 144, 0.08);
+  border-top: 1px solid #2A2A2A;
 }
 
 .archiveTitle {

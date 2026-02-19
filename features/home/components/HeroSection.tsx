@@ -1,36 +1,97 @@
 "use client";
 
-import "../css/style.css"
-import "../css/HeroSection.css"
-import Image from "next/image";
+import "../css/HeroSection.css";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { motion } from "framer-motion";
+import {
+    heroStagger,
+    heroChild,
+    orbReveal,
+    orbitRingReveal,
+    scrollIndicatorReveal,
+} from "@/features/motion";
 
 export default function HeroSection() {
     const hero = useQuery(api.siteMeta.queries.getHero);
 
-    // Use Convex data with safe defaults while loading
     const title = hero?.title ?? "Kim Louise Labrador";
     const subtitle = hero?.subtitle ?? "Developer · Designer · Musician";
     const motto = hero?.motto ?? "Ad Astra Per Aspera";
-    const image = hero?.image ?? "/res/DSC_1453.png";
 
     return (
-        <>
-            <section className="hero">
-                <div className="containerh">
-                    <div className="hero-circle">
-                        <Image src={image} alt="Hero Image" width={300} height={300} className="hero-image" priority />
-                    </div>
-                    <h1><b>{title}</b></h1>
-                    <p className="tagline">{subtitle}</p>
-                    <p className="tagline">{motto}</p>
-                    <div className="hero-buttons">
-                        <a href="#portfolio" className="btn" aria-label="View my portfolio projects">View Portfolio</a>
-                        <a href="#contact" className="btn-outline" aria-label="Contact me via form or email">Contact Me</a>
-                    </div>
-                </div>
-            </section>
-        </>
+        <section className="hero" aria-label="Hero">
+            {/* Ambient star particles — CSS keyframes only, no FM overhead */}
+            <div className="starField">
+                <span className="star" />
+                <span className="star" />
+                <span className="star" />
+                <span className="star" />
+                <span className="star" />
+                <span className="star" />
+                <span className="star" />
+            </div>
+
+            {/* Celestial orb — FM scale-in reveal, CSS perpetual float */}
+            <motion.div
+                className="celestialOrb"
+                aria-hidden="true"
+                initial="hidden"
+                animate="visible"
+                variants={orbReveal}
+            />
+
+            {/* Orbit ring — FM fade-in, CSS perpetual spin */}
+            <motion.div
+                className="orbitRing"
+                aria-hidden="true"
+                initial="hidden"
+                animate="visible"
+                variants={orbitRingReveal}
+            >
+                <span className="orbitDot" />
+            </motion.div>
+
+            {/* Left-aligned content — staggered text entrance */}
+            <motion.div
+                className="heroContent"
+                initial="hidden"
+                animate="visible"
+                variants={heroStagger}
+            >
+                <motion.span className="heroLabel" variants={heroChild}>
+                    KLTL Studios
+                </motion.span>
+                <motion.h1 className="heroTitle" variants={heroChild}>
+                    {title}
+                </motion.h1>
+                <motion.p className="heroSubtitle" variants={heroChild}>
+                    {subtitle}
+                </motion.p>
+                <motion.p className="heroMotto" variants={heroChild}>
+                    &ldquo;{motto}&rdquo;
+                </motion.p>
+
+                <motion.div className="heroActions" variants={heroChild}>
+                    <a href="#works" className="heroBtnPrimary" aria-label="View my work">
+                        View Work
+                    </a>
+                    <a href="/about" className="heroBtnSecondary" aria-label="Learn more about me">
+                        About
+                    </a>
+                </motion.div>
+            </motion.div>
+
+            {/* Scroll indicator — late entrance */}
+            <motion.div
+                className="scrollIndicator"
+                aria-hidden="true"
+                initial="hidden"
+                animate="visible"
+                variants={scrollIndicatorReveal}
+            >
+                <span className="scrollLine" />
+            </motion.div>
+        </section>
     );
 }

@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   publisher: "KLTL Studios",
   metadataBase: new URL("https://kltl-studios.github.io"),
   icons: {
-    icon: "/res/icon/KLTL_Studios.svg",
-    apple: "/res/icon/KLTL_Studios.svg",
+    icon: "/res/icon/KLTL-Studios-Logo.svg",
+    apple: "/res/icon/KLTL-Studios-Logo.svg",
   },
   openGraph: {
     type: "website",

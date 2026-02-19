@@ -8,12 +8,12 @@
   max-width: 1200px;
   margin: 0 auto;
   background:
-    radial-gradient(ellipse at 10% 50%, rgba(184, 176, 168, 0.04) 0%, transparent 50%),
-    var(--surface-section);
+    radial-gradient(ellipse at 10% 50%, rgba(175, 52, 52, 0.025) 0%, transparent 50%),
+    #161616;
   box-shadow: none;
   border-radius: 0;
   width: 100%;
-  border-left: 2px solid rgba(184, 176, 168, 0.12);
+  border-left: 2px solid rgba(175, 52, 52, 0.12);
 }
 
 .aboutInner {
@@ -35,18 +35,18 @@
   width: 260px;
   height: 260px;
   border-radius: 50%;
-  border: 1px solid rgba(184, 176, 168, 0.12);
+  border: 1px solid rgba(175, 52, 52, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  background: radial-gradient(circle, rgba(184, 176, 168, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(175, 52, 52, 0.04) 0%, transparent 70%);
   animation: glyphPulse 8s ease-in-out infinite;
 }
 
 @keyframes glyphPulse {
-  0%, 100% { box-shadow: 0 0 40px rgba(184, 176, 168, 0.03); }
-  50% { box-shadow: 0 0 60px rgba(184, 176, 168, 0.07); }
+  0%, 100% { box-shadow: 0 0 40px rgba(175, 52, 52, 0.03); }
+  50% { box-shadow: 0 0 60px rgba(175, 52, 52, 0.07); }
 }
 
 .aboutGlyph::before {
@@ -54,7 +54,7 @@
   position: absolute;
   inset: -25px;
   border-radius: 50%;
-  border: 1px solid rgba(184, 176, 168, 0.08);
+  border: 1px solid rgba(175, 52, 52, 0.06);
   animation: glyphOrbit 35s linear infinite;
 }
 
@@ -70,7 +70,7 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(184, 176, 168, 0.06) 0%,
+    rgba(175, 52, 52, 0.04) 0%,
     transparent 70%
   );
 }
@@ -80,7 +80,7 @@
   color: var(--accent-maroon);
   opacity: 0.75;
   z-index: 1;
-  filter: drop-shadow(0 0 12px rgba(184, 176, 168, 0.15));
+  filter: drop-shadow(0 0 12px rgba(175, 52, 52, 0.15));
 }
 
 /* ── Text content ── */
@@ -120,7 +120,7 @@
 .aboutAccent {
   width: 50px;
   height: 2px;
-  background: linear-gradient(90deg, var(--starlight), transparent);
+  background: linear-gradient(90deg, #AF3434, transparent);
   margin-bottom: 0.5rem;
   opacity: 0.6;
 }

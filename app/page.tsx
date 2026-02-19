@@ -1,9 +1,9 @@
-import HeroSection from "@/features/home/components/HeroSection.redesign";
-import AboutSection from "@/features/home/components/AboutSection.redesign";
+import HeroSection from "@/features/home/components/HeroSection";
+import AboutSection from "@/features/home/components/AboutSection";
 import FeaturedProjects from "@/features/home/components/FeaturedProjects";
 import WorksArchive from "@/features/home/components/WorksArchive";
 import StudioSection from "@/features/home/components/StudioSection";
-import ContactSection from "@/features/home/components/ContactSection.redesign";
+import ContactSection from "@/features/home/components/ContactSection";
 import SectionDivider from "@/features/home/components/SectionDivider";
 
 export default function Home() {

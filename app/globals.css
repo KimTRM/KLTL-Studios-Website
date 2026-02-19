@@ -1,66 +1,75 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #e8e4e0;
+  --background: #121212;
+  --foreground: #EDEDED;
 
-  /* ── Brand palette — black + maroon + silver ── */
-  --accent-maroon: #a82535;
+  /* ── KLTL Brand Palette ── */
+  --kltl-dark-red: #631313;
+  --kltl-bright-red: #AF3434;
+  --kltl-light-gray: #D9D9D9;
+  --kltl-mid-gray: #9D9898;
+  --kltl-bg-dark: #121212;
+  --kltl-bg-section: #161616;
+  --kltl-card-surface: #1E1E1E;
+  --kltl-card-border: #2A2A2A;
+
+  /* ── Legacy compat aliases ── */
+  --accent-maroon: #AF3434;
   --accent-maroon-light: #c93848;
-  --accent-maroon-dark: #7a1a28;
-  --moon-white: #ece8e4;
-  --moon-gray: #c0b8b2;
+  --accent-maroon-dark: #631313;
+  --moon-white: #EDEDED;
+  --moon-gray: #D9D9D9;
 
-  /* ── Silver accent (crescent moon) ── */
-  --starlight: #b8b0a8;
-  --starlight-soft: #a89e96;
-  --starlight-dim: #8a827a;
-  --starlight-glow: rgba(184, 176, 168, 0.15);
-  --moonlight: #d8d2cc;
-  --night-blue: #121010;
-  --deep-navy: #0e0c0c;
+  --starlight: #D9D9D9;
+  --starlight-soft: #9D9898;
+  --starlight-dim: #6e6a6a;
+  --starlight-glow: rgba(175, 52, 52, 0.15);
+  --moonlight: #D9D9D9;
+  --night-blue: #121212;
+  --deep-navy: #0E0E0E;
 
-  /* ── Primary palette (deep maroon — brand identity) ── */
-  --primary: #a82535;
-  --primary-light: #c93848;
-  --primary-dark: #7a1a28;
-  --primary-hover: #b82e3e;
-  --primary-glow: #c94050;
-  --primary-soft: #b85050;
+  /* ── Primary palette (dark red — brand identity) ── */
+  --primary: #631313;
+  --primary-light: #AF3434;
+  --primary-dark: #4a0e0e;
+  --primary-hover: #AF3434;
+  --primary-glow: #AF3434;
+  --primary-soft: #AF3434;
 
-  /* ── Text colors (neutral mid-tones) ── */
-  --text-white: #f0ece8;
-  --text-body: #c8c0b8;
-  --text-muted: #9e958e;
-  --text-dim: #7a726c;
-  --text-faint: #5a524c;
-  --text-card: #9e958e;
-  --text-card-title: #f0ece8;
-  --text-link-footer: #7a726c;
+  /* ── Text colors ── */
+  --text-white: #EDEDED;
+  --text-body: #D9D9D9;
+  --text-muted: #9D9898;
+  --text-dim: #6e6a6a;
+  --text-faint: #4a4646;
+  --text-card: #9D9898;
+  --text-card-title: #EDEDED;
+  --text-link-footer: #9D9898;
 
-  /* ── Surface / Background colors (neutral black depth layers) ── */
-  --surface-section: rgba(12, 11, 10, 0.92);
-  --surface-elevated: rgba(16, 15, 14, 0.9);
-  --surface-card: rgba(184, 176, 168, 0.04);
-  --surface-overlay: rgba(10, 9, 8, 0.95);
-  --surface-header: rgba(10, 10, 9, 0.96);
-  --surface-services: rgba(14, 13, 12, 0.9);
-  --surface-projects: rgba(12, 11, 10, 0.92);
-  --surface-contact: rgba(12, 11, 10, 0.88);
-  --surface-input: rgba(184, 176, 168, 0.06);
-  --surface-input-focus: rgba(184, 176, 168, 0.1);
+  /* ── Surface / Background colors ── */
+  --surface-section: #161616;
+  --surface-elevated: #1E1E1E;
+  --surface-card: #1E1E1E;
+  --surface-overlay: rgba(14, 14, 14, 0.95);
+  --surface-header: rgba(18, 18, 18, 0.96);
+  --surface-services: #161616;
+  --surface-projects: #161616;
+  --surface-contact: #161616;
+  --surface-input: rgba(255, 255, 255, 0.06);
+  --surface-input-focus: rgba(255, 255, 255, 0.1);
 
   /* ── Border colors ── */
-  --border: rgba(160, 152, 144, 0.12);
-  --border-light: rgba(160, 152, 144, 0.18);
-  --border-crimson: rgba(168, 37, 53, 0.15);
-  --border-starlight: rgba(184, 176, 168, 0.12);
+  --border: #2A2A2A;
+  --border-light: #333333;
+  --border-crimson: rgba(175, 52, 52, 0.15);
+  --border-starlight: #2A2A2A;
 
   /* ── Button colors ── */
-  --btn-default-bg: rgba(160, 152, 144, 0.08);
-  --btn-default-text: var(--moon-white);
-  --btn-default-hover: rgba(160, 152, 144, 0.12);
-  --btn-small-bg: rgba(160, 152, 144, 0.06);
+  --btn-default-bg: rgba(255, 255, 255, 0.06);
+  --btn-default-text: #EDEDED;
+  --btn-default-hover: rgba(255, 255, 255, 0.1);
+  --btn-small-bg: rgba(255, 255, 255, 0.04);
 
   /* ── Status colors ── */
   --success: #4caf50;
@@ -77,8 +86,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #080808;
-    --foreground: #e8e4e0;
+    --background: #121212;
+    --foreground: #EDEDED;
   }
 }
 
@@ -88,25 +97,6 @@ html {
 
 body {
   background-color: var(--background);
-  background-image:
-    /* Star field — silver-gray dots (matching brand starry sky) */
-    radial-gradient(1px 1px at 10% 15%, rgba(200, 195, 190, 0.35), transparent),
-    radial-gradient(1px 1px at 25% 42%, rgba(200, 195, 190, 0.22), transparent),
-    radial-gradient(1.5px 1.5px at 47% 8%, rgba(200, 195, 190, 0.40), transparent),
-    radial-gradient(1px 1px at 62% 28%, rgba(200, 195, 190, 0.28), transparent),
-    radial-gradient(1px 1px at 78% 55%, rgba(200, 195, 190, 0.18), transparent),
-    radial-gradient(1.5px 1.5px at 88% 12%, rgba(200, 195, 190, 0.32), transparent),
-    radial-gradient(1px 1px at 35% 70%, rgba(200, 195, 190, 0.22), transparent),
-    radial-gradient(1px 1px at 55% 85%, rgba(200, 195, 190, 0.14), transparent),
-    radial-gradient(1.5px 1.5px at 15% 92%, rgba(200, 195, 190, 0.28), transparent),
-    radial-gradient(1px 1px at 72% 78%, rgba(200, 195, 190, 0.18), transparent),
-    radial-gradient(1px 1px at 92% 38%, rgba(200, 195, 190, 0.22), transparent),
-    radial-gradient(1px 1px at 5% 60%, rgba(200, 195, 190, 0.14), transparent),
-    /* Atmospheric depth — silver radial glows */
-    radial-gradient(ellipse at 20% 20%, rgba(184, 176, 168, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(184, 176, 168, 0.02) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(18, 16, 16, 0.6) 0%, transparent 70%);
-  background-attachment: fixed;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
@@ -181,8 +171,8 @@ p {
   max-height: 10vh;
   justify-content: space-between;
   align-items: center;
-  background: var(--surface-header);
-  border-bottom: 1px solid rgba(184, 176, 168, 0.08);
+  background: rgba(18, 18, 18, 0.511);
+  border-bottom: 1px solid #2A2A2A;
   padding: 0.5rem 0.5vw;
   margin: 0;
   backdrop-filter: blur(12px);
@@ -201,9 +191,9 @@ p {
 }
 
 .nav-bottom {
-  background: var(--surface-header);
-  border-top: 1px solid rgba(184, 176, 168, 0.08);
-  box-shadow: 0 -4px 20px rgba(10, 9, 8, 0.3);
+  background: #0E0E0E;
+  border-top: 1px solid #2A2A2A;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
   padding: 0.75rem 2rem;
   margin-top: 0;
   font-size: 0.9rem;
@@ -219,7 +209,7 @@ p {
 }
 
 .nav-bottom-left {
-  color: var(--text-faint);
+  color: #9D9898;
   font-weight: 400;
   letter-spacing: 0.5px;
   font-family: "Courier New", monospace;
@@ -227,11 +217,11 @@ p {
 }
 
 .nav-bottom-right {
-  color: var(--border);
+  color: #9D9898;
 }
 
 .nav-bottom a {
-  color: var(--text-link-footer);
+  color: #9D9898;
   text-decoration: none;
   font-weight: 500;
   margin: 0 0.25rem;
@@ -239,11 +229,11 @@ p {
 }
 
 .nav-bottom a:hover {
-  color: var(--text-white);
+  color: #AF3434;
 }
 
 .nav-bottom a:focus-visible {
-  color: var(--text-white);
+  color: #AF3434;
 }
 
 .logo {
@@ -254,7 +244,7 @@ p {
 
 .default-btn {
   background: transparent;
-  color: var(--text-dim);
+  color: #D9D9D9;
   font-family: "Courier New", monospace;
   font-size: 0.8rem;
   font-weight: 500;
@@ -270,9 +260,9 @@ p {
 }
 
 .default-btn:hover {
-  background: rgba(160, 152, 144, 0.08);
-  color: var(--moon-white);
-  box-shadow: 0 0 12px rgba(184, 176, 168, 0.06);
+  background: rgba(175, 52, 52, 0.08);
+  color: #AF3434;
+  box-shadow: none;
   transform: none;
 }
 

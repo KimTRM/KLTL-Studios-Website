@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev --turbopack",
+        "dev": "next dev",
         "dev:all": "npx convex dev & next dev --turbopack",
         "build": "next build",
         "start": "next start",
@@ -13,7 +13,6 @@
         "convex:seed": "npx convex run seed:run"
     },
     "dependencies": {
-        "@supabase/supabase-js": "^2.89.0",
         "convex": "^1.31.7",
         "framer-motion": "^12.34.0",
         "next": "^15.5.12",

@@ -1,109 +1,133 @@
-/* Contact section styles */
-.containerc{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+/* ═══════════════════════════════════════════
+   Contact Section — Soft Exit
+   ═══════════════════════════════════════════ */
+
+.contactSection {
+  position: relative;
+  padding: 5rem 8vw 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(175, 52, 52, 0.03) 0%, transparent 50%),
+    linear-gradient(180deg, #161616 0%, #0E0E0E 100%);
+  box-shadow: none;
+  border-radius: 0;
+  width: 100%;
+  text-align: center;
 }
 
-.contact {
-    background-color: var(--surface-contact);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+.contactInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-.contact .btn {
-    margin-top: 1rem;
+.contactHeading {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-weight: 500;
+  color: var(--moon-white);
+  margin: 0;
 }
 
-.socials {
-    margin-top: 1rem;
+.contactSub {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  max-width: 40ch;
+  line-height: 1.7;
 }
 
-.socials a {
-    color: var(--primary);
-    margin-right: 1rem;
-    text-decoration: none;
+/* ── Divider ── */
+.contactDivider {
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(175, 52, 52, 0.3), transparent);
+  margin: 0.5rem 0;
 }
 
-.socials a:hover {
-    text-decoration: underline;
+/* ── Social links ── */
+.contactLinks {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
 }
 
-.contact-form {
-    width: 100%;
-    max-width: 500px;
-    margin: 2rem auto;
+.contactLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: var(--text-dim);
+  transition: color 0.4s ease;
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
-    text-align: left;
+.contactLink:hover {
+  color: var(--moon-white);
 }
 
-.form-group label {
-    display: block;
-    color: var(--text-white);
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+.contactLinkIcon {
+  font-size: 1.4rem;
+  transition: filter 0.4s ease, transform 0.4s ease;
 }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.8rem;
-    background: var(--surface-input);
-    border: 2px solid var(--border);
-    border-radius: 8px;
-    color: var(--text-white);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+.contactLink:hover .contactLinkIcon {
+  filter: drop-shadow(0 0 6px rgba(175, 52, 52, 0.25));
+  transform: translateY(-2px);
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--starlight);
-    background: var(--surface-input-focus);
-    box-shadow: 0 0 0 3px rgba(184, 176, 168, 0.1);
+.contactLinkLabel {
+  font-family: "Courier New", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
+.contactLink:hover .contactLinkLabel {
+  opacity: 0.6;
+  transform: translateY(0);
 }
 
-.contact-form .btn {
-    width: 100%;
-    margin-top: 1rem;
+/* ── Email CTA ── */
+.contactEmail {
+  font-family: "Courier New", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: #AF3434;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid rgba(175, 52, 52, 0.2);
+  border-radius: 4px;
+  transition:
+    background 0.4s ease,
+    color 0.4s ease,
+    box-shadow 0.4s ease;
+  margin-top: 0.5rem;
 }
 
-.contact-form .btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+.contactEmail:hover {
+  background: rgba(175, 52, 52, 0.12);
+  color: #EDEDED;
+  box-shadow:
+    0 0 20px rgba(175, 52, 52, 0.1),
+    0 0 40px rgba(175, 52, 52, 0.04);
 }
 
-.success-message {
-    color: var(--success);
-    margin-top: 1rem;
-    font-weight: bold;
-}
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .contactSection {
+    padding: 4rem 6vw 5rem;
+  }
 
-.error-message {
-    color: var(--error);
-    margin-top: 1rem;
-    font-weight: bold;
-}
+  .contactLinks {
+    gap: 1.5rem;
+  }
 
-.contact-divider {
-    margin: 2rem 0;
-    color: var(--text-faint);
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  .contactLinkLabel {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
 }
