@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useQuery, useMutation } from "convex/react";
@@ -35,7 +35,7 @@ export default function AdminAboutEditor() {
 
     if (!token) return null;
     if (sections === undefined)
-        return <p style={{ color: "#888" }}>Loading sections…</p>;
+        return <p style={{ color: "var(--text-faint)" }}>Loading sections…</p>;
 
     function getEdited(s: AboutDoc) {
         return editState[s._id] ?? { heading: s.heading, body: s.body };
@@ -163,7 +163,7 @@ export default function AdminAboutEditor() {
                     <div
                         key={s._id}
                         style={{
-                            background: "#1a1a1a",
+                            background: "var(--palette-gray-2)",
                             border: "1px solid #333",
                             borderRadius: 6,
                             padding: "1rem",
@@ -242,14 +242,14 @@ export default function AdminAboutEditor() {
             {/* New section form */}
             <div
                 style={{
-                    background: "#151515",
+                    background: "color-mix(in srgb, var(--palette-gray-2) 80%, var(--palette-black) 20%)",
                     border: "1px dashed #444",
                     borderRadius: 6,
                     padding: "1rem",
                     marginTop: "1rem",
                 }}
             >
-                <h3 style={{ fontSize: "0.9rem", color: "#aaa", margin: "0 0 0.75rem" }}>
+                <h3 style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: "0 0 0.75rem" }}>
                     Add New Section
                 </h3>
                 <div className="admin-field" style={{ marginBottom: "0.5rem" }}>

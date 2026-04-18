@@ -1,6 +1,5 @@
 "use client"
 import styles from "@/features/projects/css/ProjectPage.module.css";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -41,9 +40,6 @@ export default function ProjectPage() {
     const [previewImage, setPreviewImage] = useState<string | null>(null);
     return (
         <>
-            <Head>
-                <title>{project.title} | KLTL Studios</title>
-            </Head>
             <main className={styles.wrapper}>
                 <div className={styles.container}>
                     <h1 className={styles.title}>{project.title}</h1>

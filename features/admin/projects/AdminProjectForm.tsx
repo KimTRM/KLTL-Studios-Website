@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, FormEvent, useEffect } from "react";
 import { useMutation, useQuery } from "convex/react";
@@ -155,7 +155,7 @@ export default function AdminProjectForm({ slug }: { slug?: string }) {
     }
 
     if (isEdit && existing === undefined) {
-        return <p style={{ color: "#888" }}>Loading project…</p>;
+        return <p style={{ color: "var(--text-faint)" }}>Loading project…</p>;
     }
 
     if (isEdit && existing === null) {

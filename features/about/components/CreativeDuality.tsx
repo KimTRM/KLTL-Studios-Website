@@ -16,13 +16,6 @@
  */
 "use client";
 
-import { motion } from "framer-motion";
-import {
-    staggerContainer,
-    staggerChild,
-    EASE_OUT_CUBIC,
-} from "@/features/motion";
-import FloatingIcon from "@/features/ui/FloatingIcon";
 import {
     RiCodeSSlashLine,
     RiPaletteLine,
@@ -52,50 +45,19 @@ export default function CreativeDuality({ heading, body }: CreativeDualityProps)
             <div className="about-section__inner about-section__inner--wide">
                 <span className="creative-duality__label">02 — Craft</span>
 
-                <motion.h2
-                    className="creative-duality__heading"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.8, ease: EASE_OUT_CUBIC }}
-                >
-                    {heading}
-                </motion.h2>
+                <h2 className="creative-duality__heading">{heading}</h2>
+                <p className="creative-duality__body">{body}</p>
 
-                <motion.p
-                    className="creative-duality__body"
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.8, ease: EASE_OUT_CUBIC, delay: 0.15 }}
-                >
-                    {body}
-                </motion.p>
-
-                <motion.div
-                    className="duality-grid"
-                    variants={staggerContainer}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
-                >
+                <div className="duality-grid">
                     {DOMAINS.map((d) => (
-                        <motion.div
-                            key={d.label}
-                            className="duality-node"
-                            variants={staggerChild}
-                        >
-                            <FloatingIcon
-                                className="duality-node__icon"
-                                glowColor="rgba(232, 228, 223, 0.25)"
-                                style={{ fontSize: "1.8rem" }}
-                            >
+                        <div key={d.label} className="duality-node">
+                            <span className="duality-node__icon" aria-hidden="true">
                                 {d.icon}
-                            </FloatingIcon>
+                            </span>
                             <span className="duality-node__label">{d.label}</span>
-                        </motion.div>
+                        </div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
     );

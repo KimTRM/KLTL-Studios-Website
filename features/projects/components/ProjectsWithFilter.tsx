@@ -68,45 +68,25 @@ export default function ProjectsWithFilter() {
                 <h2>My Projects</h2>
 
                 {/* Search and Filter Controls */}
-                <div style={{
-                    display: 'flex',
-                    gap: '1rem',
-                    marginBottom: '1.5rem',
-                    flexWrap: 'wrap',
-                    justifyContent: 'center'
-                }}>
+                <div className="project-toolbar">
                     {/* Search Input */}
                     <input
                         type="text"
                         placeholder="Search projects..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        style={{
-                            padding: '0.7rem 1.2rem',
-                            borderRadius: '8px',
-                            border: '2px solid var(--border)',
-                            background: 'var(--surface-input)',
-                            color: 'var(--text-white)',
-                            fontSize: '1rem',
-                            flex: '1 1 250px',
-                            maxWidth: '400px',
-                            transition: 'border-color 0.25s ease'
-                        }}
+                        className="project-search"
                         aria-label="Search projects by name or description"
                     />
 
                     {/* Category Filter Buttons */}
-                    <div style={{
-                        display: 'flex',
-                        gap: '0.5rem',
-                        flexWrap: 'wrap'
-                    }}>
+                    <div className="project-filters">
                         {categories.map(category => (
                             <button
                                 key={category}
                                 onClick={() => setSelectedFilter(category)}
                                 className={selectedFilter === category ? "btn" : "btn-outline"}
-                                style={{ margin: 0, fontSize: '0.85rem', padding: '0.5rem 1.2rem' }}
+                                style={{ margin: 0 }}
                                 aria-label={`Filter by ${category} projects`}
                                 aria-pressed={selectedFilter === category}
                             >
@@ -118,12 +98,7 @@ export default function ProjectsWithFilter() {
 
                 {/* Results Count */}
                 {projects.length > 0 && (
-                    <p style={{
-                        textAlign: 'center',
-                        color: 'var(--text-faint)',
-                        marginBottom: '1rem',
-                        fontSize: '0.85rem'
-                    }}>
+                    <p className="project-results">
                         {filteredProjects.length} of {projects.length} projects
                     </p>
                 )}
@@ -131,13 +106,7 @@ export default function ProjectsWithFilter() {
                 {/* Project Grid */}
                 <div className="project-grid">
                     {allProjects === undefined ? (
-                        <p style={{
-                            gridColumn: '1 / -1',
-                            textAlign: 'center',
-                            color: 'var(--text-dim)',
-                            fontSize: '1rem',
-                            padding: '2rem'
-                        }}>
+                        <p className="project-empty project-empty-loading">
                             Loading projects&hellip;
                         </p>
                     ) : filteredProjects.length > 0 ? (
@@ -151,24 +120,11 @@ export default function ProjectsWithFilter() {
                             />
                         ))
                     ) : projects.length === 0 ? (
-                        <p style={{
-                            gridColumn: '1 / -1',
-                            textAlign: 'center',
-                            color: 'var(--text-dim)',
-                            fontSize: '1.1rem',
-                            padding: '3rem 1rem',
-                            lineHeight: '1.7'
-                        }}>
+                        <p className="project-empty project-empty-none">
                             No projects here yet — check back soon.
                         </p>
                     ) : (
-                        <p style={{
-                            gridColumn: '1 / -1',
-                            textAlign: 'center',
-                            color: 'var(--text-dim)',
-                            fontSize: '1.1rem',
-                            padding: '2rem'
-                        }}>
+                        <p className="project-empty project-empty-no-match">
                             No matches found. Try a different search.
                         </p>
                     )}

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -42,7 +42,7 @@ export default function AdminSidebar() {
                     <p
                         style={{
                             fontSize: "0.7rem",
-                            color: "#666",
+                            color: "var(--text-faint)",
                             margin: "0 0 0.5rem",
                             wordBreak: "break-all",
                         }}

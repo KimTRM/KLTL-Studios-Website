@@ -3,12 +3,15 @@
 import "../css/AboutSection.css";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { RiCompassDiscoverLine } from "react-icons/ri";
-import { FiArrowRight } from "react-icons/fi";
 import AnimatedSection from "@/features/ui/AnimatedSection";
-import SectionHeader from "@/features/ui/SectionHeader";
-import MotionText from "@/features/ui/MotionText";
-import { slideFromLeft } from "@/features/motion";
+import { FiCode, FiTrendingUp, FiUsers, FiZap } from "react-icons/fi";
+
+const STATS = [
+    { icon: <FiCode />, value: "10+", label: "Projects Built" },
+    { icon: <FiTrendingUp />, value: "6+ Years", label: "Programming and Problem Solving" },
+    { icon: <FiUsers />, value: "4+ Years", label: "Game Development and Interactive Design" },
+    { icon: <FiZap />, value: "24/7", label: "Independent Creator" },
+];
 
 export default function AboutSectionRedesign() {
     const sections = useQuery(api.about.queries.getAll);
@@ -16,7 +19,7 @@ export default function AboutSectionRedesign() {
     const defaultSections = [
         {
             heading: "About Me",
-            body: "I'm Kim — a developer, designer, and musician who builds interactive experiences at the intersection of code and creativity. I believe in craft over clutter, intention over noise.",
+            body: "I build games, systems, and digital experiences that combine logic with storytelling. I am currently studying Computer Science, but most of my growth has come from building real projects - experimenting, failing, refining, and shipping. KLTL Studios is the space where I merge engineering, design, and emotion into one cohesive vision.",
         },
     ];
 
@@ -26,38 +29,24 @@ export default function AboutSectionRedesign() {
     return (
         <section className="aboutSection" id="about" aria-label="About">
             <div className="aboutInner">
-                {/* Visual anchor — slides from left */}
-                <AnimatedSection
-                    className="aboutVisual"
-                    variants={slideFromLeft}
-                >
-                    <div className="aboutGlyph">
-                        <RiCompassDiscoverLine className="aboutGlyphIcon" />
-                    </div>
+                <AnimatedSection delay={0} duration={750}>
+                    <p className="aboutLabel">{primary.heading}</p>
+                    <h2 className="aboutHeading">Hi, I&apos;m Kim Louise Labrador</h2>
+                    <p className="aboutBody">{primary.body}</p>
                 </AnimatedSection>
 
-                {/* Text */}
-                <div className="aboutText">
-                    <AnimatedSection delay={0} duration={900}>
-                        <div className="aboutAccent" />
-                        <SectionHeader
-                            label="01"
-                            heading={primary.heading}
-                        />
-                    </AnimatedSection>
-
-                    <MotionText
-                        text={primary.body}
-                        as="p"
-                        className="aboutBody"
-                        stagger={0.04}
-                    />
-
-                    <AnimatedSection delay={400} duration={900}>
-                        <a href="/about" className="aboutLink">
-                            Read more <FiArrowRight />
-                        </a>
-                    </AnimatedSection>
+                <div className="aboutStats" aria-label="Experience highlights">
+                    {STATS.map((stat, idx) => (
+                        <AnimatedSection key={stat.value + stat.label} delay={idx * 80} duration={650}>
+                            <article className="aboutStatCard">
+                                <span className="aboutStatIcon" aria-hidden="true">
+                                    {stat.icon}
+                                </span>
+                                <p className="aboutStatValue">{stat.value}</p>
+                                <p className="aboutStatLabel">{stat.label}</p>
+                            </article>
+                        </AnimatedSection>
+                    ))}
                 </div>
             </div>
         </section>

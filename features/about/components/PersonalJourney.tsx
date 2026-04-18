@@ -22,12 +22,6 @@
  */
 "use client";
 
-import { motion } from "framer-motion";
-import {
-    staggerChild,
-    EASE_OUT_CUBIC,
-} from "@/features/motion";
-
 interface PersonalJourneyProps {
     heading: string;
     body: string;
@@ -61,56 +55,25 @@ export default function PersonalJourney({ heading, body }: PersonalJourneyProps)
             <div className="about-section__inner">
                 <span className="personal-journey__label">03 — Journey</span>
 
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.8, ease: EASE_OUT_CUBIC }}
-                >
-                    {heading}
-                </motion.h2>
+                <h2>{heading}</h2>
 
                 {!hasMilestones && (
-                    <motion.p
-                        className="personal-journey__body"
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 0.8, ease: EASE_OUT_CUBIC, delay: 0.15 }}
-                    >
+                    <p className="personal-journey__body">
                         {body}
-                    </motion.p>
+                    </p>
                 )}
 
                 {hasMilestones && (
-                    <motion.div
-                        className="milestone-list"
-                        variants={{
-                            hidden: {},
-                            visible: {
-                                transition: {
-                                    staggerChildren: 0.15,
-                                    delayChildren: 0.2,
-                                },
-                            },
-                        }}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.1 }}
-                    >
+                    <div className="milestone-list">
                         {milestones.map((m, idx) => (
-                            <motion.div
-                                key={idx}
-                                className="milestone"
-                                variants={staggerChild}
-                            >
+                            <div key={idx} className="milestone">
                                 {m.label && (
                                     <p className="milestone__title">{m.label}</p>
                                 )}
                                 <p className="milestone__text">{m.text}</p>
-                            </motion.div>
+                            </div>
                         ))}
-                    </motion.div>
+                    </div>
                 )}
             </div>
         </section>

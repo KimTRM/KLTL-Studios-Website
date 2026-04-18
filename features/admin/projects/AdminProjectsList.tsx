@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useQuery, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -22,7 +22,7 @@ export default function AdminProjectsList() {
     if (!token) return null;
 
     if (allProjects === undefined) {
-        return <p style={{ color: "#888" }}>Loading projects…</p>;
+        return <p style={{ color: "var(--text-faint)" }}>Loading projects…</p>;
     }
 
     async function handleToggleFeatured(id: Id<"projects">) {
@@ -75,14 +75,14 @@ export default function AdminProjectsList() {
                                 <Link
                                     href={`/admin/projects/${p.slug}`}
                                     style={{
-                                        color: "#ddd",
+                                        color: "var(--palette-light-2)",
                                         textDecoration: "none",
                                     }}
                                 >
                                     {p.title}
                                 </Link>
                             </td>
-                            <td style={{ color: "#888" }}>
+                            <td style={{ color: "var(--text-faint)" }}>
                                 {p.category ?? "—"}
                             </td>
                             <td>
@@ -144,7 +144,7 @@ export default function AdminProjectsList() {
             </table>
 
             {allProjects.length === 0 && (
-                <p style={{ color: "#888", textAlign: "center", padding: "2rem" }}>
+                <p style={{ color: "var(--text-faint)", textAlign: "center", padding: "2rem" }}>
                     No projects yet.
                 </p>
             )}

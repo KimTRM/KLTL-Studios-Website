@@ -10,54 +10,14 @@
  */
 "use client";
 
-import { motion } from "framer-motion";
-import { orbReveal, orbitRingReveal } from "@/features/motion";
-
 export default function MoonOrb() {
     return (
-        <motion.div
-            className="moon-orb"
-            variants={orbReveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            aria-hidden="true"
-        >
+        <div className="moon-orb" aria-hidden="true">
             <div className="moon-orb__halo" />
             <div className="moon-orb__core" />
-            <motion.div
-                className="moon-orb__ring moon-orb__ring--1"
-                variants={orbitRingReveal}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-            />
-            <motion.div
-                className="moon-orb__ring moon-orb__ring--2"
-                variants={{
-                    hidden: { opacity: 0 },
-                    visible: {
-                        opacity: 1,
-                        transition: { duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.9 },
-                    },
-                }}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-            />
-            <motion.div
-                className="moon-orb__ring moon-orb__ring--3"
-                variants={{
-                    hidden: { opacity: 0 },
-                    visible: {
-                        opacity: 1,
-                        transition: { duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94], delay: 1.2 },
-                    },
-                }}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-            />
-        </motion.div>
+            <div className="moon-orb__ring moon-orb__ring--1" />
+            <div className="moon-orb__ring moon-orb__ring--2" />
+            <div className="moon-orb__ring moon-orb__ring--3" />
+        </div>
     );
 }

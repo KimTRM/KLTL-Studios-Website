@@ -16,7 +16,7 @@ export default function HeroSection() {
     const hero = useQuery(api.siteMeta.queries.getHero);
 
     const title = hero?.title ?? "Kim Louise Labrador";
-    const subtitle = hero?.subtitle ?? "Developer · Designer · Musician";
+    const subtitle = hero?.subtitle ?? "Code | Design | Story";
     const motto = hero?.motto ?? "Ad Astra Per Aspera";
 
     return (
@@ -59,25 +59,22 @@ export default function HeroSection() {
                 animate="visible"
                 variants={heroStagger}
             >
-                <motion.span className="heroLabel" variants={heroChild}>
-                    KLTL Studios
-                </motion.span>
                 <motion.h1 className="heroTitle" variants={heroChild}>
                     {title}
                 </motion.h1>
+                <motion.p className="heroFounder" variants={heroChild}>
+                    Founder of KLTL Studios
+                </motion.p>
                 <motion.p className="heroSubtitle" variants={heroChild}>
                     {subtitle}
                 </motion.p>
                 <motion.p className="heroMotto" variants={heroChild}>
-                    &ldquo;{motto}&rdquo;
+                    {motto}
                 </motion.p>
 
                 <motion.div className="heroActions" variants={heroChild}>
                     <a href="#works" className="heroBtnPrimary" aria-label="View my work">
-                        View Work
-                    </a>
-                    <a href="/about" className="heroBtnSecondary" aria-label="Learn more about me">
-                        About
+                        Explore My Work
                     </a>
                 </motion.div>
             </motion.div>

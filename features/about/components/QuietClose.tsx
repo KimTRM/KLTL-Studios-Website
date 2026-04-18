@@ -15,9 +15,6 @@
  */
 "use client";
 
-import { motion } from "framer-motion";
-import { EASE_OUT_CUBIC } from "@/features/motion";
-
 interface QuietCloseProps {
     heading: string;
     body: string;
@@ -27,35 +24,11 @@ export default function QuietClose({ heading, body }: QuietCloseProps) {
     return (
         <section className="about-section quiet-close" aria-label={heading}>
             <div className="about-section__inner">
-                <motion.p
-                    className="quiet-close__text"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 1.4, ease: EASE_OUT_CUBIC }}
-                >
-                    {body}
-                </motion.p>
-
-                <motion.div
-                    className="quiet-close__divider"
-                    initial={{ opacity: 0, scaleX: 0 }}
-                    whileInView={{ opacity: 1, scaleX: 1 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 1, ease: EASE_OUT_CUBIC, delay: 0.6 }}
-                    aria-hidden="true"
-                />
-
-                <motion.span
-                    className="quiet-close__symbol"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 0.4 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.2, delay: 1 }}
-                    aria-hidden="true"
-                >
+                <p className="quiet-close__text">{body}</p>
+                <div className="quiet-close__divider" aria-hidden="true" />
+                <span className="quiet-close__symbol" aria-hidden="true">
                     ✦
-                </motion.span>
+                </span>
             </div>
         </section>
     );

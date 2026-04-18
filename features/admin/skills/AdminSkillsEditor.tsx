@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useQuery, useMutation } from "convex/react";
@@ -35,7 +35,7 @@ export default function AdminSkillsEditor() {
 
     if (!token) return null;
     if (skills === undefined)
-        return <p style={{ color: "#888" }}>Loading skills…</p>;
+        return <p style={{ color: "var(--text-faint)" }}>Loading skills…</p>;
 
     function getEdited(s: SkillDoc) {
         return (
@@ -178,7 +178,7 @@ export default function AdminSkillsEditor() {
                     <div
                         key={s._id}
                         style={{
-                            background: "#1a1a1a",
+                            background: "var(--palette-gray-2)",
                             border: "1px solid #333",
                             borderRadius: 6,
                             padding: "1rem",
@@ -268,7 +268,7 @@ export default function AdminSkillsEditor() {
             {/* Add new skill category */}
             <div
                 style={{
-                    background: "#151515",
+                    background: "color-mix(in srgb, var(--palette-gray-2) 80%, var(--palette-black) 20%)",
                     border: "1px dashed #444",
                     borderRadius: 6,
                     padding: "1rem",
@@ -278,7 +278,7 @@ export default function AdminSkillsEditor() {
                 <h3
                     style={{
                         fontSize: "0.9rem",
-                        color: "#aaa",
+                        color: "var(--text-muted)",
                         margin: "0 0 0.75rem",
                     }}
                 >

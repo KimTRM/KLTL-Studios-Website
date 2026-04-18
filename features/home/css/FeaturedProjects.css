@@ -1,63 +1,62 @@
-/* ═══════════════════════════════════════════
-   Featured Projects — Expressive Cards
-   ═══════════════════════════════════════════ */
-
 .featuredSection {
-  position: relative;
-  padding: 6rem 8vw;
-  max-width: 1200px;
-  margin: 0 auto;
-  background:
-    radial-gradient(ellipse at 70% 30%, rgba(237, 237, 237, 0.025) 0%, transparent 45%),
-    radial-gradient(ellipse at 20% 70%, rgba(237, 237, 237, 0.015) 0%, transparent 40%),
-    #161616;
-  box-shadow: none;
-  border-radius: 0;
-  width: 100%;
+  padding: 4.5rem 8vw 5rem;
+  background: var(--palette-gray-3);
+}
+
+.featuredLabel {
+  margin: 0;
+  color: var(--palette-red-5);
+  font-family: "Sora", sans-serif;
+  font-size: clamp(2rem, 2.6vw, 2.7rem);
+  font-weight: 700;
+}
+
+.featuredHeading {
+  margin: 0.5rem 0 0;
+  color: var(--palette-light-2);
+  font-size: clamp(2rem, 3.7vw, 3rem);
+  line-height: 1.15;
+  text-transform: none;
+}
+
+.featuredIntro {
+  margin: 1rem 0 0;
+  color: var(--palette-light-4);
+  font-size: 1.05rem;
+  max-width: 40ch;
+  line-height: 1.45;
 }
 
 .featuredGrid {
+  margin-top: 1.6rem;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
 }
 
-/* ── Project card ── */
 .featuredCard {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
-  padding: 2.5rem;
-  border: 1px solid #2A2A2A;
-  border-radius: 8px;
-  background: #1E1E1E;
+  display: block;
+  border: 1px solid rgb(var(--palette-light-3-rgb) / 0.16);
+  border-radius: 14px;
+  background: var(--surface-elevated);
   text-decoration: none;
-  color: inherit;
-  transition:
-    border-color 0.5s ease,
-    background 0.5s ease,
-    box-shadow 0.5s ease;
+  color: var(--palette-light-1);
   overflow: hidden;
+  transition: border-color 0.25s ease, transform 0.25s ease;
 }
 
 .featuredCard:hover {
-  border-color: #AF3434;
-  background: rgba(30, 30, 30, 0.95);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(175, 52, 52, 0.1),
-    0 0 40px rgba(175, 52, 52, 0.06);
+  border-color: rgb(var(--palette-red-4-rgb) / 0.6);
+  transform: translateY(-3px);
 }
 
-/* ── Image area ── */
 .featuredImageWrap {
   position: relative;
-  border-radius: 6px;
+  border-radius: 10px;
   overflow: hidden;
-  aspect-ratio: 16 / 10;
-  background: #161616;
+  aspect-ratio: 16 / 9;
+  margin: 0.85rem;
+  background: var(--palette-black);
 }
 
 .featuredImage {
@@ -68,172 +67,62 @@
 }
 
 .featuredCard:hover .featuredImage {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
-/* ── Content area ── */
 .featuredContent {
+  padding: 0.15rem 0.9rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-}
-
-.featuredCategory {
-  font-family: "Courier New", monospace;
-  font-size: 0.7rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--accent-maroon);
-  opacity: 0.8;
+  gap: 0.55rem;
 }
 
 .featuredTitle {
-  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-  font-weight: 600;
-  color: var(--moon-white);
-  line-height: 1.2;
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  font-weight: 700;
+  color: var(--palette-light-1);
+  line-height: 1.15;
   margin: 0;
 }
 
 .featuredDesc {
-  font-size: 0.95rem;
-  color: var(--text-body);
-  line-height: 1.7;
-  max-width: 40ch;
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.35;
 }
 
-/* ── Tech stack icons (revealed on hover) ── */
 .featuredTech {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.35rem;
   align-items: center;
-  margin-top: 0.5rem;
-  opacity: 0;
-  transform: translateY(8px);
-  transition:
-    opacity 0.5s ease 0.1s,
-    transform 0.5s ease 0.1s;
-}
-
-.featuredCard:hover .featuredTech {
-  opacity: 1;
-  transform: translateY(0);
+  margin-top: 0.2rem;
 }
 
 .techTag {
-  font-family: "Courier New", monospace;
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  padding: 0.25rem 0.6rem;
-  border: 1px solid rgba(175, 52, 52, 0.15);
-  border-radius: 3px;
-  color: #D9D9D9;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.01em;
+  padding: 0.18rem 0.5rem;
+  border: 1px solid rgb(var(--palette-light-3-rgb) / 0.24);
+  border-radius: 999px;
+  color: var(--palette-light-2);
   white-space: nowrap;
-  background: rgba(175, 52, 52, 0.06);
+  background: rgb(var(--palette-black-rgb) / 0.26);
 }
 
-/* ── Year badge ── */
-.featuredYear {
-  font-family: "Courier New", monospace;
-  font-size: 0.7rem;
-  color: var(--text-faint);
-  letter-spacing: 2px;
-  opacity: 0.5;
-}
-
-/* ── Arrow (hover indicator) ── */
-.featuredArrow {
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  color: var(--text-faint);
-  font-size: 1.2rem;
-  opacity: 0;
-  transform: translateX(-8px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.featuredCard:hover .featuredArrow {
-  opacity: 0.6;
-  transform: translateX(0);
-}
-
-/* ── Alternate layout (reverse every other) ── */
-.featuredCardReverse {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
-  padding: 2.5rem;
-  border: 1px solid #2A2A2A;
-  border-radius: 8px;
-  background: #1E1E1E;
-  text-decoration: none;
-  color: inherit;
-  transition:
-    border-color 0.5s ease,
-    background 0.5s ease,
-    box-shadow 0.5s ease;
-  overflow: hidden;
-}
-
-.featuredCardReverse:hover {
-  border-color: #AF3434;
-  background: rgba(30, 30, 30, 0.95);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(175, 52, 52, 0.1),
-    0 0 40px rgba(175, 52, 52, 0.06);
-}
-
-.featuredCardReverse .featuredImageWrap {
-  order: 2;
-}
-
-.featuredCardReverse .featuredContent {
-  order: 1;
-  text-align: right;
-  align-items: flex-end;
-}
-
-.featuredCardReverse .featuredTech {
-  justify-content: flex-end;
-}
-
-/* ── Responsive ── */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .featuredSection {
-    padding: 4rem 6vw;
+    padding: 4rem 7vw;
   }
 
-  .featuredCard,
-  .featuredCardReverse {
+  .featuredGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
   }
+}
 
-  .featuredCardReverse .featuredImageWrap {
-    order: unset;
-  }
-
-  .featuredCardReverse .featuredContent {
-    order: unset;
-    text-align: left;
-    align-items: flex-start;
-  }
-
-  .featuredCardReverse .featuredTech {
-    justify-content: flex-start;
-  }
-
-  .featuredTech {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .featuredArrow {
-    display: none;
+@media (max-width: 600px) {
+  .featuredImageWrap {
+    margin: 0.75rem;
   }
 }

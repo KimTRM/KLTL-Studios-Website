@@ -1,16 +1,18 @@
 .wrapper {
     min-height: 100vh;
-    padding: 3rem 1rem;
+    padding: 4.5rem 7vw;
+    background: var(--surface-section);
 }
 
 .container {
-    background-color: var(--surface-section);
-    border-radius: 12px;
+    background-color: var(--surface-elevated);
+    border-radius: 14px;
     padding: 2.5rem;
     max-width: 1000px;
     margin: auto;
-    color: #f2f2f2;
-    box-shadow: 0 4px 20px rgba(10, 9, 8, 0.4), 0 0 0 1px rgba(184, 176, 168, 0.05);
+    color: var(--text-white);
+    border: 1px solid rgb(var(--palette-light-3-rgb) / 0.12);
+    box-shadow: 0 10px 28px rgb(var(--palette-black-rgb) / 0.35);
     backdrop-filter: blur(6px);
     animation: fadeUp 0.4s ease-out;
 }
@@ -23,21 +25,22 @@
 .title {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    color: var(--text-white);
-    text-transform: uppercase;
+    color: var(--palette-light-1);
+    text-transform: none;
 }
 
 .subtitle {
-    color: var(--text-muted);
-    font-style: italic;
+    color: var(--palette-red-5);
     margin-bottom: 2rem;
+    font-weight: 600;
 }
 
 .banner {
     width: 100%;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgb(var(--palette-light-3-rgb) / 0.15);
+    box-shadow: 0 8px 24px rgb(var(--palette-black-rgb) / 0.3);
 }
 
 .description {
@@ -56,10 +59,10 @@
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
     padding: 0.3rem 0.8rem;
-    background: var(--btn-small-bg);
-    border: 1px solid var(--primary);
+    background: rgb(var(--palette-red-3-rgb) / 0.2);
+    border: 1px solid rgb(var(--palette-red-4-rgb) / 0.7);
     border-radius: 20px;
-    color: var(--primary);
+    color: var(--palette-light-1);
     font-size: 0.9rem;
     font-weight: bold;
 }
@@ -71,8 +74,8 @@
 }
 
 .btn {
-    background: var(--primary);
-    color: white;
+    background: var(--palette-red-4);
+    color: var(--palette-light-1);
     padding: 0.8rem 1.6rem;
     border-radius: 10px;
     text-decoration: none;
@@ -81,7 +84,7 @@
 }
 
 .btn:hover {
-    background: var(--primary-light);
+    background: var(--palette-red-5);
     transform: translateY(-1px);
 }
 
@@ -91,8 +94,8 @@
 
 .btnOutline {
     background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
+    border: 1px solid rgb(var(--palette-light-3-rgb) / 0.35);
+    color: var(--palette-light-2);
     padding: 0.8rem 1.6rem;
     border-radius: 10px;
     text-decoration: none;
@@ -101,8 +104,8 @@
 }
 
 .btnOutline:hover {
-    background: var(--primary);
-    color: white;
+    background: rgb(var(--palette-light-1-rgb) / 0.08);
+    color: var(--palette-light-1);
     transform: translateY(-1px);
 }
 
@@ -124,7 +127,7 @@
 }
 
 .gallery::-webkit-scrollbar-thumb {
-    background: var(--primary);
+    background: var(--palette-red-4);
     border-radius: 10px;
 }
 
@@ -132,14 +135,14 @@
     border-radius: 10px;
     flex: 0 0 auto;
     object-fit: cover;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 12px rgb(var(--palette-black-rgb) / 0.4);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
 }
 
 .galleryImage:hover {
     transform: scale(1.03);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 20px rgb(var(--palette-black-rgb) / 0.5);
 }
 
 /* Overlay background */
@@ -169,9 +172,9 @@
     position: absolute;
     top: 0px;
     right: 0px;
-    background: rgba(0, 0, 0, 0.537);
+    background: rgb(var(--palette-black-rgb) / 0.54);
     border: none;
-    color: white;
+    color: var(--palette-light-1);
     font-size: 1.5rem;
     padding: 0.4rem 1rem;
     cursor: pointer;

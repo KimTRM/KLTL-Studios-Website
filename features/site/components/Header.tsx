@@ -6,16 +6,14 @@ import "@/app/globals.css";
 
 export default function Header() {
     const [open, setOpen] = useState(false);
-    const [hovered, setHovered] = useState(false);
-    const showMenu = open || hovered;
 
     return (
         <header className="main-header">
-            <Link href="/">
+            <Link href="/" className="brand-link" aria-label="Go to homepage">
                 <Image
                     src="/res/icon/Icon.svg"
                     width={160}
-                    height={100}
+                    height={72}
                     alt="KLTL Studios Logo"
                     className="logo"
                 />
@@ -24,30 +22,18 @@ export default function Header() {
                 className="hamburger"
                 aria-label={open ? "Close navigation menu" : "Open navigation menu"}
                 aria-expanded={open}
-                onClick={() => {
-                    setOpen((prev) => {
-                        const next = !prev;
-                        if (!next) setHovered(false);
-                        return next;
-                    });
-                }}
-                onMouseEnter={() => setHovered(true)}
+                onClick={() => setOpen((prev) => !prev)}
             >
                 &#9776;
             </button>
-            <nav className={`header-nav floating-nav${showMenu ? " open" : ""}`}
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => {
-                    setHovered(false);
-                    setOpen(false);
-                }}>
-                <Link href="/" className="default-btn" onClick={() => { setOpen(false); setHovered(false); }}>
+            <nav className={`header-nav${open ? " open" : ""}`}>
+                <Link href="/" className="header-link" onClick={() => setOpen(false)}>
                     Home
                 </Link>
-                <Link href="/about" className="default-btn" onClick={() => { setOpen(false); setHovered(false); }}>
+                <Link href="/about" className="header-link" onClick={() => setOpen(false)}>
                     About
                 </Link>
-                <Link href="/projects" className="default-btn" onClick={() => { setOpen(false); setHovered(false); }}>
+                <Link href="/projects" className="header-link" onClick={() => setOpen(false)}>
                     Projects
                 </Link>
             </nav>

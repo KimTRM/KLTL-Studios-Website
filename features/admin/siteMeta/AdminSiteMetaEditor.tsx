@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, FormEvent } from "react";
 import { useQuery, useMutation } from "convex/react";
@@ -49,7 +49,7 @@ export default function AdminSiteMetaEditor() {
 
     if (!token) return null;
     if (current === undefined)
-        return <p style={{ color: "#888" }}>Loading site meta…</p>;
+        return <p style={{ color: "var(--text-faint)" }}>Loading site meta…</p>;
 
     function handleChange(key: string, value: string) {
         setValues((prev) => ({ ...prev, [key]: value }));
@@ -125,13 +125,13 @@ export default function AdminSiteMetaEditor() {
                     padding: "1rem",
                     border: "1px solid #333",
                     borderRadius: 6,
-                    background: "#151515",
+                    background: "color-mix(in srgb, var(--palette-gray-2) 80%, var(--palette-black) 20%)",
                 }}
             >
                 <h3
                     style={{
                         fontSize: "0.85rem",
-                        color: "#888",
+                        color: "var(--text-faint)",
                         margin: "0 0 0.75rem",
                         textTransform: "uppercase",
                         letterSpacing: "0.05em",
@@ -139,16 +139,16 @@ export default function AdminSiteMetaEditor() {
                 >
                     Preview
                 </h3>
-                <p style={{ fontSize: "1.1rem", color: "#eee", margin: "0 0 0.25rem" }}>
+                <p style={{ fontSize: "1.1rem", color: "var(--palette-light-1)", margin: "0 0 0.25rem" }}>
                     {values.heroTitle || "—"}
                 </p>
-                <p style={{ fontSize: "0.85rem", color: "#aaa", margin: "0 0 0.25rem" }}>
+                <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: "0 0 0.25rem" }}>
                     {values.heroSubtitle || "—"}
                 </p>
                 <p
                     style={{
                         fontSize: "0.8rem",
-                        color: "#666",
+                        color: "var(--text-faint)",
                         fontStyle: "italic",
                         margin: 0,
                     }}
@@ -156,7 +156,7 @@ export default function AdminSiteMetaEditor() {
                     {values.heroMotto || "—"}
                 </p>
                 <hr style={{ border: "none", borderTop: "1px solid #333", margin: "0.75rem 0" }} />
-                <p style={{ fontSize: "0.8rem", color: "#777", margin: 0 }}>
+                <p style={{ fontSize: "0.8rem", color: "var(--text-faint)", margin: 0 }}>
                     {values.footerText || "—"}
                 </p>
             </div>
