@@ -44,7 +44,7 @@ export const run = mutation(async ({ db }) => {
             description:
                 "An educational RPG that teaches programming through block-based puzzles.",
             image: "/res/Project100_Icon.svg",
-            link: "projects/Project100",
+            link: "/projects/project-100",
             featured: true,
             archived: false,
             order: 1,
@@ -56,7 +56,7 @@ export const run = mutation(async ({ db }) => {
             description:
                 "Minesweeper but it has a twist, a quiz to keep your life",
             image: "/res/KnowledgeSweeper_Icon.svg",
-            link: "/projects/KnowledgeSweeper",
+            link: "/projects/knowledgesweeper",
             featured: true,
             archived: false,
             order: 2,
@@ -126,7 +126,7 @@ export const run = mutation(async ({ db }) => {
             description:
                 "From UI/UX to visual branding, see how I bring ideas to life through design.",
             image: "/res/icon/KLTL_Studios.svg",
-            link: "/projects/design",
+            link: "/projects/design-showcase",
             featured: false,
             archived: false,
             order: 8,

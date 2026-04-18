@@ -7,10 +7,11 @@ import { cardHover } from "@/features/motion";
 import "../css/ProjectSection.css";
 
 interface Props {
+    slug: string;
     title: string;
     description: string;
     image: string;
-    link: string;
+    tags: string[];
 }
 
 /**
@@ -23,7 +24,7 @@ export default function ProjectCard(props: Props) {
 
     return (
         <MotionLink
-            href={props.link}
+            href={`/projects/${props.slug}`}
             className="project-card"
             aria-label={`View details about ${props.title} project`}
             initial="rest"
@@ -31,7 +32,7 @@ export default function ProjectCard(props: Props) {
             animate="rest"
             variants={cardHover}
         >
-            <article>
+            <article className="project-card-inner">
                 <div className="project-icon">
                     <Image
                         src={props.image}
@@ -39,11 +40,18 @@ export default function ProjectCard(props: Props) {
                         width={460}
                         height={160}
                         loading="lazy"
-                        sizes="(max-width: 700px) 90vw, 280px"
+                        sizes="(max-width: 700px) 90vw, (max-width: 1200px) 46vw, 23vw"
                     />
                 </div>
                 <b>{props.title}</b>
                 <p>{props.description}</p>
+                <div className="project-card-tags" aria-label="Project tools">
+                    {props.tags.slice(0, 4).map((tag) => (
+                        <span key={tag} className="project-card-tag">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
             </article>
         </MotionLink>
     );

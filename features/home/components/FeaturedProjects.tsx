@@ -15,44 +15,44 @@ export default function FeaturedProjects() {
     const defaultProjects = [
         {
             title: "Project 100",
-            slug: "Project100",
+            slug: "project-100",
             description:
                 "Story-based programming RPG built with Godot. Educational game focused on interactive logic systems.",
             image: "/res/Project100_Icon.png",
-            link: "projects/Project100",
+            link: "/projects/project-100",
             category: "game" as const,
             technologies: ["Chip", "Chip", "Chip"],
             year: "2025",
         },
         {
             title: "KnowledgeSweeper",
-            slug: "KnowledgeSweeper",
+            slug: "knowledgesweeper",
             description:
                 "Java-based quiz game with timed challenge mechanics. Focused on logic implementation and user interaction.",
             image: "/res/KnowledgeSweeper_Icon.svg",
-            link: "projects/KnowledgeSweeper",
+            link: "/projects/knowledgesweeper",
             category: "game" as const,
             technologies: ["Chip", "Chip", "Chip"],
             year: "2024",
         },
         {
             title: "Bagani: Guardians of the Archipelago",
-            slug: "Project100",
+            slug: "bagani-guardians-of-the-archipelago",
             description:
                 "When natural disasters strike the islands, ancient spirits awaken and challenge players to protect the people.",
             image: "/res/coverimage.png",
-            link: "projects/Project100",
+            link: "/projects/bagani-guardians-of-the-archipelago",
             category: "game" as const,
             technologies: ["Chip", "Chip", "Chip"],
             year: "2024",
         },
         {
             title: "NextStep",
-            slug: "KnowledgeSweeper",
+            slug: "nextstep",
             description:
                 "Jobseeker and mentorship platform designed for students and graduates to ease the transition into careers.",
             image: "/res/DSC_1453.png",
-            link: "projects/KnowledgeSweeper",
+            link: "/projects/nextstep",
             category: "web" as const,
             technologies: ["Chip", "Chip", "Chip"],
             year: "2024",

@@ -1,66 +1,116 @@
 "use client"
 import { useState, useMemo } from "react";
 import ProjectCard from "./ProjectCard";
+import FilterBar from "./FilterBar";
+import GridContainer from "./GridContainer";
 import "../css/ProjectSection.css";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
+type ProjectCategory = "all" | "game" | "web" | "design" | "multimedia";
+
+const FILTER_OPTIONS: Array<{ label: string; value: ProjectCategory }> = [
+    { label: "All", value: "all" },
+    { label: "Game Development", value: "game" },
+    { label: "Web/App", value: "web" },
+    { label: "UI/UX", value: "design" },
+    { label: "Multimedia", value: "multimedia" },
+];
+
 export default function ProjectsWithFilter() {
     const allProjects = useQuery(api.projects.queries.getAllProjects);
     const [searchTerm, setSearchTerm] = useState("");
-    const [selectedFilter, setSelectedFilter] = useState<string>("all");
+    const [selectedFilter, setSelectedFilter] = useState<ProjectCategory>("all");
 
     // Safe default while loading
     const projects = allProjects ?? [];
 
-    // Extract unique categories from projects
-    const categories = useMemo(() => {
-        const cats = new Set<string>();
-        projects.forEach(project => {
-            // Categorize based on keywords in title or description
-            if (project.title.toLowerCase().includes("game") ||
-                project.description.toLowerCase().includes("game") ||
-                project.description.toLowerCase().includes("godot")) {
-                cats.add("game");
-            }
-            if (project.title.toLowerCase().includes("website") ||
-                project.title.toLowerCase().includes("web") ||
-                project.description.toLowerCase().includes("website")) {
-                cats.add("web");
-            }
-            if (project.title.toLowerCase().includes("design") ||
-                project.description.toLowerCase().includes("design")) {
-                cats.add("design");
-            }
+    const getProjectCategory = (
+        project: (typeof projects)[number],
+    ): Exclude<ProjectCategory, "all"> => {
+        const title = project.title.toLowerCase();
+        const description = project.description.toLowerCase();
+        const explicitCategory = project.category?.toLowerCase();
+
+        if (
+            explicitCategory === "game" ||
+            title.includes("game") ||
+            description.includes("game") ||
+            description.includes("godot")
+        ) {
+            return "game";
+        }
+
+        if (
+            explicitCategory === "web" ||
+            title.includes("website") ||
+            title.includes("web") ||
+            description.includes("website") ||
+            description.includes("web app")
+        ) {
+            return "web";
+        }
+
+        if (
+            explicitCategory === "design" ||
+            title.includes("design") ||
+            description.includes("design") ||
+            description.includes("ui") ||
+            description.includes("ux")
+        ) {
+            return "design";
+        }
+
+        if (
+            title.includes("audio") ||
+            title.includes("video") ||
+            title.includes("music") ||
+            description.includes("audio") ||
+            description.includes("video") ||
+            description.includes("multimedia") ||
+            description.includes("sound")
+        ) {
+            return "multimedia";
+        }
+
+        return "web";
+    };
+
+    const normalizedProjects = useMemo(() => {
+        return projects.map((project) => {
+            const category = getProjectCategory(project);
+            const tags =
+                project.tags && project.tags.length > 0
+                    ? project.tags
+                    : project.technologies && project.technologies.length > 0
+                        ? project.technologies
+                        : [FILTER_OPTIONS.find((option) => option.value === category)?.label ?? "Project"];
+
+            return {
+                slug: project.slug,
+                title: project.title,
+                description: project.description,
+                image: project.image,
+                category,
+                tags,
+            };
         });
-        return ["all", ...Array.from(cats)];
     }, [projects]);
 
     // Filter projects based on search and category
     const filteredProjects = useMemo(() => {
-        return projects.filter(project => {
+        return normalizedProjects.filter((project) => {
             const matchesSearch =
                 project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 project.description.toLowerCase().includes(searchTerm.toLowerCase());
 
-            if (selectedFilter === "all") return matchesSearch;
+            if (selectedFilter === "all") {
+                return matchesSearch;
+            }
 
-            const matchesCategory =
-                (selectedFilter === "game" &&
-                    (project.title.toLowerCase().includes("game") ||
-                        project.description.toLowerCase().includes("game") ||
-                        project.description.toLowerCase().includes("godot"))) ||
-                (selectedFilter === "web" &&
-                    (project.title.toLowerCase().includes("website") ||
-                        project.title.toLowerCase().includes("web") ||
-                        project.description.toLowerCase().includes("website"))) ||
-                (selectedFilter === "design" &&
-                    (project.title.toLowerCase().includes("design") ||
-                        project.description.toLowerCase().includes("design")));
-
-            return matchesSearch && matchesCategory;
+            return matchesSearch && project.category === selectedFilter;
         });
-    }, [projects, searchTerm, selectedFilter]);
+    }, [normalizedProjects, searchTerm, selectedFilter]);
 
     if (allProjects === undefined) {
         return (
@@ -104,34 +154,30 @@ export default function ProjectsWithFilter() {
     return (
         <section id="portfolio" className="projects">
             <div className="container">
-                <h2>My Projects</h2>
+                <header className="projects-header">
+                    <p className="projects-eyebrow">Projects</p>
+                    <h2>Selected Work</h2>
+                    <p className="projects-intro">
+                        A focused collection of games, web products, interface design, and multimedia work.
+                    </p>
+                </header>
 
-                {/* Search and Filter Controls */}
-                <div className="project-toolbar">
-                    {/* Search Input */}
-                    <input
-                        type="text"
-                        placeholder="Search projects..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="project-search"
-                        aria-label="Search projects by name or description"
-                    />
+                <div className="project-controls">
+                    <div className="project-toolbar">
+                        <FilterBar
+                            options={FILTER_OPTIONS}
+                            activeValue={selectedFilter}
+                            onChange={(value) => setSelectedFilter(value as ProjectCategory)}
+                        />
 
-                    {/* Category Filter Buttons */}
-                    <div className="project-filters">
-                        {categories.map(category => (
-                            <button
-                                key={category}
-                                onClick={() => setSelectedFilter(category)}
-                                className={selectedFilter === category ? "btn" : "btn-outline"}
-                                style={{ margin: 0 }}
-                                aria-label={`Filter by ${category} projects`}
-                                aria-pressed={selectedFilter === category}
-                            >
-                                {category}
-                            </button>
-                        ))}
+                        <input
+                            type="text"
+                            placeholder="Search projects"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="project-search"
+                            aria-label="Search projects by name or description"
+                        />
                     </div>
                 </div>
 
@@ -143,15 +189,16 @@ export default function ProjectsWithFilter() {
                 )}
 
                 {/* Project Grid */}
-                <div className="project-grid">
+                <GridContainer>
                     {filteredProjects.length > 0 ? (
                         filteredProjects.map((project, idx) => (
                             <ProjectCard
                                 key={idx}
+                                slug={project.slug}
                                 title={project.title}
                                 description={project.description}
                                 image={project.image}
-                                link={project.link}
+                                tags={project.tags}
                             />
                         ))
                     ) : projects.length === 0 ? (
@@ -163,7 +210,7 @@ export default function ProjectsWithFilter() {
                             No matches found. Try a different search.
                         </p>
                     )}
-                </div>
+                </GridContainer>
             </div>
         </section>
     );
