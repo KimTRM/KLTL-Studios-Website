@@ -46,8 +46,8 @@ export default function ProjectCard(props: Props) {
                 <b>{props.title}</b>
                 <p>{props.description}</p>
                 <div className="project-card-tags" aria-label="Project tools">
-                    {props.tags.slice(0, 4).map((tag) => (
-                        <span key={tag} className="project-card-tag">
+                    {props.tags.slice(0, 4).map((tag, index) => (
+                        <span key={`${tag}-${index}`} className="project-card-tag">
                             {tag}
                         </span>
                     ))}

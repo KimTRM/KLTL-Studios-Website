@@ -22,6 +22,9 @@
  */
 "use client";
 
+import AnimatedSection from "@/features/ui/AnimatedSection";
+import { splitIntoParagraphs } from "./text";
+
 interface PersonalJourneyProps {
     heading: string;
     body: string;
@@ -49,18 +52,28 @@ function parseMilestones(body: string): Milestone[] {
 export default function PersonalJourney({ heading, body }: PersonalJourneyProps) {
     const milestones = parseMilestones(body);
     const hasMilestones = milestones.length > 1 || (milestones.length === 1 && milestones[0].label);
+    const paragraphs = splitIntoParagraphs(body);
 
     return (
-        <section className="about-section personal-journey">
+        <AnimatedSection
+            as="section"
+            className="about-section personal-journey"
+            direction="up"
+            duration={760}
+        >
             <div className="about-section__inner">
                 <span className="personal-journey__label">03 — Journey</span>
 
                 <h2>{heading}</h2>
 
                 {!hasMilestones && (
-                    <p className="personal-journey__body">
-                        {body}
-                    </p>
+                    <div className="personal-journey__body">
+                        {paragraphs.map((paragraph, idx) => (
+                            <p key={`${idx}-${paragraph.slice(0, 20)}`}>
+                                {paragraph}
+                            </p>
+                        ))}
+                    </div>
                 )}
 
                 {hasMilestones && (
@@ -76,6 +89,6 @@ export default function PersonalJourney({ heading, body }: PersonalJourneyProps)
                     </div>
                 )}
             </div>
-        </section>
+        </AnimatedSection>
     );
 }

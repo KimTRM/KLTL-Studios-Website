@@ -1,12 +1,11 @@
 "use client";
 
 import "../css/FeaturedProjects.css";
-import Image from "next/image";
-import Link from "next/link";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import AnimatedSection from "@/features/ui/AnimatedSection";
 import EmptyState from "@/features/ui/EmptyState";
+import ProjectCard from "@/features/projects/components/ProjectCard";
 
 export default function FeaturedProjects() {
     const featuredProjects = useQuery(api.projects.queries.getFeaturedProjects);
@@ -21,7 +20,7 @@ export default function FeaturedProjects() {
             image: "/res/Project100_Icon.png",
             link: "/projects/project-100",
             category: "game" as const,
-            technologies: ["Chip", "Chip", "Chip"],
+            tags: ["Godot", "GDScript", "RPG"],
             year: "2025",
         },
         {
@@ -32,7 +31,7 @@ export default function FeaturedProjects() {
             image: "/res/KnowledgeSweeper_Icon.svg",
             link: "/projects/knowledgesweeper",
             category: "game" as const,
-            technologies: ["Chip", "Chip", "Chip"],
+            tags: ["Java", "Quiz", "Logic"],
             year: "2024",
         },
         {
@@ -43,7 +42,7 @@ export default function FeaturedProjects() {
             image: "/res/coverimage.png",
             link: "/projects/bagani-guardians-of-the-archipelago",
             category: "game" as const,
-            technologies: ["Chip", "Chip", "Chip"],
+            tags: ["Narrative", "Strategy", "Myth"],
             year: "2024",
         },
         {
@@ -54,7 +53,7 @@ export default function FeaturedProjects() {
             image: "/res/DSC_1453.png",
             link: "/projects/nextstep",
             category: "web" as const,
-            technologies: ["Chip", "Chip", "Chip"],
+            tags: ["React", "Mentorship", "UI/UX"],
             year: "2024",
         },
     ];
@@ -67,16 +66,6 @@ export default function FeaturedProjects() {
                 : defaultProjects;
 
     const displayProjects = sourceProjects.slice(0, 4);
-
-    const resolveHref = (project: { slug?: string; link?: string }) => {
-        if (project.slug) {
-            return `/projects/${project.slug}`;
-        }
-        if (!project.link) {
-            return "#";
-        }
-        return project.link.startsWith("/") ? project.link : `/${project.link}`;
-    };
 
     if (displayProjects.length === 0) {
         return (
@@ -98,41 +87,21 @@ export default function FeaturedProjects() {
 
             <div className="featuredGrid">
                 {displayProjects.map((project, idx) => {
-                    const href = resolveHref(project);
                     const techList =
-                        "technologies" in project && Array.isArray(project.technologies) && project.technologies.length > 0
-                            ? project.technologies.slice(0, 3)
-                            : ["Chip", "Chip", "Chip"];
+                        "tags" in project && Array.isArray(project.tags) && project.tags.length > 0
+                            ? project.tags.slice(0, 4)
+                            : "technologies" in project && Array.isArray(project.technologies) && project.technologies.length > 0
+                                ? project.technologies.slice(0, 4)
+                                : [project.category ?? "Project"];
                     return (
                         <AnimatedSection key={idx} delay={idx * 150} duration={900}>
-                            <Link
-                                href={href}
-                                className="featuredCard"
-                                aria-label={`View ${project.title}`}
-                            >
-                                <div className="featuredImageWrap">
-                                    <Image
-                                        src={project.image || "/res/coverimage.png"}
-                                        alt={project.title}
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 50vw"
-                                        className="featuredImage"
-                                        style={{ objectFit: "cover" }}
-                                    />
-                                </div>
-
-                                <div className="featuredContent">
-                                    <h3 className="featuredTitle">{project.title}</h3>
-                                    <p className="featuredDesc">{project.description}</p>
-                                    <div className="featuredTech">
-                                        {techList.map((tech, i) => (
-                                            <span key={i} className="techTag">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </Link>
+                            <ProjectCard
+                                slug={project.slug ?? ""}
+                                title={project.title}
+                                description={project.description}
+                                image={project.image || "/res/coverimage.png"}
+                                tags={techList}
+                            />
                         </AnimatedSection>
                     );
                 })}

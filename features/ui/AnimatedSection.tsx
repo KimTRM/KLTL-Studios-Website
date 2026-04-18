@@ -1,10 +1,10 @@
 "use client";
 
 import { type ReactNode, type CSSProperties } from "react";
-import { motion, type Variants } from "framer-motion";
+import { motion, type HTMLMotionProps, type Variants } from "framer-motion";
 import { EASE_OUT_CUBIC } from "@/features/motion/variants";
 
-interface AnimatedSectionProps {
+interface AnimatedSectionProps extends Omit<HTMLMotionProps<"div">, "children"> {
     children: ReactNode;
     className?: string;
     /** Delay before animation starts (ms) */
@@ -45,6 +45,7 @@ export default function AnimatedSection({
     as: Tag = "div",
     style,
     variants: customVariants,
+    ...rest
 }: AnimatedSectionProps) {
     // Build direction-based variants if no custom variants provided
     const directionMap: Record<string, { x?: number; y?: number }> = {
@@ -82,6 +83,7 @@ export default function AnimatedSection({
             whileInView="visible"
             viewport={{ once: true, amount: threshold }}
             variants={variants}
+            {...rest}
         >
             {children}
         </MotionTag>

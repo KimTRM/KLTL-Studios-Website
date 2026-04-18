@@ -8,7 +8,6 @@ import {
     heroStagger,
     heroChild,
     orbReveal,
-    orbitRingReveal,
     scrollIndicatorReveal,
 } from "@/features/motion";
 
@@ -32,25 +31,16 @@ export default function HeroSection() {
                 <span className="star" />
             </div>
 
-            {/* Celestial orb — FM scale-in reveal, CSS perpetual float */}
-            <motion.div
+            {/* Hero moon SVG asset — FM reveal, no CSS-drawn glyph */}
+            <motion.img
                 className="celestialOrb"
+                src="/res/icon/hero-moon.svg"
+                alt=""
                 aria-hidden="true"
                 initial="hidden"
                 animate="visible"
                 variants={orbReveal}
             />
-
-            {/* Orbit ring — FM fade-in, CSS perpetual spin */}
-            <motion.div
-                className="orbitRing"
-                aria-hidden="true"
-                initial="hidden"
-                animate="visible"
-                variants={orbitRingReveal}
-            >
-                <span className="orbitDot" />
-            </motion.div>
 
             {/* Left-aligned content — staggered text entrance */}
             <motion.div

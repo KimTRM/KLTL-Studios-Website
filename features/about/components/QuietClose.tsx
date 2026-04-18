@@ -15,6 +15,8 @@
  */
 "use client";
 
+import AnimatedSection from "@/features/ui/AnimatedSection";
+
 interface QuietCloseProps {
     heading: string;
     body: string;
@@ -22,7 +24,13 @@ interface QuietCloseProps {
 
 export default function QuietClose({ heading, body }: QuietCloseProps) {
     return (
-        <section className="about-section quiet-close" aria-label={heading}>
+        <AnimatedSection
+            as="section"
+            className="about-section quiet-close"
+            direction="none"
+            duration={800}
+            aria-label={heading}
+        >
             <div className="about-section__inner">
                 <p className="quiet-close__text">{body}</p>
                 <div className="quiet-close__divider" aria-hidden="true" />
@@ -30,6 +38,6 @@ export default function QuietClose({ heading, body }: QuietCloseProps) {
                     ✦
                 </span>
             </div>
-        </section>
+        </AnimatedSection>
     );
 }

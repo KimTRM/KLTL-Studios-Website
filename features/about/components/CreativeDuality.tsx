@@ -16,6 +16,7 @@
  */
 "use client";
 
+import AnimatedSection from "@/features/ui/AnimatedSection";
 import {
     RiCodeSSlashLine,
     RiPaletteLine,
@@ -24,6 +25,7 @@ import {
     RiGamepadLine,
     RiCameraLine,
 } from "react-icons/ri";
+import { inferCurrentFocus, splitIntoParagraphs } from "./text";
 
 interface CreativeDualityProps {
     heading: string;
@@ -40,13 +42,27 @@ const DOMAINS = [
 ];
 
 export default function CreativeDuality({ heading, body }: CreativeDualityProps) {
+    const paragraphs = splitIntoParagraphs(body);
+    const currentFocus = inferCurrentFocus(body);
+
     return (
-        <section className="about-section creative-duality">
+        <AnimatedSection
+            as="section"
+            className="about-section creative-duality"
+            direction="up"
+            duration={760}
+        >
             <div className="about-section__inner about-section__inner--wide">
                 <span className="creative-duality__label">02 — Craft</span>
 
                 <h2 className="creative-duality__heading">{heading}</h2>
-                <p className="creative-duality__body">{body}</p>
+                <div className="creative-duality__body">
+                    {paragraphs.map((paragraph, idx) => (
+                        <p key={`${idx}-${paragraph.slice(0, 20)}`}>
+                            {paragraph}
+                        </p>
+                    ))}
+                </div>
 
                 <div className="duality-grid">
                     {DOMAINS.map((d) => (
@@ -58,7 +74,12 @@ export default function CreativeDuality({ heading, body }: CreativeDualityProps)
                         </div>
                     ))}
                 </div>
+
+                <aside className="current-focus" aria-label="Current focus">
+                    <p className="current-focus__label">Current Focus</p>
+                    <p className="current-focus__text">{currentFocus}</p>
+                </aside>
             </div>
-        </section>
+        </AnimatedSection>
     );
 }

@@ -15,7 +15,9 @@
  */
 "use client";
 
+import AnimatedSection from "@/features/ui/AnimatedSection";
 import MoonOrb from "./MoonOrb";
+import { splitIntoParagraphs } from "./text";
 
 interface OpeningStatementProps {
     heading: string;
@@ -23,16 +25,29 @@ interface OpeningStatementProps {
 }
 
 export default function OpeningStatement({ heading, body }: OpeningStatementProps) {
+    const paragraphs = splitIntoParagraphs(body);
+
     return (
-        <section className="about-section about-section--full opening-statement">
+        <AnimatedSection
+            as="section"
+            className="about-section about-section--full opening-statement"
+            direction="up"
+            duration={800}
+        >
             <div className="about-section__inner">
                 <MoonOrb />
 
                 <span className="opening-statement__label">01 — Identity</span>
 
                 <h1 className="opening-statement__heading">{heading}</h1>
-                <p className="opening-statement__body">{body}</p>
+                <div className="opening-statement__body">
+                    {paragraphs.map((paragraph, idx) => (
+                        <p key={`${idx}-${paragraph.slice(0, 20)}`}>
+                            {paragraph}
+                        </p>
+                    ))}
+                </div>
             </div>
-        </section>
+        </AnimatedSection>
     );
 }

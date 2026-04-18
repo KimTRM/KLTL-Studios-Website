@@ -18,6 +18,9 @@
  */
 "use client";
 
+import AnimatedSection from "@/features/ui/AnimatedSection";
+import { splitIntoParagraphs } from "./text";
+
 interface KltlEthosProps {
     heading: string;
     body: string;
@@ -36,9 +39,15 @@ function extractMotto(body: string): { text: string; motto: string | null } {
 
 export default function KltlEthos({ heading, body }: KltlEthosProps) {
     const { text, motto } = extractMotto(body);
+    const paragraphs = splitIntoParagraphs(text);
 
     return (
-        <section className="about-section kltl-ethos">
+        <AnimatedSection
+            as="section"
+            className="about-section kltl-ethos"
+            direction="up"
+            duration={760}
+        >
             <div className="about-section__inner">
                 {/* Sigil — symbol-first */}
                 <div className="ethos-sigil" aria-hidden="true">
@@ -50,12 +59,18 @@ export default function KltlEthos({ heading, body }: KltlEthosProps) {
                 <span className="kltl-ethos__label">04 — Ethos</span>
 
                 <h2 className="kltl-ethos__heading">{heading}</h2>
-                <p className="kltl-ethos__body">{text}</p>
+                <div className="kltl-ethos__body">
+                    {paragraphs.map((paragraph, idx) => (
+                        <p key={`${idx}-${paragraph.slice(0, 20)}`}>
+                            {paragraph}
+                        </p>
+                    ))}
+                </div>
 
                 {motto && (
                     <p className="ethos-motto">{motto}</p>
                 )}
             </div>
-        </section>
+        </AnimatedSection>
     );
 }
