@@ -1,10 +1,9 @@
-import ProjectsWithFilter from "../components/ProjectsWithFilter";
-import { allProjects } from "../data/projects";
+import ProjectsWithFilter from "@/features/projects/components/ProjectsWithFilter";
 
 export default function Projects() {
     return (
         <>
-            <ProjectsWithFilter projects={allProjects} />
+            <ProjectsWithFilter />
         </>
     );
 }

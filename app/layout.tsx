@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "./home/sections/Header";
+import Header from "@/features/site/components/Header";
+import Footer from "@/features/site/components/Footer";
+import ConvexClientProvider from "./ConvexClientProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -14,8 +16,8 @@ export const metadata: Metadata = {
   publisher: "KLTL Studios",
   metadataBase: new URL("https://kltl-studios.github.io"),
   icons: {
-    icon: "/res/icon/KLTL_Studios.svg",
-    apple: "/res/icon/KLTL_Studios.svg",
+    icon: "/res/icon/KLTL-Studios-Logo.svg",
+    apple: "/res/icon/KLTL-Studios-Logo.svg",
   },
   openGraph: {
     type: "website",
@@ -62,27 +64,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <a href="#main-content" className="skip-to-main">
-          Skip to main content
-        </a>
-        <Header />
-        <main id="main-content">
-          {children}
-        </main>
-        <footer className="nav-bottom">
-          <div className="nav-bottom-left">
-            <h2> &copy; 2025 KLTL Studios.</h2>
-          </div>
-          <div className="nav-bottom-right">
-            <a href="https://github.com/kimtrm" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile">GitHub</a>
-            |
-            <a href="https://www.linkedin.com/in/kim-louise-labrador/" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile">LinkedIn</a>
-            |
-            <a href="https://youtube.com/@kltlstudios" target="_blank" rel="noopener noreferrer" aria-label="Visit YouTube channel">YouTube</a>
-          </div>
-        </footer>
+        <ConvexClientProvider>
+          <a href="#main-content" className="skip-to-main">
+            Skip to main content
+          </a>
+          <Header />
+          <main id="main-content">
+            {children}
+          </main>
+          <Footer />
+        </ConvexClientProvider>
       </body>
     </html>
   );

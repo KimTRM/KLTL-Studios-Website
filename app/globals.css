@@ -1,8 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #14161a;
+  --foreground: #ececec;
+
+  /* ── User provided palette ── */
+  --palette-light-1: #ececec;
+  --palette-light-2: #d9d9d9;
+  --palette-light-3: #c4c4c4;
+  --palette-light-4: #b5b5b5;
+  --palette-gray-1: #525252;
+  --palette-gray-2: #202124;
+  --palette-gray-3: #14161a;
+  --palette-black: #000000;
+  --palette-red-1: #660000;
+  --palette-red-2: #780017;
+  --palette-red-3: #9f0a25;
+  --palette-red-4: #bc0d2c;
+  --palette-red-5: #d44549;
+
+  --palette-light-1-rgb: 236 236 236;
+  --palette-light-2-rgb: 217 217 217;
+  --palette-light-3-rgb: 196 196 196;
+  --palette-light-4-rgb: 181 181 181;
+  --palette-gray-1-rgb: 82 82 82;
+  --palette-gray-2-rgb: 32 33 36;
+  --palette-gray-3-rgb: 20 22 26;
+  --palette-black-rgb: 0 0 0;
+  --palette-red-1-rgb: 102 0 0;
+  --palette-red-2-rgb: 120 0 23;
+  --palette-red-3-rgb: 159 10 37;
+  --palette-red-4-rgb: 188 13 44;
+  --palette-red-5-rgb: 212 69 73;
+
+  /* ── KLTL Brand Palette ── */
+  --kltl-dark-red: var(--palette-red-1);
+  --kltl-bright-red: var(--palette-red-4);
+  --kltl-light-gray: var(--palette-light-2);
+  --kltl-mid-gray: var(--palette-light-4);
+  --kltl-bg-dark: var(--palette-gray-3);
+  --kltl-bg-section: var(--palette-gray-2);
+  --kltl-card-surface: color-mix(in srgb, var(--palette-gray-2) 72%, var(--palette-gray-3) 28%);
+  --kltl-card-border: color-mix(in srgb, var(--palette-gray-1) 38%, var(--palette-gray-2) 62%);
+
+  /* ── Legacy compat aliases ── */
+  --accent-maroon: var(--palette-red-4);
+  --accent-maroon-light: var(--palette-red-5);
+  --accent-maroon-dark: var(--palette-red-2);
+  --moon-white: var(--palette-light-1);
+  --moon-gray: var(--palette-light-2);
+
+  --starlight: var(--palette-light-2);
+  --starlight-soft: var(--palette-light-4);
+  --starlight-dim: color-mix(in srgb, var(--palette-light-4) 72%, var(--palette-gray-1) 28%);
+  --starlight-glow: rgb(var(--palette-red-4-rgb) / 0.18);
+  --moonlight: var(--palette-light-2);
+  --night-blue: var(--palette-gray-3);
+  --deep-navy: var(--palette-black);
+
+  /* ── Primary palette (dark red — brand identity) ── */
+  --primary: var(--palette-red-2);
+  --primary-light: var(--palette-red-4);
+  --primary-dark: var(--palette-red-1);
+  --primary-hover: var(--palette-red-5);
+  --primary-glow: var(--palette-red-4);
+  --primary-soft: var(--palette-red-3);
+
+  /* ── Text colors ── */
+  --text-white: var(--palette-light-1);
+  --text-body: var(--palette-light-2);
+  --text-muted: var(--palette-light-4);
+  --text-dim: color-mix(in srgb, var(--palette-light-4) 70%, var(--palette-gray-1) 30%);
+  --text-faint: color-mix(in srgb, var(--palette-gray-1) 72%, var(--palette-gray-3) 28%);
+  --text-card: var(--palette-light-4);
+  --text-card-title: var(--palette-light-1);
+  --text-link-footer: var(--palette-light-4);
+
+  /* ── Surface / Background colors ── */
+  --surface-section: var(--palette-gray-2);
+  --surface-elevated: color-mix(in srgb, var(--palette-gray-2) 72%, var(--palette-gray-3) 28%);
+  --surface-card: color-mix(in srgb, var(--palette-gray-2) 72%, var(--palette-gray-3) 28%);
+  --surface-overlay: rgb(var(--palette-gray-3-rgb) / 0.95);
+  --surface-header: rgb(var(--palette-gray-3-rgb) / 0.96);
+  --surface-services: var(--palette-gray-2);
+  --surface-projects: var(--palette-gray-2);
+  --surface-contact: var(--palette-gray-2);
+  --surface-input: rgb(var(--palette-light-1-rgb) / 0.06);
+  --surface-input-focus: rgb(var(--palette-light-1-rgb) / 0.1);
+
+  /* ── Border colors ── */
+  --border: color-mix(in srgb, var(--palette-gray-1) 38%, var(--palette-gray-2) 62%);
+  --border-light: color-mix(in srgb, var(--palette-gray-1) 50%, var(--palette-gray-2) 50%);
+  --border-crimson: rgb(var(--palette-red-4-rgb) / 0.25);
+  --border-starlight: color-mix(in srgb, var(--palette-gray-1) 38%, var(--palette-gray-2) 62%);
+
+  /* ── Button colors ── */
+  --btn-default-bg: rgb(var(--palette-light-1-rgb) / 0.06);
+  --btn-default-text: var(--palette-light-1);
+  --btn-default-hover: rgb(var(--palette-light-1-rgb) / 0.1);
+  --btn-small-bg: rgb(var(--palette-light-1-rgb) / 0.04);
+
+  /* ── Status colors ── */
+  --success: var(--palette-red-5);
+  --error: var(--palette-red-5);
+  --error-hover: color-mix(in srgb, var(--palette-red-5) 78%, var(--palette-light-1) 22%);
 }
 
 @theme inline {
@@ -14,8 +116,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--palette-gray-3);
+    --foreground: var(--palette-light-1);
   }
 }
 
@@ -24,16 +126,63 @@ html {
 }
 
 body {
-  background: url("/res/star-bg.png") no-repeat center center fixed;
-  background-size: cover;
   background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Manrope", sans-serif;
+  line-height: 1.6;
+}
+
+/* ── Typography scale ── */
+h1 { font-size: 2.5rem; line-height: 1.15; }
+h2 { font-size: 1.75rem; line-height: 1.25; }
+h3 { font-size: 1.35rem; line-height: 1.3; }
+h4 { font-size: 1.1rem; line-height: 1.4; }
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Sora", sans-serif;
+  text-transform: none;
+}
+
+p {
+  max-width: 65ch;
+  line-height: 1.7;
+}
+
+/* ── Spin animation (shared) ── */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ── Ambient gradient drift — very slow background motion ── */
+/* Used sparingly on section backgrounds for a living, breathing feel */
+@keyframes ambientDrift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ── Gentle pulse for decorative glows ── */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+/* ── Respect reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Focus visible for better accessibility */
 *:focus-visible {
-  outline: 2px solid #dc143c;
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 
@@ -43,8 +192,8 @@ body {
   left: -9999px;
   z-index: 999;
   padding: 1rem 1.5rem;
-  background-color: #dc143c;
-  color: white;
+  background-color: var(--primary);
+  color: var(--text-white);
   text-decoration: none;
   font-weight: bold;
   border-radius: 0 0 8px 0;
@@ -57,98 +206,201 @@ body {
 
 .main-header {
   display: flex;
-  max-height: 10vh;
+  min-height: 76px;
   justify-content: space-between;
   align-items: center;
-  background: #272727f5;
-  border-bottom: 4px solid #b33a3a;
-  padding: 0.5rem 0.5vw;
-  margin: 0 0 1rem 0;
+  background: color-mix(in srgb, var(--palette-gray-3) 90%, var(--palette-black) 10%);
+  border-bottom: 1px solid rgb(var(--palette-light-3-rgb) / 0.12);
+  padding: 0.35rem 8vw;
+  margin: 0;
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 70;
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
 }
 
 .header-nav {
-  max-height: 10vh;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0.5rem 2vw;
-  gap: 8px;
-  margin-top: 0;
+  gap: 0.5rem;
 }
 
 .nav-bottom {
-  background: #272727f5;
-  border-top: 4px solid #b33a3a;
-  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
-  padding: 0.75rem 2rem;
-  margin-top: 2rem;
-  font-size: 1rem;
+  background: var(--palette-gray-3);
+  border-top: 1px solid rgb(var(--palette-light-3-rgb) / 0.16);
+  padding: 2.7rem 8vw 1rem;
+  margin-top: 0;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.footer-brand-col {
   display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-brand-link {
+  display: inline-flex;
+  width: fit-content;
+}
+
+.footer-logo {
+  width: 150px;
+  height: auto;
+}
+
+.footer-motto {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.footer-socials a {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid rgb(var(--palette-light-3-rgb) / 0.24);
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  min-height: 56px;
+  justify-content: center;
+  color: var(--palette-light-2);
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.footer-socials a:hover {
+  color: var(--palette-red-5);
+  border-color: rgb(var(--palette-red-4-rgb) / 0.6);
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+}
+
+.footer-col h4 {
+  margin: 0 0 0.4rem;
+  color: var(--palette-light-1);
+  font-size: 0.86rem;
+  text-transform: none;
+}
+
+.footer-col p,
+.footer-col a {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.footer-col a:hover {
+  color: var(--palette-light-2);
+}
+
+.footer-copyright {
+  margin-top: 1.2rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgb(var(--palette-light-3-rgb) / 0.16);
+}
+
+.footer-copyright span {
+  color: var(--text-faint);
+  font-size: 0.72rem;
 }
 
 .nav-bottom-left {
-  color: #b33a3a;
-  font-weight: 600;
+  color: var(--text-muted);
+  font-weight: 400;
   letter-spacing: 0.5px;
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
 }
 
 .nav-bottom-right {
-  color: #444;
+  color: var(--text-muted);
 }
 
 .nav-bottom a {
-  color: #b2b2b2;
+  color: var(--text-muted);
   text-decoration: none;
   font-weight: 500;
   margin: 0 0.25rem;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 
 .nav-bottom a:hover {
-  color: #ffffff;
-  text-decoration: underline;
+  color: var(--accent-maroon);
+}
+
+.nav-bottom a:focus-visible {
+  color: var(--accent-maroon);
 }
 
 .logo {
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 0;
+  width: 118px;
+  height: auto;
 }
 
-.default-btn {
-  background: #6e6e6e;
-  color: #2e2e2e;
-  font-family: "Share Tech Mono", "Consolas", monospace;
-  font-size: 1.2rem;
-  font-weight: bold;
+.header-link {
+  background: transparent;
+  color: var(--palette-light-2);
+  font-family: "Manrope", sans-serif;
+  font-size: 0.93rem;
+  font-weight: 500;
+  letter-spacing: 0;
   border: none;
-  border-radius: 0.7rem;
-  padding: 0.5rem 2vw;
-  box-shadow: 3px 3px 0 #f48181;
+  border-radius: 7px;
+  padding: 0.38rem 0.8rem;
+  box-shadow: none;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  transition: color 0.3s ease, background 0.3s ease;
   white-space: nowrap;
 }
 
-.default-btn:hover {
-  background: #323232;
-  color: #b33a3a;
-  box-shadow: 1px 1px 0 #b33a3a;
+.header-link:hover {
+  background: rgb(var(--palette-red-4-rgb) / 0.18);
+  color: var(--palette-light-1);
+  box-shadow: none;
+  transform: none;
+}
+
+.header-link:active {
+  transform: none;
+  box-shadow: none;
 }
 .hamburger {
   display: none;
   background: none;
   border: none;
-  font-size: 2rem;
-  color: #b33a3a;
+  font-size: 1.5rem;
+  color: var(--text-dim);
   cursor: pointer;
   margin-left: auto;
+  transition: color 0.3s ease;
 }
 .hamburger:hover{
-  color: #d95959;
+  color: var(--moon-white);
 }
 
 /* Responsive hamburger menu */
@@ -156,69 +408,50 @@ body {
 
   .hamburger {
     display: block;
-    z-index: 201;
+    z-index: 81;
     position: relative;
-    /* Move possiton to the left abit */
-    margin-right: 5%;
+    margin-right: 0;
   }
   .header-nav {
     display: none;
   }
-  .header-nav.floating-nav.open {
+  .header-nav.open {
     align-items: center;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    top: 80px; /* adjust as needed */
-    right: 16px;
+    position: absolute;
+    top: 74px;
+    right: 7vw;
     width: 80vw;
-    max-width: 200px;
-    max-height: 30vh;
-    background: #272727f5;
+    max-width: 220px;
+    max-height: 36vh;
+    background: color-mix(in srgb, var(--palette-gray-2) 88%, var(--palette-black) 12%);
     border-radius: 1rem;
-    box-shadow: 0 8px 32px rgba(141, 141, 141, 0.438);
-    z-index: 200;
-    padding: 2rem 2rem;
+    box-shadow: 0 8px 32px rgb(var(--palette-black-rgb) / 0.65), 0 0 0 1px rgb(var(--palette-light-3-rgb) / 0.16);
+    z-index: 80;
+    padding: 1.4rem 1.2rem;
     gap: 1rem;
     animation: fadeIn 0.2s;
   }
-  .default-btn{
-    width: 110%;
+  .header-link{
+    width: 100%;
     text-align: center;
-    background: #6e6e6e;
-      color: #2e2e2e;
-      font-family: "Share Tech Mono", "Consolas", monospace;
-      font-size: 1.2rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 0.7rem;
-      padding: 0.5rem 2vw;
-      box-shadow: 3px 3px 0 #f48181;
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-      white-space: nowrap;
+    font-size: 1rem;
+    padding: 0.52rem 1.2rem;
   }
     .main-header {
-      padding: 0.5rem 1vw;
+      padding: 0.5rem 7vw;
     }
-  
-    .header-left {
-      padding: 0.5rem 1vw;
-      border-radius: 1rem;
-      box-shadow: 3px 3px 0 #b33a3a;
+
+    .nav-bottom {
+      padding: 2rem 7vw 1rem;
     }
-  
-    .header-nav {
-      align-items: flex-end;
-      gap: 0.5rem;
+
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
     }
-  
-    .nav-btn {
-      font-size: 1.1rem;
-      border-radius: 0.5rem;
-      padding: 0.2rem 2vw;
-      box-shadow: 3px 3px 0 #888;
-    }
+
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px);}
     to { opacity: 1; transform: translateY(0);}

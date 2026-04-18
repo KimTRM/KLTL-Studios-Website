@@ -1,0 +1,155 @@
+/* ═══════════════════════════════════════════
+   Works Archive — Minimal Filterable List
+   ═══════════════════════════════════════════ */
+
+.archiveSection {
+  position: relative;
+  padding: 5rem 8vw;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--surface-section);
+  box-shadow: none;
+  border-radius: 0;
+  width: 100%;
+}
+
+/* ── Filter bar ── */
+.archiveFilters {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  font-family: "Courier New", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.45rem 1rem;
+  border: 1px solid #2A2A2A;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.02);
+  color: #9D9898;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.filterBtn:hover {
+  color: #EDEDED;
+  border-color: #AF3434;
+}
+
+.filterBtnActive {
+  font-family: "Courier New", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.45rem 1rem;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #EDEDED;
+  border: 1px solid #AF3434;
+  background: rgba(175, 52, 52, 0.1);
+  box-shadow: 0 0 12px rgba(175, 52, 52, 0.08);
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+/* ── Archive list ── */
+.archiveList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Archive row ── */
+.archiveRow {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 40px;
+  align-items: center;
+  padding: 1.1rem 0.5rem;
+  border-bottom: 1px solid #2A2A2A;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    background 0.3s ease,
+    padding-left 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.archiveRow:hover {
+  background: rgba(175, 52, 52, 0.04);
+  padding-left: 1rem;
+  border-color: rgba(175, 52, 52, 0.15);
+}
+
+.archiveRow:first-child {
+  border-top: 1px solid #2A2A2A;
+}
+
+.archiveTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--moon-white);
+  transition: color 0.3s ease;
+}
+
+.archiveRow:hover .archiveTitle {
+  color: var(--accent-maroon);
+}
+
+.archiveCat {
+  font-family: "Courier New", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.archiveYear {
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+  color: var(--text-faint);
+  text-align: right;
+}
+
+.archiveArrow {
+  color: var(--text-faint);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  text-align: right;
+}
+
+.archiveRow:hover .archiveArrow {
+  opacity: 0.5;
+  transform: translateX(0);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .archiveSection {
+    padding: 3rem 6vw;
+  }
+
+  .archiveRow {
+    grid-template-columns: 1fr auto;
+    gap: 0.25rem;
+  }
+
+  .archiveCat,
+  .archiveYear {
+    display: none;
+  }
+
+  .archiveArrow {
+    opacity: 0.3;
+    transform: translateX(0);
+  }
+}

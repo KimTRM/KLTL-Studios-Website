@@ -1,0 +1,193 @@
+.hero {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5rem 8vw 4rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 70% 45%, rgb(var(--palette-light-1-rgb) / 0.08) 0%, transparent 44%),
+    radial-gradient(circle at 70% 45%, rgb(var(--palette-light-1-rgb) / 0.04) 0%, transparent 58%),
+    linear-gradient(180deg, var(--palette-gray-3) 0%, var(--palette-black) 100%);
+}
+
+.celestialOrb {
+  position: absolute;
+  top: 6%;
+  right: 4%;
+  width: 560px;
+  height: auto;
+  display: block;
+  animation: orbFloat 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-18px) scale(1.02);
+  }
+}
+
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+}
+
+.heroTitle {
+  font-size: clamp(2.7rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--palette-light-1);
+  letter-spacing: -0.02em;
+  margin: 0;
+  max-width: 12ch;
+}
+
+.heroFounder {
+  margin: 0.7rem 0 0;
+  color: var(--palette-red-5);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.25rem, 2.1vw, 1.9rem);
+  color: var(--palette-light-2);
+  line-height: 1.35;
+  margin: 1.2rem 0 0.2rem;
+  font-weight: 600;
+}
+
+.heroMotto {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.9rem;
+  color: var(--palette-light-4);
+  letter-spacing: 0;
+  margin: 0 0 2rem;
+}
+
+.heroActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.heroBtnPrimary {
+  font-family: "Sora", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-decoration: none;
+  padding: 0.8rem 1.15rem;
+  border: 1px solid var(--palette-red-5);
+  background: var(--palette-red-5);
+  color: var(--palette-light-1);
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.heroBtnPrimary:hover {
+  background: var(--palette-red-4);
+  box-shadow: 0 8px 30px rgb(var(--palette-red-4-rgb) / 0.25);
+  transform: translateY(-1px);
+}
+.scrollIndicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--palette-red-4-rgb) / 0.65),
+    transparent
+  );
+  animation: scrollPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scaleY(1.2);
+  }
+}
+
+.starField {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgb(var(--palette-light-1-rgb) / 0.32);
+  border-radius: 50%;
+  animation: twinkle 5s ease-in-out infinite;
+}
+
+.star:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; }
+.star:nth-child(2) { top: 35%; left: 75%; animation-delay: 1.2s; }
+.star:nth-child(3) { top: 60%; left: 45%; animation-delay: 2.4s; }
+.star:nth-child(4) { top: 80%; left: 15%; animation-delay: 0.8s; }
+.star:nth-child(5) { top: 25%; left: 90%; animation-delay: 1.8s; }
+.star:nth-child(6) { top: 70%; left: 85%; animation-delay: 3.1s; }
+.star:nth-child(7) { top: 45%; left: 30%; animation-delay: 0.4s; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.56; }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 80vh;
+    padding: 5rem 7vw 3rem;
+    align-items: flex-start;
+  }
+
+  .celestialOrb {
+    width: 330px;
+    top: 10%;
+    right: -11%;
+  }
+
+  .heroTitle {
+    max-width: 10ch;
+  }
+
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+
+  .scrollIndicator {
+    display: none;
+  }
+}

@@ -1,0 +1,142 @@
+/* GENERAL CONTAINER STYLE FOR SECTIONS */
+section{
+    background-color: var(--surface-section);
+    /* deep navy semi-transparent */
+    margin: 2rem auto;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    width: 90%;
+    max-width: 1100px;
+    box-shadow: 0 4px 20px rgba(10, 9, 8, 0.4), 0 0 0 1px rgba(184, 176, 168, 0.05);
+    backdrop-filter: blur(5px);
+}
+
+.container h2 {
+    color: var(--text-white);
+    text-align: center; 
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 600;    
+    margin-bottom: 1.4rem;
+    letter-spacing: 1px;
+}
+
+/* HEADINGS */
+h1,
+h2,
+h3,
+h4 {
+    color: var(--text-white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* BUTTONS */
+.btn,
+.btn-outline,
+.btn-small {
+    font-family: 'Courier New', monospace;
+    border: none;
+    border-radius: 10px;
+    padding: 0.7rem 1.5rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn {
+    background: var(--primary);
+    color: white;
+}
+
+.btn:hover {
+    background: var(--primary-light);
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.btn-outline:active {
+    transform: translateY(0);
+}
+
+.btn-small {
+    background: var(--btn-small-bg);
+    color: white;
+    font-size: 0.85rem;
+}
+
+/* ABOUT */
+.about {
+    color: var(--text-body);
+    border-left: 4px solid var(--primary);
+}
+
+.about p {
+    line-height: 1.8;
+    max-width: 65ch;
+}
+
+.link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.link:hover {
+    color: var(--primary-light);
+    text-decoration: underline;
+}
+
+/* SERVICES */
+.services {
+    background-color: var(--surface-services);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.services-grid div {
+    background: var(--surface-card);
+    padding: 1.2rem;
+    border: 2px dashed rgba(184, 176, 168, 0.12);
+    border-radius: 10px;
+    text-align: center;
+    transition: border-color 0.25s ease, transform 0.2s ease, background 0.25s ease;
+}
+
+.services-grid div:hover {
+    border-color: rgba(184, 176, 168, 0.3);
+    background: rgba(184, 176, 168, 0.04);
+    transform: translateY(-2px);
+}
+
+.services-grid h4 {
+    color: var(--starlight);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}

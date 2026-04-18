@@ -1,0 +1,443 @@
+﻿/* ═══════════════════════════════════════════
+   Admin CSS — utilitarian, dev-tool aesthetic
+   ═══════════════════════════════════════════ */
+
+/* ── Hide public site chrome on admin pages ── */
+body:has(.admin-shell) > * > header.main-header,
+body:has(.admin-shell) > * > footer,
+body:has(.admin-shell) > * > .skip-to-main {
+    display: none !important;
+}
+
+body:has(.admin-shell) > * > main#main-content {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+body:has(.admin-login-wrapper) > * > header.main-header,
+body:has(.admin-login-wrapper) > * > footer,
+body:has(.admin-login-wrapper) > * > .skip-to-main {
+    display: none !important;
+}
+
+body:has(.admin-login-wrapper) > * > main#main-content {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* ── Layout ─────────────────────────────── */
+.admin-shell {
+    display: flex;
+    min-height: 100vh;
+    background: var(--palette-black);
+    color: var(--palette-light-2);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.admin-sidebar {
+    width: 220px;
+    background: var(--palette-gray-2);
+    border-right: 1px solid color-mix(in srgb, var(--palette-gray-1) 38%, var(--palette-gray-2) 62%);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    flex-shrink: 0;
+}
+
+.admin-sidebar-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-faint);
+    padding: 0 1rem 0.75rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--palette-gray-1) 38%, var(--palette-gray-2) 62%);
+    margin-bottom: 0.5rem;
+}
+
+.admin-sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.admin-sidebar a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    border-left: 3px solid transparent;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.admin-sidebar a:hover {
+    background: color-mix(in srgb, var(--palette-gray-1) 18%, var(--palette-gray-2) 82%);
+    color: var(--palette-light-1);
+}
+
+.admin-sidebar a.active {
+    color: var(--primary-light);
+    border-left-color: var(--primary);
+    background: rgb(var(--palette-red-4-rgb) / 0.08);
+}
+
+.admin-sidebar-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid color-mix(in srgb, var(--palette-gray-1) 38%, var(--palette-gray-2) 62%);
+    margin-top: auto;
+}
+
+.admin-logout-btn {
+    background: none;
+    border: 1px solid color-mix(in srgb, var(--palette-gray-1) 58%, var(--palette-gray-2) 42%);
+    color: var(--text-muted);
+    padding: 0.35rem 0.75rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    transition: background 0.15s, color 0.15s;
+}
+
+.admin-logout-btn:hover {
+    background: color-mix(in srgb, var(--palette-gray-1) 38%, var(--palette-gray-2) 62%);
+    color: var(--palette-light-1);
+}
+
+.admin-main {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    max-width: 960px;
+}
+
+/* ── Login ──────────────────────────────── */
+.admin-login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--palette-black);
+}
+
+.admin-login-form {
+    background: var(--palette-gray-2);
+    border: 1px solid color-mix(in srgb, var(--palette-gray-1) 38%, var(--palette-gray-2) 62%);
+    padding: 2rem;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.admin-login-form h1 {
+    font-size: 1.25rem;
+    color: var(--palette-light-1);
+    margin: 0 0 0.5rem;
+}
+
+/* ── Loading ────────────────────────────── */
+.admin-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--palette-black);
+    color: var(--text-faint);
+}
+
+/* ── Forms ──────────────────────────────── */
+.admin-login-form label,
+.admin-form label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.admin-login-form input,
+.admin-login-form textarea,
+.admin-login-form select,
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+    background: color-mix(in srgb, var(--palette-gray-1) 18%, var(--palette-gray-2) 82%);
+    border: 1px solid color-mix(in srgb, var(--palette-gray-1) 48%, var(--palette-gray-2) 52%);
+    color: var(--palette-light-2);
+    padding: 0.5rem 0.65rem;
+    font-size: 0.875rem;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+}
+
+.admin-login-form input:focus,
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.admin-login-form button[type="submit"],
+.admin-form button[type="submit"] {
+    background: var(--primary);
+    color: var(--palette-light-1);
+    border: none;
+    padding: 0.55rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-top: 0.25rem;
+}
+
+.admin-login-form button[type="submit"]:hover,
+.admin-form button[type="submit"]:hover {
+    background: var(--primary-hover);
+}
+
+.admin-login-form button:disabled,
+.admin-form button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ── Feedback ───────────────────────────── */
+.admin-error {
+    background: rgb(var(--palette-red-5-rgb) / 0.12);
+    border: 1px solid rgb(var(--palette-red-5-rgb) / 0.3);
+    color: var(--error);
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.admin-success {
+    background: rgb(var(--palette-red-4-rgb) / 0.12);
+    border: 1px solid rgb(var(--palette-red-4-rgb) / 0.3);
+    color: var(--success);
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* ── Page Headers ───────────────────────── */
+.admin-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--palette-gray-1) 38%, var(--palette-gray-2) 62%);
+    padding-bottom: 0.75rem;
+}
+
+.admin-page-header h2 {
+    font-size: 1.25rem;
+    color: var(--palette-light-1);
+    margin: 0;
+}
+
+/* ── Tables / Lists ─────────────────────── */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 0.5rem 0.65rem;
+    border-bottom: 2px solid color-mix(in srgb, var(--palette-gray-1) 38%, var(--palette-gray-2) 62%);
+    color: var(--text-faint);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.admin-table td {
+    padding: 0.5rem 0.65rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--palette-gray-1) 26%, var(--palette-gray-2) 74%);
+    vertical-align: middle;
+}
+
+.admin-table tr:hover {
+    background: rgb(var(--palette-light-1-rgb) / 0.02);
+}
+
+/* ── Badges ─────────────────────────────── */
+.admin-badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.admin-badge-featured {
+    background: rgb(var(--palette-red-5-rgb) / 0.15);
+    color: var(--palette-red-5);
+}
+
+.admin-badge-archived {
+    background: rgb(var(--palette-light-4-rgb) / 0.15);
+    color: var(--text-muted);
+}
+
+.admin-badge-active {
+    background: rgb(var(--palette-red-4-rgb) / 0.15);
+    color: var(--success);
+}
+
+/* ── Buttons ────────────────────────────── */
+.admin-btn {
+    background: color-mix(in srgb, var(--palette-gray-1) 38%, var(--palette-gray-2) 62%);
+    color: var(--palette-light-2);
+    border: 1px solid color-mix(in srgb, var(--palette-gray-1) 58%, var(--palette-gray-2) 42%);
+    padding: 0.3rem 0.65rem;
+    font-size: 0.78rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.admin-btn:hover {
+    background: color-mix(in srgb, var(--palette-gray-1) 48%, var(--palette-gray-2) 52%);
+    color: var(--palette-light-1);
+}
+
+.admin-btn-danger {
+    color: var(--error);
+    border-color: rgb(var(--palette-red-5-rgb) / 0.3);
+}
+
+.admin-btn-danger:hover {
+    background: rgb(var(--palette-red-5-rgb) / 0.15);
+    color: var(--error-hover);
+}
+
+.admin-btn-primary {
+    background: var(--primary);
+    color: var(--palette-light-1);
+    border-color: var(--primary);
+}
+
+.admin-btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+.admin-btn-group {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+/* ── Form layout ────────────────────────── */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    max-width: 640px;
+}
+
+.admin-form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.admin-form-row > * {
+    flex: 1;
+}
+
+.admin-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.admin-field textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.admin-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-checkbox input[type="checkbox"] {
+    width: auto;
+    accent-color: var(--primary);
+}
+
+/* ── Move buttons ───────────────────────── */
+.admin-move-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.admin-move-btns button {
+    background: color-mix(in srgb, var(--palette-gray-1) 30%, var(--palette-gray-2) 70%);
+    border: 1px solid color-mix(in srgb, var(--palette-gray-1) 48%, var(--palette-gray-2) 52%);
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    padding: 0 0.4rem;
+    cursor: pointer;
+    border-radius: 2px;
+    line-height: 1.4;
+}
+
+.admin-move-btns button:hover {
+    background: color-mix(in srgb, var(--palette-gray-1) 52%, var(--palette-gray-2) 48%);
+    color: var(--palette-light-1);
+}
+
+.admin-move-btns button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ── Dashboard cards ────────────────────── */
+.admin-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.admin-dashboard-card {
+    background: var(--palette-gray-2);
+    border: 1px solid color-mix(in srgb, var(--palette-gray-1) 38%, var(--palette-gray-2) 62%);
+    border-radius: 6px;
+    padding: 1.25rem;
+    text-decoration: none;
+    color: var(--palette-light-2);
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.admin-dashboard-card:hover {
+    border-color: var(--primary);
+    background: color-mix(in srgb, var(--palette-gray-2) 85%, var(--palette-gray-3) 15%);
+}
+
+.admin-dashboard-card h3 {
+    font-size: 1rem;
+    color: var(--palette-light-1);
+    margin: 0 0 0.35rem;
+}
+
+.admin-dashboard-card p {
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    margin: 0;
+}
