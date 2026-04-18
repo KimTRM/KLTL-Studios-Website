@@ -87,6 +87,114 @@
     font-size: 0.85rem;
 }
 
+.project-skeleton-heading {
+    display: grid;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.project-skeleton-toolbar {
+    margin-bottom: 1.25rem;
+}
+
+.project-skeleton-line,
+.project-skeleton-search,
+.project-skeleton-pill,
+.project-skeleton-image,
+.project-skeleton-card {
+    background: linear-gradient(
+        90deg,
+        rgb(var(--palette-light-1-rgb) / 0.06) 0%,
+        rgb(var(--palette-light-1-rgb) / 0.13) 50%,
+        rgb(var(--palette-light-1-rgb) / 0.06) 100%
+    );
+    background-size: 220% 100%;
+    animation: projectSkeletonShimmer 1.3s ease-in-out infinite;
+}
+
+.project-skeleton-line {
+    border-radius: 999px;
+}
+
+.project-skeleton-label {
+    width: 180px;
+    height: 14px;
+}
+
+.project-skeleton-title {
+    width: min(420px, 70%);
+    height: 34px;
+}
+
+.project-skeleton-subtitle {
+    width: min(520px, 84%);
+    height: 18px;
+}
+
+.project-skeleton-search {
+    flex: 1 1 260px;
+    max-width: 440px;
+    height: 46px;
+    border-radius: 10px;
+}
+
+.project-skeleton-filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.project-skeleton-pill {
+    width: 72px;
+    height: 34px;
+    border-radius: 999px;
+}
+
+.project-skeleton-grid {
+    opacity: 0.96;
+}
+
+.project-skeleton-card {
+    border: 1px solid rgb(var(--palette-light-3-rgb) / 0.12);
+    border-radius: 14px;
+    padding: 0.9rem;
+    background: var(--surface-elevated);
+    animation: none;
+}
+
+.project-skeleton-image {
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+}
+
+.project-skeleton-card-title {
+    width: 72%;
+    height: 22px;
+    margin-top: 0.95rem;
+}
+
+.project-skeleton-card-line {
+    width: 100%;
+    height: 15px;
+    margin-top: 0.7rem;
+}
+
+.project-skeleton-card-line-short {
+    width: 84%;
+}
+
+.project-skeleton-tags {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    margin-top: 0.9rem;
+}
+
+.project-skeleton-pill-small {
+    width: 58px;
+    height: 22px;
+}
+
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -172,5 +280,14 @@
 
     .project-icon {
         height: 170px;
+    }
+}
+
+@keyframes projectSkeletonShimmer {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 0;
     }
 }

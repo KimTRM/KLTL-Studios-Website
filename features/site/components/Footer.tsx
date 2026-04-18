@@ -58,7 +58,7 @@ export default function Footer() {
 
                 <div className="footer-col">
                     <h4>Contact</h4>
-                    <a href="mailto:kiml.studios72@gmail.com">kiml.studios72@gmail.com</a>
+                    <a href="mailto:kltl.studios721@gmail.com">kltl.studios721@gmail.com</a>
                     <a href="tel:+639602662084">+63 960 266 2084</a>
                     <p>Naga City, Philippines</p>
                 </div>

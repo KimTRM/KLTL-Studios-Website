@@ -62,6 +62,45 @@ export default function ProjectsWithFilter() {
         });
     }, [projects, searchTerm, selectedFilter]);
 
+    if (allProjects === undefined) {
+        return (
+            <section id="portfolio" className="projects" aria-busy="true" aria-label="Loading projects">
+                <div className="container">
+                    <div className="project-skeleton-heading">
+                        <div className="project-skeleton-line project-skeleton-label" />
+                        <div className="project-skeleton-line project-skeleton-title" />
+                        <div className="project-skeleton-line project-skeleton-subtitle" />
+                    </div>
+
+                    <div className="project-toolbar project-skeleton-toolbar">
+                        <div className="project-skeleton-search" />
+                        <div className="project-skeleton-filters">
+                            <div className="project-skeleton-pill" />
+                            <div className="project-skeleton-pill" />
+                            <div className="project-skeleton-pill" />
+                        </div>
+                    </div>
+
+                    <div className="project-grid project-skeleton-grid">
+                        {Array.from({ length: 4 }).map((_, index) => (
+                            <article key={index} className="project-skeleton-card">
+                                <div className="project-skeleton-image" />
+                                <div className="project-skeleton-line project-skeleton-card-title" />
+                                <div className="project-skeleton-line project-skeleton-card-line" />
+                                <div className="project-skeleton-line project-skeleton-card-line project-skeleton-card-line-short" />
+                                <div className="project-skeleton-tags">
+                                    <div className="project-skeleton-pill project-skeleton-pill-small" />
+                                    <div className="project-skeleton-pill project-skeleton-pill-small" />
+                                    <div className="project-skeleton-pill project-skeleton-pill-small" />
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section id="portfolio" className="projects">
             <div className="container">
@@ -105,11 +144,7 @@ export default function ProjectsWithFilter() {
 
                 {/* Project Grid */}
                 <div className="project-grid">
-                    {allProjects === undefined ? (
-                        <p className="project-empty project-empty-loading">
-                            Loading projects&hellip;
-                        </p>
-                    ) : filteredProjects.length > 0 ? (
+                    {filteredProjects.length > 0 ? (
                         filteredProjects.map((project, idx) => (
                             <ProjectCard
                                 key={idx}
