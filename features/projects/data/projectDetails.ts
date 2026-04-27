@@ -2,6 +2,10 @@ function normalizeSlug(rawSlug: string): string {
     return decodeURIComponent(rawSlug).trim().toLowerCase();
 }
 
+const ALIASES: Record<string, string> = {
+    // Add slug aliases here if needed, e.g., "old-slug": "new-slug"
+};
+
 export type ProjectDetailSection = {
     title: string;
     content: string;

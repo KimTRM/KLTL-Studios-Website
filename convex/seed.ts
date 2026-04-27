@@ -37,6 +37,16 @@ export const run = mutation(async ({ db }) => {
     // ──────────────────────────────────────────────
     // projects  (featured first — order matters)
     // ──────────────────────────────────────────────
+    function getProjectDetails<K extends keyof typeof projectDetails>(key: K) {
+        const d = projectDetails[key];
+        return {
+            ...d,
+            tools: [...d.tools],
+            sections: [...d.sections],
+            media: [...d.media],
+        };
+    }
+
     const projectDetails = {
         "project-100": {
             tagline:
@@ -418,7 +428,7 @@ export const run = mutation(async ({ db }) => {
             archived: false,
             order: 1,
             category: "game" as const,
-            ...projectDetails["project-100"],
+            ...getProjectDetails("project-100"),
         },
         {
             title: "KnowledgeSweeper",
@@ -431,7 +441,7 @@ export const run = mutation(async ({ db }) => {
             archived: false,
             order: 2,
             category: "game" as const,
-            ...projectDetails.knowledgesweeper,
+            ...getProjectDetails("knowledgesweeper"),
         },
         {
             title: "Website Clone Redesign",
@@ -444,7 +454,7 @@ export const run = mutation(async ({ db }) => {
             archived: false,
             order: 3,
             category: "web" as const,
-            ...projectDetails["website-clone-redesign"],
+            ...getProjectDetails("website-clone-redesign"),
         },
         {
             title: "Game Publishing Form",
@@ -456,7 +466,7 @@ export const run = mutation(async ({ db }) => {
             archived: false,
             order: 4,
             category: "web" as const,
-            ...projectDetails["game-publishing-form"],
+            ...getProjectDetails("game-publishing-form"),
         },
         {
             title: "Simple 2D Game",
@@ -469,7 +479,7 @@ export const run = mutation(async ({ db }) => {
             archived: false,
             order: 5,
             category: "game" as const,
-            ...projectDetails["simple-2d-game"],
+            ...getProjectDetails("simple-2d-game"),
         },
         {
             title: "Teacher's Day Gift",
@@ -481,7 +491,7 @@ export const run = mutation(async ({ db }) => {
             archived: false,
             order: 6,
             category: "web" as const,
-            ...projectDetails["teachers-day-gift"],
+            ...getProjectDetails("teachers-day-gift"),
         },
         {
             title: "Birthday Game Gift",
@@ -494,7 +504,7 @@ export const run = mutation(async ({ db }) => {
             archived: false,
             order: 7,
             category: "game" as const,
-            ...projectDetails["birthday-game-gift"],
+            ...getProjectDetails("birthday-game-gift"),
         },
         {
             title: "Design Showcase",
@@ -507,7 +517,7 @@ export const run = mutation(async ({ db }) => {
             archived: false,
             order: 8,
             category: "design" as const,
-            ...projectDetails["design-showcase"],
+            ...getProjectDetails("design-showcase"),
         },
     ];
     for (const p of projectData) {

@@ -37,7 +37,7 @@ export default function AdminSkillsEditor() {
 
     if (!token) return null;
     if (skills === undefined)
-        return <p style={{ color: "var(--text-faint)" }}>Loading skills…</p>;
+        return <p className="admin-loading-note">Loading skills...</p>;
 
     async function handleSave(s: SkillDoc) {
         if (!token) return;
@@ -140,18 +140,7 @@ export default function AdminSkillsEditor() {
                 const hasChanges = isDirty(s);
 
                 return (
-                    <div
-                        key={s._id}
-                        style={{
-                            background: "var(--palette-gray-2)",
-                            border: "1px solid #333",
-                            borderRadius: 6,
-                            padding: "1rem",
-                            marginBottom: "0.75rem",
-                            display: "flex",
-                            gap: "0.75rem",
-                        }}
-                    >
+                    <div key={s._id} className="admin-editor-card">
                         <div className="admin-move-btns">
                             <button
                                 onClick={() => handleMove(i, -1)}
@@ -169,14 +158,14 @@ export default function AdminSkillsEditor() {
                             </button>
                         </div>
 
-                        <div style={{ flex: 1 }}>
+                        <div className="admin-editor-content">
                             <AdminEditField
                                 label="Title"
                                 value={edited.title}
                                 onChange={(e) =>
                                     setField(s._id, "title", e.target.value)
                                 }
-                                style={{ marginBottom: "0.5rem" }}
+                                style={{ marginBottom: "var(--admin-space-sm)" }}
                             />
                             <AdminEditField
                                 label="Description"
@@ -193,26 +182,17 @@ export default function AdminSkillsEditor() {
                             />
                         </div>
 
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: 4,
-                                alignSelf: "flex-start",
-                            }}
-                        >
+                        <div className="admin-editor-actions">
                             <button
                                 className="admin-btn admin-btn-primary"
                                 onClick={() => handleSave(s)}
                                 disabled={!hasChanges}
-                                style={{ fontSize: "0.75rem" }}
                             >
                                 Save
                             </button>
                             <button
                                 className="admin-btn admin-btn-danger"
                                 onClick={() => handleRemove(s._id, s.title)}
-                                style={{ fontSize: "0.75rem" }}
                             >
                                 Remove
                             </button>
@@ -222,28 +202,11 @@ export default function AdminSkillsEditor() {
             })}
 
             {/* Add new skill category */}
-            <div
-                style={{
-                    background: "color-mix(in srgb, var(--palette-gray-2) 80%, var(--palette-black) 20%)",
-                    border: "1px dashed #444",
-                    borderRadius: 6,
-                    padding: "1rem",
-                    marginTop: "1rem",
-                }}
-            >
-                <h3
-                    style={{
-                        fontSize: "0.9rem",
-                        color: "var(--text-muted)",
-                        margin: "0 0 0.75rem",
-                    }}
-                >
+            <div className="admin-create-card">
+                <h3 className="admin-create-title">
                     Add New Skill Category
                 </h3>
-                <div
-                    className="admin-field"
-                    style={{ marginBottom: "0.5rem" }}
-                >
+                <div className="admin-field admin-field-tight">
                     <label>Title</label>
                     <input
                         value={newTitle}
@@ -251,16 +214,13 @@ export default function AdminSkillsEditor() {
                         placeholder="e.g. Game Development"
                     />
                 </div>
-                <div
-                    className="admin-field"
-                    style={{ marginBottom: "0.75rem" }}
-                >
+                <div className="admin-field admin-field-compact-gap">
                     <label>Description</label>
                     <textarea
                         value={newDescription}
                         onChange={(e) => setNewDescription(e.target.value)}
                         placeholder="Tools and technologies in this category"
-                        style={{ minHeight: 60 }}
+                        className="admin-textarea-xs"
                     />
                 </div>
                 <button

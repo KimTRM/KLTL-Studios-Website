@@ -37,7 +37,7 @@ export default function AdminAboutEditor() {
 
     if (!token) return null;
     if (sections === undefined)
-        return <p style={{ color: "var(--text-faint)" }}>Loading sections…</p>;
+        return <p className="admin-loading-note">Loading sections...</p>;
 
     async function handleSave(s: AboutDoc) {
         if (!token) return;
@@ -134,18 +134,7 @@ export default function AdminAboutEditor() {
                 const hasChanges = isDirty(s);
 
                 return (
-                    <div
-                        key={s._id}
-                        style={{
-                            background: "var(--palette-gray-2)",
-                            border: "1px solid #333",
-                            borderRadius: 6,
-                            padding: "1rem",
-                            marginBottom: "0.75rem",
-                            display: "flex",
-                            gap: "0.75rem",
-                        }}
-                    >
+                    <div key={s._id} className="admin-editor-card">
                         <div className="admin-move-btns">
                             <button
                                 onClick={() => handleMove(i, -1)}
@@ -163,14 +152,14 @@ export default function AdminAboutEditor() {
                             </button>
                         </div>
 
-                        <div style={{ flex: 1 }}>
+                        <div className="admin-editor-content">
                             <AdminEditField
                                 label="Heading"
                                 value={edited.heading}
                                 onChange={(e) =>
                                     setField(s._id, "heading", e.target.value)
                                 }
-                                style={{ marginBottom: "0.5rem" }}
+                                style={{ marginBottom: "var(--admin-space-sm)" }}
                             />
                             <AdminEditField
                                 label="Body"
@@ -183,26 +172,17 @@ export default function AdminAboutEditor() {
                             />
                         </div>
 
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: 4,
-                                alignSelf: "flex-start",
-                            }}
-                        >
+                        <div className="admin-editor-actions">
                             <button
                                 className="admin-btn admin-btn-primary"
                                 onClick={() => handleSave(s)}
                                 disabled={!hasChanges}
-                                style={{ fontSize: "0.75rem" }}
                             >
                                 Save
                             </button>
                             <button
                                 className="admin-btn admin-btn-danger"
                                 onClick={() => handleDelete(s._id, s.heading)}
-                                style={{ fontSize: "0.75rem" }}
                             >
                                 Delete
                             </button>
@@ -212,19 +192,11 @@ export default function AdminAboutEditor() {
             })}
 
             {/* New section form */}
-            <div
-                style={{
-                    background: "color-mix(in srgb, var(--palette-gray-2) 80%, var(--palette-black) 20%)",
-                    border: "1px dashed #444",
-                    borderRadius: 6,
-                    padding: "1rem",
-                    marginTop: "1rem",
-                }}
-            >
-                <h3 style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: "0 0 0.75rem" }}>
+            <div className="admin-create-card">
+                <h3 className="admin-create-title">
                     Add New Section
                 </h3>
-                <div className="admin-field" style={{ marginBottom: "0.5rem" }}>
+                <div className="admin-field admin-field-tight">
                     <label>Heading</label>
                     <input
                         value={newHeading}
@@ -232,13 +204,13 @@ export default function AdminAboutEditor() {
                         placeholder="Section heading"
                     />
                 </div>
-                <div className="admin-field" style={{ marginBottom: "0.75rem" }}>
+                <div className="admin-field admin-field-compact-gap">
                     <label>Body</label>
                     <textarea
                         value={newBody}
                         onChange={(e) => setNewBody(e.target.value)}
                         placeholder="Section body text"
-                        style={{ minHeight: 80 }}
+                        className="admin-textarea-sm"
                     />
                 </div>
                 <button
