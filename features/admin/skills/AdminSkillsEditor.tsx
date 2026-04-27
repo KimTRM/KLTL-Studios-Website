@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import AdminEditField from "../components/AdminEditField";
 import { useAdminAuth } from "../hooks/useAdminAuth";
+import { useInlineEditState } from "../hooks/useInlineEditState";
 import type { Id, Doc } from "@/convex/_generated/dataModel";
 
 type SkillDoc = Doc<"skills">;
@@ -23,9 +25,6 @@ export default function AdminSkillsEditor() {
     const removeSkill = useMutation(api.skills.mutations.removeSkill);
     const reorderSkills = useMutation(api.skills.mutations.reorderSkills);
 
-    const [editState, setEditState] = useState<
-        Record<string, { title: string; description: string }>
-    >({});
     const [newTitle, setNewTitle] = useState("");
     const [newDescription, setNewDescription] = useState("");
     const [feedback, setFeedback] = useState<{
@@ -33,40 +32,12 @@ export default function AdminSkillsEditor() {
         msg: string;
     } | null>(null);
 
+    const { getEdited, setField, clearItem, isDirty } =
+        useInlineEditState<{ title: string; description: string }>();
+
     if (!token) return null;
     if (skills === undefined)
         return <p style={{ color: "var(--text-faint)" }}>Loading skills…</p>;
-
-    function getEdited(s: SkillDoc) {
-        return (
-            editState[s._id] ?? {
-                title: s.title,
-                description: s.description,
-            }
-        );
-    }
-
-    function setEdited(
-        id: string,
-        field: "title" | "description",
-        value: string,
-    ) {
-        setEditState((prev) => ({
-            ...prev,
-            [id]: {
-                title:
-                    field === "title"
-                        ? value
-                        : prev[id]?.title ??
-                        skills!.find((s) => s._id === id)!.title,
-                description:
-                    field === "description"
-                        ? value
-                        : prev[id]?.description ??
-                        skills!.find((s) => s._id === id)!.description,
-            },
-        }));
-    }
 
     async function handleSave(s: SkillDoc) {
         if (!token) return;
@@ -78,11 +49,7 @@ export default function AdminSkillsEditor() {
                 title: edited.title,
                 description: edited.description,
             });
-            setEditState((prev) => {
-                const next = { ...prev };
-                delete next[s._id];
-                return next;
-            });
+            clearItem(s._id);
             setFeedback({ type: "success", msg: `"${edited.title}" saved.` });
         } catch (err) {
             setFeedback({
@@ -170,9 +137,7 @@ export default function AdminSkillsEditor() {
 
             {skills.map((s, i) => {
                 const edited = getEdited(s);
-                const isDirty =
-                    edited.title !== s.title ||
-                    edited.description !== s.description;
+                const hasChanges = isDirty(s);
 
                 return (
                     <div
@@ -205,36 +170,27 @@ export default function AdminSkillsEditor() {
                         </div>
 
                         <div style={{ flex: 1 }}>
-                            <div
-                                className="admin-field"
+                            <AdminEditField
+                                label="Title"
+                                value={edited.title}
+                                onChange={(e) =>
+                                    setField(s._id, "title", e.target.value)
+                                }
                                 style={{ marginBottom: "0.5rem" }}
-                            >
-                                <label>Title</label>
-                                <input
-                                    value={edited.title}
-                                    onChange={(e) =>
-                                        setEdited(
-                                            s._id,
-                                            "title",
-                                            e.target.value,
-                                        )
-                                    }
-                                />
-                            </div>
-                            <div className="admin-field">
-                                <label>Description</label>
-                                <textarea
-                                    value={edited.description}
-                                    onChange={(e) =>
-                                        setEdited(
-                                            s._id,
-                                            "description",
-                                            e.target.value,
-                                        )
-                                    }
-                                    style={{ minHeight: 80 }}
-                                />
-                            </div>
+                            />
+                            <AdminEditField
+                                label="Description"
+                                value={edited.description}
+                                onChange={(e) =>
+                                    setField(
+                                        s._id,
+                                        "description",
+                                        e.target.value,
+                                    )
+                                }
+                                multiline
+                                minHeight={80}
+                            />
                         </div>
 
                         <div
@@ -248,7 +204,7 @@ export default function AdminSkillsEditor() {
                             <button
                                 className="admin-btn admin-btn-primary"
                                 onClick={() => handleSave(s)}
-                                disabled={!isDirty}
+                                disabled={!hasChanges}
                                 style={{ fontSize: "0.75rem" }}
                             >
                                 Save

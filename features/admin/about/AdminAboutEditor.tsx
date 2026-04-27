@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import AdminEditField from "../components/AdminEditField";
 import { useAdminAuth } from "../hooks/useAdminAuth";
+import { useInlineEditState } from "../hooks/useInlineEditState";
 import type { Id, Doc } from "@/convex/_generated/dataModel";
 
 type AboutDoc = Doc<"aboutSections">;
@@ -23,9 +25,6 @@ export default function AdminAboutEditor() {
     const createSection = useMutation(api.about.mutations.createAboutSection);
     const deleteSection = useMutation(api.about.mutations.deleteAboutSection);
 
-    const [editState, setEditState] = useState<
-        Record<string, { heading: string; body: string }>
-    >({});
     const [newHeading, setNewHeading] = useState("");
     const [newBody, setNewBody] = useState("");
     const [feedback, setFeedback] = useState<{
@@ -33,31 +32,12 @@ export default function AdminAboutEditor() {
         msg: string;
     } | null>(null);
 
+    const { getEdited, setField, clearItem, isDirty } =
+        useInlineEditState<{ heading: string; body: string }>();
+
     if (!token) return null;
     if (sections === undefined)
         return <p style={{ color: "var(--text-faint)" }}>Loading sections…</p>;
-
-    function getEdited(s: AboutDoc) {
-        return editState[s._id] ?? { heading: s.heading, body: s.body };
-    }
-
-    function setEdited(id: string, field: "heading" | "body", value: string) {
-        setEditState((prev) => ({
-            ...prev,
-            [id]: {
-                heading:
-                    field === "heading"
-                        ? value
-                        : prev[id]?.heading ??
-                        sections!.find((s) => s._id === id)!.heading,
-                body:
-                    field === "body"
-                        ? value
-                        : prev[id]?.body ??
-                        sections!.find((s) => s._id === id)!.body,
-            },
-        }));
-    }
 
     async function handleSave(s: AboutDoc) {
         if (!token) return;
@@ -69,12 +49,7 @@ export default function AdminAboutEditor() {
                 heading: edited.heading,
                 body: edited.body,
             });
-            // Clear local edit state for this item
-            setEditState((prev) => {
-                const next = { ...prev };
-                delete next[s._id];
-                return next;
-            });
+            clearItem(s._id);
             setFeedback({ type: "success", msg: `"${edited.heading}" saved.` });
         } catch (err) {
             setFeedback({
@@ -156,8 +131,7 @@ export default function AdminAboutEditor() {
 
             {sections.map((s, i) => {
                 const edited = getEdited(s);
-                const isDirty =
-                    edited.heading !== s.heading || edited.body !== s.body;
+                const hasChanges = isDirty(s);
 
                 return (
                     <div
@@ -190,25 +164,23 @@ export default function AdminAboutEditor() {
                         </div>
 
                         <div style={{ flex: 1 }}>
-                            <div className="admin-field" style={{ marginBottom: "0.5rem" }}>
-                                <label>Heading</label>
-                                <input
-                                    value={edited.heading}
-                                    onChange={(e) =>
-                                        setEdited(s._id, "heading", e.target.value)
-                                    }
-                                />
-                            </div>
-                            <div className="admin-field">
-                                <label>Body</label>
-                                <textarea
-                                    value={edited.body}
-                                    onChange={(e) =>
-                                        setEdited(s._id, "body", e.target.value)
-                                    }
-                                    style={{ minHeight: 80 }}
-                                />
-                            </div>
+                            <AdminEditField
+                                label="Heading"
+                                value={edited.heading}
+                                onChange={(e) =>
+                                    setField(s._id, "heading", e.target.value)
+                                }
+                                style={{ marginBottom: "0.5rem" }}
+                            />
+                            <AdminEditField
+                                label="Body"
+                                value={edited.body}
+                                onChange={(e) =>
+                                    setField(s._id, "body", e.target.value)
+                                }
+                                multiline
+                                minHeight={80}
+                            />
                         </div>
 
                         <div
@@ -222,7 +194,7 @@ export default function AdminAboutEditor() {
                             <button
                                 className="admin-btn admin-btn-primary"
                                 onClick={() => handleSave(s)}
-                                disabled={!isDirty}
+                                disabled={!hasChanges}
                                 style={{ fontSize: "0.75rem" }}
                             >
                                 Save

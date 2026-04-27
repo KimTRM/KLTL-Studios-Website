@@ -7,8 +7,8 @@ import { v } from "convex/values";
  * Tables:
  *
  * projects
- *   Portfolio projects with title, description, image, link, ordering,
- *   slug for URL-friendly lookups, featured flag, optional category and tags.
+ *   Portfolio projects with listing fields plus optional project-detail
+ *   content for the project page.
  *   Indexes: by_slug, by_featured, by_order.
  *
  * aboutSections
@@ -58,6 +58,29 @@ export default defineSchema({
         gallery: v.optional(v.array(v.string())),
         technologies: v.optional(v.array(v.string())),
         year: v.optional(v.string()),
+        tagline: v.optional(v.string()),
+        overview: v.optional(v.string()),
+        role: v.optional(v.string()),
+        tools: v.optional(v.array(v.string())),
+        sections: v.optional(
+            v.array(
+                v.object({
+                    title: v.string(),
+                    content: v.string(),
+                }),
+            ),
+        ),
+        media: v.optional(
+            v.array(
+                v.object({
+                    type: v.union(v.literal("image"), v.literal("video")),
+                    src: v.string(),
+                    alt: v.string(),
+                    poster: v.optional(v.string()),
+                }),
+            ),
+        ),
+        demoLabel: v.optional(v.string()),
     })
         .index("by_slug", ["slug"])
         .index("by_featured", ["featured", "order"])
