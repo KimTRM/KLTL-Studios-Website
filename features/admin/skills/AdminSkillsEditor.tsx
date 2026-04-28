@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import AdminEditField from "../components/AdminEditField";
 import { useAdminAuth } from "../hooks/useAdminAuth";
+import { useInlineEditState } from "../hooks/useInlineEditState";
 import type { Id, Doc } from "@/convex/_generated/dataModel";
 
 type SkillDoc = Doc<"skills">;
@@ -23,9 +25,6 @@ export default function AdminSkillsEditor() {
     const removeSkill = useMutation(api.skills.mutations.removeSkill);
     const reorderSkills = useMutation(api.skills.mutations.reorderSkills);
 
-    const [editState, setEditState] = useState<
-        Record<string, { title: string; description: string }>
-    >({});
     const [newTitle, setNewTitle] = useState("");
     const [newDescription, setNewDescription] = useState("");
     const [feedback, setFeedback] = useState<{
@@ -33,40 +32,12 @@ export default function AdminSkillsEditor() {
         msg: string;
     } | null>(null);
 
+    const { getEdited, setField, clearItem, isDirty } =
+        useInlineEditState<{ title: string; description: string }>();
+
     if (!token) return null;
     if (skills === undefined)
-        return <p style={{ color: "var(--text-faint)" }}>Loading skills…</p>;
-
-    function getEdited(s: SkillDoc) {
-        return (
-            editState[s._id] ?? {
-                title: s.title,
-                description: s.description,
-            }
-        );
-    }
-
-    function setEdited(
-        id: string,
-        field: "title" | "description",
-        value: string,
-    ) {
-        setEditState((prev) => ({
-            ...prev,
-            [id]: {
-                title:
-                    field === "title"
-                        ? value
-                        : prev[id]?.title ??
-                        skills!.find((s) => s._id === id)!.title,
-                description:
-                    field === "description"
-                        ? value
-                        : prev[id]?.description ??
-                        skills!.find((s) => s._id === id)!.description,
-            },
-        }));
-    }
+        return <p className="admin-loading-note">Loading skills...</p>;
 
     async function handleSave(s: SkillDoc) {
         if (!token) return;
@@ -78,11 +49,7 @@ export default function AdminSkillsEditor() {
                 title: edited.title,
                 description: edited.description,
             });
-            setEditState((prev) => {
-                const next = { ...prev };
-                delete next[s._id];
-                return next;
-            });
+            clearItem(s._id);
             setFeedback({ type: "success", msg: `"${edited.title}" saved.` });
         } catch (err) {
             setFeedback({
@@ -170,23 +137,10 @@ export default function AdminSkillsEditor() {
 
             {skills.map((s, i) => {
                 const edited = getEdited(s);
-                const isDirty =
-                    edited.title !== s.title ||
-                    edited.description !== s.description;
+                const hasChanges = isDirty(s);
 
                 return (
-                    <div
-                        key={s._id}
-                        style={{
-                            background: "var(--palette-gray-2)",
-                            border: "1px solid #333",
-                            borderRadius: 6,
-                            padding: "1rem",
-                            marginBottom: "0.75rem",
-                            display: "flex",
-                            gap: "0.75rem",
-                        }}
-                    >
+                    <div key={s._id} className="admin-editor-card">
                         <div className="admin-move-btns">
                             <button
                                 onClick={() => handleMove(i, -1)}
@@ -204,59 +158,41 @@ export default function AdminSkillsEditor() {
                             </button>
                         </div>
 
-                        <div style={{ flex: 1 }}>
-                            <div
-                                className="admin-field"
-                                style={{ marginBottom: "0.5rem" }}
-                            >
-                                <label>Title</label>
-                                <input
-                                    value={edited.title}
-                                    onChange={(e) =>
-                                        setEdited(
-                                            s._id,
-                                            "title",
-                                            e.target.value,
-                                        )
-                                    }
-                                />
-                            </div>
-                            <div className="admin-field">
-                                <label>Description</label>
-                                <textarea
-                                    value={edited.description}
-                                    onChange={(e) =>
-                                        setEdited(
-                                            s._id,
-                                            "description",
-                                            e.target.value,
-                                        )
-                                    }
-                                    style={{ minHeight: 80 }}
-                                />
-                            </div>
+                        <div className="admin-editor-content">
+                            <AdminEditField
+                                label="Title"
+                                value={edited.title}
+                                onChange={(e) =>
+                                    setField(s._id, "title", e.target.value)
+                                }
+                                style={{ marginBottom: "var(--admin-space-sm)" }}
+                            />
+                            <AdminEditField
+                                label="Description"
+                                value={edited.description}
+                                onChange={(e) =>
+                                    setField(
+                                        s._id,
+                                        "description",
+                                        e.target.value,
+                                    )
+                                }
+                                multiline
+                                minHeight={80}
+                            />
                         </div>
 
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: 4,
-                                alignSelf: "flex-start",
-                            }}
-                        >
+                        <div className="admin-editor-actions">
                             <button
                                 className="admin-btn admin-btn-primary"
                                 onClick={() => handleSave(s)}
-                                disabled={!isDirty}
-                                style={{ fontSize: "0.75rem" }}
+                                disabled={!hasChanges}
                             >
                                 Save
                             </button>
                             <button
                                 className="admin-btn admin-btn-danger"
                                 onClick={() => handleRemove(s._id, s.title)}
-                                style={{ fontSize: "0.75rem" }}
                             >
                                 Remove
                             </button>
@@ -266,28 +202,11 @@ export default function AdminSkillsEditor() {
             })}
 
             {/* Add new skill category */}
-            <div
-                style={{
-                    background: "color-mix(in srgb, var(--palette-gray-2) 80%, var(--palette-black) 20%)",
-                    border: "1px dashed #444",
-                    borderRadius: 6,
-                    padding: "1rem",
-                    marginTop: "1rem",
-                }}
-            >
-                <h3
-                    style={{
-                        fontSize: "0.9rem",
-                        color: "var(--text-muted)",
-                        margin: "0 0 0.75rem",
-                    }}
-                >
+            <div className="admin-create-card">
+                <h3 className="admin-create-title">
                     Add New Skill Category
                 </h3>
-                <div
-                    className="admin-field"
-                    style={{ marginBottom: "0.5rem" }}
-                >
+                <div className="admin-field admin-field-tight">
                     <label>Title</label>
                     <input
                         value={newTitle}
@@ -295,16 +214,13 @@ export default function AdminSkillsEditor() {
                         placeholder="e.g. Game Development"
                     />
                 </div>
-                <div
-                    className="admin-field"
-                    style={{ marginBottom: "0.75rem" }}
-                >
+                <div className="admin-field admin-field-compact-gap">
                     <label>Description</label>
                     <textarea
                         value={newDescription}
                         onChange={(e) => setNewDescription(e.target.value)}
                         placeholder="Tools and technologies in this category"
-                        style={{ minHeight: 60 }}
+                        className="admin-textarea-xs"
                     />
                 </div>
                 <button

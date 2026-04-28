@@ -13,6 +13,18 @@ const categoryValidator = v.union(
     v.literal("other"),
 );
 
+const projectSectionValidator = v.object({
+    title: v.string(),
+    content: v.string(),
+});
+
+const projectMediaValidator = v.object({
+    type: v.union(v.literal("image"), v.literal("video")),
+    src: v.string(),
+    alt: v.string(),
+    poster: v.optional(v.string()),
+});
+
 /** Create a new project. */
 export const createProject = mutation({
     args: {
@@ -32,6 +44,13 @@ export const createProject = mutation({
         gallery: v.optional(v.array(v.string())),
         technologies: v.optional(v.array(v.string())),
         year: v.optional(v.string()),
+        demoLabel: v.optional(v.string()),
+        tagline: v.optional(v.string()),
+        overview: v.optional(v.string()),
+        role: v.optional(v.string()),
+        tools: v.optional(v.array(v.string())),
+        sections: v.optional(v.array(projectSectionValidator)),
+        media: v.optional(v.array(projectMediaValidator)),
     },
     handler: async (ctx, args) => {
         await requireAuth(ctx, args.sessionToken);
@@ -75,6 +94,13 @@ export const updateProject = mutation({
         gallery: v.optional(v.array(v.string())),
         technologies: v.optional(v.array(v.string())),
         year: v.optional(v.string()),
+        demoLabel: v.optional(v.string()),
+        tagline: v.optional(v.string()),
+        overview: v.optional(v.string()),
+        role: v.optional(v.string()),
+        tools: v.optional(v.array(v.string())),
+        sections: v.optional(v.array(projectSectionValidator)),
+        media: v.optional(v.array(projectMediaValidator)),
     },
     handler: async (ctx, args) => {
         await requireAuth(ctx, args.sessionToken);

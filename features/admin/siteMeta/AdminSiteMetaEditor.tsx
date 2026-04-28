@@ -26,6 +26,11 @@ const META_KEYS = [
     { key: "youtubeUrl", label: "YouTube URL" },
 ] as const;
 
+const HERO_KEYS = ["heroTitle", "heroSubtitle", "heroMotto", "heroImage"] as const;
+const CONTACT_KEYS = ["contactHeading", "contactSubheading", "contactEmail"] as const;
+const SOCIAL_KEYS = ["githubUrl", "linkedinUrl", "youtubeUrl"] as const;
+const FOOTER_KEYS = ["footerText"] as const;
+
 const ALL_KEYS = META_KEYS.map((m) => m.key);
 
 export default function AdminSiteMetaEditor() {
@@ -49,10 +54,26 @@ export default function AdminSiteMetaEditor() {
 
     if (!token) return null;
     if (current === undefined)
-        return <p style={{ color: "var(--text-faint)" }}>Loading site meta…</p>;
+        return <p className="admin-loading-note">Loading site meta...</p>;
 
     function handleChange(key: string, value: string) {
         setValues((prev) => ({ ...prev, [key]: value }));
+    }
+
+    function getLabel(key: string) {
+        return META_KEYS.find((entry) => entry.key === key)?.label ?? key;
+    }
+
+    function renderFields(keys: readonly string[]) {
+        return keys.map((key) => (
+            <div className="admin-field" key={key}>
+                <label>{getLabel(key)}</label>
+                <input
+                    value={values[key] ?? ""}
+                    onChange={(e) => handleChange(key, e.target.value)}
+                />
+            </div>
+        ));
     }
 
     async function handleSubmit(e: FormEvent) {
@@ -86,8 +107,13 @@ export default function AdminSiteMetaEditor() {
 
     return (
         <div>
-            <div className="admin-page-header">
-                <h2>Site Meta</h2>
+            <div className="admin-page-header admin-page-header-dense">
+                <div>
+                    <h2>Site Meta</h2>
+                    <p className="admin-page-subtitle">
+                        Edit hero, contact, social, and footer content with a live structured preview.
+                    </p>
+                </div>
             </div>
 
             {feedback && (
@@ -102,63 +128,66 @@ export default function AdminSiteMetaEditor() {
                 </p>
             )}
 
-            <form className="admin-form" onSubmit={handleSubmit}>
-                {META_KEYS.map(({ key, label }) => (
-                    <div className="admin-field" key={key}>
-                        <label>{label}</label>
-                        <input
-                            value={values[key] ?? ""}
-                            onChange={(e) => handleChange(key, e.target.value)}
-                        />
-                    </div>
-                ))}
+            <div className="admin-meta-layout">
+                <form className="admin-form admin-meta-form" onSubmit={handleSubmit}>
+                    <section className="admin-panel-card">
+                        <h3 className="admin-panel-title">Hero</h3>
+                        {renderFields(HERO_KEYS)}
+                    </section>
 
-                <button type="submit" disabled={pending || !isDirty}>
-                    {pending ? "Saving…" : "Save All"}
-                </button>
-            </form>
+                    <section className="admin-panel-card">
+                        <h3 className="admin-panel-title">Contact</h3>
+                        {renderFields(CONTACT_KEYS)}
+                    </section>
 
-            {/* Live preview */}
-            <div
-                style={{
-                    marginTop: "2rem",
-                    padding: "1rem",
-                    border: "1px solid #333",
-                    borderRadius: 6,
-                    background: "color-mix(in srgb, var(--palette-gray-2) 80%, var(--palette-black) 20%)",
-                }}
-            >
-                <h3
-                    style={{
-                        fontSize: "0.85rem",
-                        color: "var(--text-faint)",
-                        margin: "0 0 0.75rem",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em",
-                    }}
-                >
-                    Preview
-                </h3>
-                <p style={{ fontSize: "1.1rem", color: "var(--palette-light-1)", margin: "0 0 0.25rem" }}>
-                    {values.heroTitle || "—"}
-                </p>
-                <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: "0 0 0.25rem" }}>
-                    {values.heroSubtitle || "—"}
-                </p>
-                <p
-                    style={{
-                        fontSize: "0.8rem",
-                        color: "var(--text-faint)",
-                        fontStyle: "italic",
-                        margin: 0,
-                    }}
-                >
-                    {values.heroMotto || "—"}
-                </p>
-                <hr style={{ border: "none", borderTop: "1px solid #333", margin: "0.75rem 0" }} />
-                <p style={{ fontSize: "0.8rem", color: "var(--text-faint)", margin: 0 }}>
-                    {values.footerText || "—"}
-                </p>
+                    <section className="admin-panel-card">
+                        <h3 className="admin-panel-title">Social</h3>
+                        {renderFields(SOCIAL_KEYS)}
+                    </section>
+
+                    <section className="admin-panel-card">
+                        <h3 className="admin-panel-title">Footer</h3>
+                        {renderFields(FOOTER_KEYS)}
+                    </section>
+
+                    <button type="submit" disabled={pending || !isDirty}>
+                        {pending ? "Saving..." : "Save All"}
+                    </button>
+                </form>
+
+                <aside className="admin-meta-preview" aria-label="Site meta preview">
+                    <section className="admin-preview-card">
+                        <h3 className="admin-preview-title">Hero Preview</h3>
+                        <p className="admin-preview-hero-title">
+                            {values.heroTitle || "—"}
+                        </p>
+                        <p className="admin-preview-hero-subtitle">
+                            {values.heroSubtitle || "—"}
+                        </p>
+                        <p className="admin-preview-hero-motto">
+                            {values.heroMotto || "—"}
+                        </p>
+                        <p className="admin-preview-footer-text">
+                            Image: {values.heroImage || "—"}
+                        </p>
+                    </section>
+
+                    <section className="admin-preview-card">
+                        <h3 className="admin-preview-title">Contact Preview</h3>
+                        <p className="admin-preview-hero-subtitle">{values.contactHeading || "—"}</p>
+                        <p className="admin-preview-footer-text">{values.contactSubheading || "—"}</p>
+                        <p className="admin-preview-footer-text">{values.contactEmail || "—"}</p>
+                    </section>
+
+                    <section className="admin-preview-card">
+                        <h3 className="admin-preview-title">Social + Footer</h3>
+                        <p className="admin-preview-footer-text">GitHub: {values.githubUrl || "—"}</p>
+                        <p className="admin-preview-footer-text">LinkedIn: {values.linkedinUrl || "—"}</p>
+                        <p className="admin-preview-footer-text">YouTube: {values.youtubeUrl || "—"}</p>
+                        <hr className="admin-preview-divider" />
+                        <p className="admin-preview-footer-text">{values.footerText || "—"}</p>
+                    </section>
+                </aside>
             </div>
         </div>
     );

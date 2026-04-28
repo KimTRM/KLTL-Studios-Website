@@ -23,7 +23,9 @@ export default function AdminSidebar() {
 
     return (
         <aside className="admin-sidebar">
-            <div className="admin-sidebar-title">Admin Panel</div>
+            <div className="admin-sidebar-brand">
+                <div className="admin-sidebar-title">Admin Panel</div>
+            </div>
 
             <nav>
                 {navItems.map(({ href, label, exact }) => (
@@ -39,14 +41,7 @@ export default function AdminSidebar() {
 
             <div className="admin-sidebar-footer">
                 {session && (
-                    <p
-                        style={{
-                            fontSize: "0.7rem",
-                            color: "var(--text-faint)",
-                            margin: "0 0 0.5rem",
-                            wordBreak: "break-all",
-                        }}
-                    >
+                    <p className="admin-account-email">
                         {session.email}
                     </p>
                 )}
