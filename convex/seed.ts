@@ -529,9 +529,44 @@ export const run = mutation(async ({ db }) => {
     // ──────────────────────────────────────────────
     const aboutData = [
         {
-            heading: "About Me",
-            body: "I'm Kim, a developer and multimedia creator. I build interactive experiences by combining my love for programming, music, and design.",
+            heading: "Kim Louise Labrador",
+            body: "KLTL Studios||Developer · Designer · Musician||I build digital experiences that blend structure, creativity, and atmosphere. The work is rooted in practical systems, but it always leaves room for design, motion, and sound to shape the final feel.",
             order: 1,
+        },
+        {
+            heading: "About Me",
+            body: "I am Kim, the creator behind KLTL Studios. I build digital work that sits between code, design, and sound, with a strong preference for interfaces that feel intentional rather than overworked.||My process usually starts with structure. I like shaping systems first, then layering visuals, motion, and tone until the experience feels cohesive. That approach shows up in websites, game prototypes, and multimedia experiments alike.||The goal is rarely just to make something functional. I want the result to feel clear, atmospheric, and memorable enough to read like a portfolio piece without losing the human side of the story.",
+            order: 2,
+        },
+        {
+            heading: "What I Do",
+            body: "Game Dev|Interactive systems, gameplay loops, and educational game ideas built with a creator-first mindset.||Web|Modern front-end experiences with thoughtful hierarchy, responsive layouts, and practical implementation.||UI/UX|Interfaces that stay readable, expressive, and easy to navigate while still feeling visually distinct.||Multimedia|Music, visuals, photography, and motion cues that help the work feel richer than a static screen.",
+            order: 3,
+        },
+        {
+            heading: "Education",
+            body: "Bachelor of Science in Information Technology|Currently pursuing|Grounding the creative side in technical foundations, problem solving, and systems thinking.",
+            order: 4,
+        },
+        {
+            heading: "Achievements and Competitions",
+            body: "Project 100|Educational RPG Game|A learning-focused game that turns programming fundamentals into interactive quests and puzzle progression.||KnowledgeSweeper|Educational Quiz Game|A Minesweeper-inspired concept that layers quiz prompts onto the classic puzzle loop for faster learning.||Senate Website Redesign|Web Development Project|A complete redesign effort centered on clearer UX, stronger structure, and a more modern presentation.",
+            order: 5,
+        },
+        {
+            heading: "Certificates",
+            body: "Certificate archive|Workspace data|Pending|No verified certificate entries were present in the repository, so this section is ready to be filled from the admin page.||Future credential slot|To be added|—|Expandable space reserved for certificates you want to highlight once they are documented.",
+            order: 6,
+        },
+        {
+            heading: "Personal Details",
+            body: "Email|kimlabrador71@gmail.com|mailto:kimlabrador71@gmail.com||GitHub|kimtrm|https://github.com/kimtrm||LinkedIn|Kim Louise Labrador|https://www.linkedin.com/in/kim-louise-labrador/||Brand|KLTL Studios|/",
+            order: 7,
+        },
+        {
+            heading: "Hobbies and Interests",
+            body: "Composing and arranging music, Photography and visual framing, Building game ideas into playable systems, Refining UI details and brand identity, Experimenting with motion and atmosphere.",
+            order: 8,
         },
     ];
     for (const a of aboutData) {
