@@ -209,11 +209,9 @@ p {
   min-height: 76px;
   justify-content: space-between;
   align-items: center;
-  background: color-mix(in srgb, var(--palette-gray-3) 90%, var(--palette-black) 10%);
   border-bottom: 1px solid rgb(var(--palette-light-3-rgb) / 0.12);
   padding: 0.35rem 8vw;
   margin: 0;
-  backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
   z-index: 70;
@@ -421,15 +419,15 @@ p {
     flex-direction: column;
     position: absolute;
     top: 74px;
-    right: 7vw;
-    width: 80vw;
+    right: 4vw;
+    width: 35vw;
     max-width: 220px;
     max-height: 36vh;
     background: color-mix(in srgb, var(--palette-gray-2) 88%, var(--palette-black) 12%);
     border-radius: 1rem;
     box-shadow: 0 8px 32px rgb(var(--palette-black-rgb) / 0.65), 0 0 0 1px rgb(var(--palette-light-3-rgb) / 0.16);
     z-index: 80;
-    padding: 1.4rem 1.2rem;
+    padding: 1.2rem 1.2rem;
     gap: 1rem;
     animation: fadeIn 0.2s;
   }
@@ -456,4 +454,116 @@ p {
     from { opacity: 0; transform: translateY(-10px);}
     to { opacity: 1; transform: translateY(0);}
   }
+}
+
+/* Utility compatibility for legacy Tailwind-like classes used in markup */
+.text-kltl-red {
+  color: var(--kltl-dark-red) !important;
+}
+
+.bg-kltl-red {
+  background-color: var(--color-kltl-red) !important;
+}
+
+.hover\:bg-kltl-red-hover:hover {
+  background-color: var(--color-kltl-red-hover) !important;
+}
+
+.hover\:text-kltl-red:hover {
+  color: var(--color-kltl-red) !important;
+}
+
+.group:hover .group-hover\:bg-kltl-red {
+  background-color: var(--color-kltl-red) !important;
+}
+
+.group:hover .group-hover\:text-kltl-red {
+  color: var(--color-kltl-red) !important;
+}
+
+/* Selection utilities used on body */
+.selection\:bg-kltl-red::selection {
+  background-color: var(--color-kltl-red) !important;
+}
+
+.selection\:text-white::selection {
+  color: var(--text-white) !important;
+}
+
+
+/* Utility overrides to replace Tailwind's pure-black / near-black utilities
+   with KLTL charcoal-ash tokens. These intentionally use !important to
+   ensure the design tokens win over compiled utilities. */
+.bg-black {
+  background-color: var(--background) !important;
+}
+
+.bg-black\/80 {
+  background-color: rgb(var(--palette-gray-3-rgb) / 0.8) !important;
+}
+
+.bg-neutral-900 {
+  background-color: var(--kltl-bg-dark) !important;
+}
+
+.border-neutral-900 {
+  border-color: var(--border) !important;
+}
+
+.border-neutral-800 {
+  border-color: var(--border-light) !important;
+}
+
+.text-white,
+.text-neutral-50 {
+  color: var(--text-white) !important;
+}
+
+.text-neutral-300 {
+  color: var(--text-body) !important;
+}
+
+.text-neutral-400 {
+  color: var(--text-muted) !important;
+}
+
+.placeholder\:text-neutral-600::placeholder {
+  color: var(--text-dim) !important;
+}
+
+.focus-visible\:ring-neutral-700:focus {
+  --tw-ring-color: var(--border) !important;
+}
+
+.bg-neutral-700 {
+  background-color: color-mix(in srgb, var(--palette-gray-1) 40%, var(--palette-gray-3) 60%) !important;
+}
+
+/* Animation container helper */
+.animation-container {
+  contain: layout style;
+  isolation: isolate;
+}
+
+/* Reduce motion fallback: zero-out animations and transitions */
+/* @media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+} */
+
+/* Helpful defaults for elements that animate: use GPU-friendly properties */
+.anim-optimized {
+  will-change: transform, opacity;
+}
+
+/* Provide token-driven hover shadow for project cards (uses palette black token) */
+.project-card {
+  box-shadow: none;
+}
+
+.group:hover .project-card {
+  box-shadow: 0 10px 30px rgb(var(--palette-black-rgb) / 0.5);
 }

@@ -1,7 +1,6 @@
 .contactSection {
   padding: 4.4rem 8vw 4.9rem;
   background: linear-gradient(180deg, var(--palette-red-2) 0%, var(--palette-red-1) 100%);
-  text-align: center;
 }
 
 .contactInner {

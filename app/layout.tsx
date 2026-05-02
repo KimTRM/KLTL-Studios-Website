@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/features/site/components/Header";
-import Footer from "@/features/site/components/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import ConvexClientProvider from "./ConvexClientProvider";
 
 export const metadata: Metadata = {
@@ -70,7 +70,8 @@ export default function RootLayout({
           <a href="#main-content" className="skip-to-main">
             Skip to main content
           </a>
-          <Header />
+          <Navbar />
+          {/* <Header /> */}
           <main id="main-content">
             {children}
           </main>
