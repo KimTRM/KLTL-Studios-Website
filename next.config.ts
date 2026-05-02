@@ -5,6 +5,18 @@ const nextConfig: NextConfig = {
     turbopack: {
         root: process.cwd(),
     },
+    // Allow access to remote image placeholder.
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "picsum.photos",
+                port: "",
+                pathname: "/**", // This allows any path under the hostname
+            },
+        ],
+    },
+    transpilePackages: ["motion"],
 };
 
 export default nextConfig;

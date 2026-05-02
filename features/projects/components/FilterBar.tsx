@@ -11,7 +11,7 @@ type Props = {
 
 export default function FilterBar({ options, activeValue, onChange }: Props) {
     return (
-        <div className="project-filters" role="tablist" aria-label="Project categories">
+        <div className="project-filters mt-1" role="tablist" aria-label="Project categories">
             {options.map((option) => (
                 <button
                     key={option.value}

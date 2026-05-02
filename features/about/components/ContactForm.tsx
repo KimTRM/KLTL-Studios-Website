@@ -1,6 +1,5 @@
 "use client";
 
-import "../css/ContactSection.css";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { motion } from "motion/react";
@@ -19,12 +18,14 @@ export function ContactForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto mt-12 mb-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-12"
       >
+        <h2 className="text-center text-neutral-400 font-bold text-6xl mb-4">Let's Work Together</h2>
+
         <p className="text-neutral-400 text-lg">
           Have a project in mind, or just want to say hi? Drop me a message below.
         </p>

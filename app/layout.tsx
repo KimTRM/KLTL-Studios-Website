@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Inter } from 'next/font/google';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ConvexClientProvider from "./ConvexClientProvider";
@@ -58,18 +59,17 @@ export const metadata: Metadata = {
   },
 };
 
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} dark`} suppressHydrationWarning>
       <body>
         <ConvexClientProvider>
-          <a href="#main-content" className="skip-to-main">
-            Skip to main content
-          </a>
           <Navbar />
           {/* <Header /> */}
           <main id="main-content">

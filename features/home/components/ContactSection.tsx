@@ -4,7 +4,7 @@ import "../css/ContactSection.css";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import AnimatedSection from "@/features/ui/AnimatedSection";
-import { ContactForm } from "./ContactForm";
+import { ContactForm } from "../../about/components/ContactForm";
 
 export default function ContactSectionRedesign() {
     const contact = useQuery(api.siteMeta.queries.getContact);

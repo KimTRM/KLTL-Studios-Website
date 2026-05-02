@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  min-height: 88vh;
+  min-height: 94vh;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -114,7 +114,8 @@
 }
 
 .scrollLine {
-  width: 1px;
+  border-radius: 6px 6px;
+  width: 6px;
   height: 44px;
   background: linear-gradient(
     to bottom,
@@ -168,9 +169,8 @@
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 80vh;
     padding: 5rem 7vw 3rem;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .celestialOrb {
