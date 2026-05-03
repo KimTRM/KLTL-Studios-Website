@@ -7,8 +7,8 @@ import ConvexClientProvider from "./ConvexClientProvider";
 
 export const metadata: Metadata = {
   title: {
-    default: "KLTL Studios | Kim Louise Labrador - Developer, Designer, Musician",
-    template: "%s | KLTL Studios"
+    default: "KLTL Studios",
+    template: "KLTL Studios | %s "
   },
   description: "Portfolio of Kim Louise Labrador - Full-stack developer, game developer, UI/UX designer, and musician. Specializing in web development, game development with Godot, and interactive experiences.",
   keywords: ["Kim Louise Labrador", "KLTL Studios", "Web Developer", "Game Developer", "UI/UX Designer", "Full Stack Developer", "React", "Next.js", "Godot", "TypeScript", "Portfolio"],
