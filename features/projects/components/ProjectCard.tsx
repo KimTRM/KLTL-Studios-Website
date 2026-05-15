@@ -1,58 +1,51 @@
-"use client";
-
-import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { cardHover } from "@/features/motion";
-import "../css/ProjectSection.css";
+import Image from "next/image";
+import { Project } from "../types";
+import { ArrowRight } from "lucide-react";
 
-interface Props {
-    slug: string;
-    title: string;
-    description: string;
-    image: string;
-    tags: string[];
+interface ProjectCardProps {
+    project: Project;
 }
 
-/**
- * Project card with Framer Motion hover lift.
- * WHY: The hover gives tactile depth feedback — the card floats up slightly,
- *      signaling interactivity without disrupting layout.
- */
-export default function ProjectCard(props: Props) {
-    const MotionLink = motion.create(Link);
-
+export default function ProjectCard({ project }: ProjectCardProps) {
     return (
-        <MotionLink
-            href={`/projects/${props.slug}`}
-            className="project-card"
-            aria-label={`View details about ${props.title} project`}
-            initial="rest"
-            whileHover="hover"
-            animate="rest"
-            variants={cardHover}
-        >
-            <article className="project-card-inner">
-                <div className="project-icon">
-                    <Image
-                        src={props.image}
-                        alt={`${props.title} icon`}
-                        width={460}
-                        height={160}
-                        loading="lazy"
-                        sizes="(max-width: 700px) 90vw, (max-width: 1200px) 46vw, 23vw"
-                    />
+        <Link href={`/projects/${project.slug}`} className="group block">
+            <div className="relative aspect-video rounded-xl overflow-hidden bg-neutral-900 mb-6 group-hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-shadow duration-500">
+                <Image
+                    src={project.imageUrl}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-neutral-950/40 group-hover:bg-neutral-950/10 transition-colors duration-500" />
+            </div>
+
+            <div>
+                <div className="flex items-center justify-between mb-3">
+                    <span className="text-xs font-mono font-bold text-kltl-red uppercase tracking-widest">
+                        {project.category}
+                    </span>
+                    <span className="text-xs font-mono text-neutral-600">{project.year}</span>
                 </div>
-                <b>{props.title}</b>
-                <p>{props.description}</p>
-                <div className="project-card-tags" aria-label="Project tools">
-                    {props.tags.slice(0, 4).map((tag, index) => (
-                        <span key={`${tag}-${index}`} className="project-card-tag">
-                            {tag}
+
+                <h3 className="text-2xl font-bold text-neutral-100 mb-2 group-hover:text-white transition-colors flex items-center">
+                    {project.title}
+                    <ArrowRight className="ml-2 w-5 h-5 text-kltl-red opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                </h3>
+
+                <p className="text-neutral-400 text-sm md:text-base leading-relaxed mb-4 line-clamp-2">
+                    {project.summary}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                    {project.techStack.map(tech => (
+                        <span key={tech} className="text-xs font-medium text-neutral-500 bg-neutral-900 border border-neutral-800 px-2 py-1 rounded-md">
+                            {tech}
                         </span>
                     ))}
                 </div>
-            </article>
-        </MotionLink>
+            </div>
+        </Link>
     );
 }

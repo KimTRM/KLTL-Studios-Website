@@ -6,12 +6,58 @@ import { api } from "@/convex/_generated/api";
 import AnimatedSection from "@/features/ui/AnimatedSection";
 import EmptyState from "@/features/ui/EmptyState";
 import ProjectCard from "@/features/projects/components/ProjectCard";
+import type { Project } from "@/features/projects/types";
+
+type FeaturedProjectSource = {
+    id?: string;
+    slug?: string;
+    title: string;
+    description?: string;
+    image?: string;
+    imageUrl?: string;
+    link?: string;
+    category?: string;
+    tags?: string[];
+    technologies?: string[];
+    year?: string;
+    summary?: string;
+    subtitle?: string;
+    overview?: string;
+};
+
+function toProject(project: FeaturedProjectSource): Project {
+    const categoryMap: Record<string, Project["category"]> = {
+        game: "Game Dev",
+        web: "Web Dev",
+        design: "UI/UX",
+        other: "Creative",
+    };
+
+    const techStack = project.tags ?? project.technologies ?? [project.category ?? "Project"];
+    const summary = project.summary ?? project.subtitle ?? project.description ?? project.overview ?? "";
+
+    return {
+        id: project.id ?? project.slug ?? project.title,
+        slug: project.slug ?? "",
+        title: project.title,
+        summary,
+        description: {
+            problem: summary,
+            solution: summary,
+            result: summary,
+        },
+        category: categoryMap[project.category ?? ""] ?? "Creative",
+        techStack,
+        imageUrl: project.imageUrl ?? project.image ?? "/res/coverimage.png",
+        year: project.year ?? "",
+    };
+}
 
 export default function FeaturedProjects() {
     const featuredProjects = useQuery(api.projects.queries.getFeaturedProjects);
     const allProjects = useQuery(api.projects.queries.getAllProjects);
 
-    const defaultProjects = [
+    const defaultProjects: FeaturedProjectSource[] = [
         {
             title: "Project 100",
             slug: "project-100",
@@ -87,21 +133,9 @@ export default function FeaturedProjects() {
 
             <div className="featuredGrid">
                 {displayProjects.map((project, idx) => {
-                    const techList =
-                        "tags" in project && Array.isArray(project.tags) && project.tags.length > 0
-                            ? project.tags.slice(0, 4)
-                            : "technologies" in project && Array.isArray(project.technologies) && project.technologies.length > 0
-                                ? project.technologies.slice(0, 4)
-                                : [project.category ?? "Project"];
                     return (
                         <AnimatedSection key={idx} delay={idx * 150} duration={900}>
-                            <ProjectCard
-                                slug={project.slug ?? ""}
-                                title={project.title}
-                                description={project.description}
-                                image={project.image || "/res/coverimage.png"}
-                                tags={techList}
-                            />
+                            <ProjectCard project={toProject(project)} />
                         </AnimatedSection>
                     );
                 })}

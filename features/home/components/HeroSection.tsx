@@ -10,6 +10,7 @@ import {
     orbReveal,
     scrollIndicatorReveal,
 } from "@/features/motion";
+import { StarsBackground } from "@/components/ui/StarsBackground";
 
 export default function HeroSection() {
     const hero = useQuery(api.siteMeta.queries.getHero);
@@ -21,15 +22,7 @@ export default function HeroSection() {
     return (
         <section className="hero" aria-label="Hero">
             {/* Ambient star particles — CSS keyframes only, no FM overhead */}
-            <div className="starField">
-                <span className="star" />
-                <span className="star" />
-                <span className="star" />
-                <span className="star" />
-                <span className="star" />
-                <span className="star" />
-                <span className="star" />
-            </div>
+            <StarsBackground />
 
             {/* Hero moon SVG asset — FM reveal, no CSS-drawn glyph */}
             <motion.img
@@ -63,7 +56,7 @@ export default function HeroSection() {
                 </motion.p>
 
                 <motion.div className="heroActions" variants={heroChild}>
-                    <a href="#works" className="heroBtnPrimary" aria-label="View my work">
+                    <a href="/projects" className="heroBtnPrimary" aria-label="View my work">
                         Explore My Work
                     </a>
                 </motion.div>

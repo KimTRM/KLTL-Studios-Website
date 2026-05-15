@@ -1,8 +1,11 @@
-"use client"
+"use client";
+
 import { useState, useMemo } from "react";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
 import ProjectCard from "./ProjectCard";
+import { motion } from "motion/react";
 import FilterBar from "./FilterBar";
-import GridContainer from "./GridContainer";
 import "../css/ProjectSection.css";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -22,21 +25,20 @@ export default function ProjectsWithFilter() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedFilter, setSelectedFilter] = useState<ProjectCategory>("all");
 
-    // Safe default while loading
     const projects = allProjects ?? [];
 
     const getProjectCategory = (
         project: (typeof projects)[number],
     ): Exclude<ProjectCategory, "all"> => {
-        const title = project.title.toLowerCase();
-        const description = project.description.toLowerCase();
-        const explicitCategory = project.category?.toLowerCase();
+        const title = String((project as any).title ?? "").toLowerCase();
+        const projectDescription = String((project as any).description ?? "").toLowerCase();
+        const explicitCategory = (project.category as string | undefined)?.toLowerCase();
 
         if (
             explicitCategory === "game" ||
             title.includes("game") ||
-            description.includes("game") ||
-            description.includes("godot")
+            projectDescription.includes("game") ||
+            projectDescription.includes("godot")
         ) {
             return "game";
         }
@@ -45,8 +47,8 @@ export default function ProjectsWithFilter() {
             explicitCategory === "web" ||
             title.includes("website") ||
             title.includes("web") ||
-            description.includes("website") ||
-            description.includes("web app")
+            projectDescription.includes("website") ||
+            projectDescription.includes("web app")
         ) {
             return "web";
         }
@@ -54,9 +56,9 @@ export default function ProjectsWithFilter() {
         if (
             explicitCategory === "design" ||
             title.includes("design") ||
-            description.includes("design") ||
-            description.includes("ui") ||
-            description.includes("ux")
+            projectDescription.includes("design") ||
+            projectDescription.includes("ui") ||
+            projectDescription.includes("ux")
         ) {
             return "design";
         }
@@ -65,10 +67,10 @@ export default function ProjectsWithFilter() {
             title.includes("audio") ||
             title.includes("video") ||
             title.includes("music") ||
-            description.includes("audio") ||
-            description.includes("video") ||
-            description.includes("multimedia") ||
-            description.includes("sound")
+            projectDescription.includes("audio") ||
+            projectDescription.includes("video") ||
+            projectDescription.includes("multimedia") ||
+            projectDescription.includes("sound")
         ) {
             return "multimedia";
         }
@@ -86,32 +88,59 @@ export default function ProjectsWithFilter() {
                         ? project.technologies
                         : [FILTER_OPTIONS.find((option) => option.value === category)?.label ?? "Project"];
 
+            const mappedCategory =
+                category === "game"
+                    ? "Game Dev"
+                    : category === "web"
+                        ? "Web Dev"
+                        : category === "design"
+                            ? "UI/UX"
+                            : "Creative";
+
             return {
+                id: (project as any).id ?? project._id ?? project.slug,
                 slug: project.slug,
                 title: project.title,
-                description: project.description,
-                image: project.image,
-                category,
-                tags,
+                summary: (project as any).summary ?? project.subtitle ?? project.description ?? "",
+                description: {
+                    problem: project.description ?? "",
+                    solution: (project as any).solution ?? "",
+                    result: (project as any).result ?? "",
+                },
+                imageUrl: project.image,
+                category: mappedCategory as "Game Dev" | "Web Dev" | "UI/UX" | "Creative",
+                techStack: project.technologies && project.technologies.length > 0 ? project.technologies : tags,
+                demoUrl: (project as any).demoUrl ?? (project as any).demo ?? undefined,
+                repoUrl: (project as any).github ?? (project as any).repo ?? undefined,
+                year: String(project.year ?? new Date().getFullYear()),
             };
         });
     }, [projects]);
 
-    // Filter projects based on search and category
     const filteredProjects = useMemo(() => {
-        return normalizedProjects.filter((project) => {
-            const matchesSearch =
-                project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                project.description.toLowerCase().includes(searchTerm.toLowerCase());
+        const lowerSearch = (searchTerm ?? "").trim().toLowerCase();
+        const mapSelected = (sel: ProjectCategory) =>
+            sel === "game" ? "Game Dev" : sel === "web" ? "Web Dev" : sel === "design" ? "UI/UX" : "Creative";
+        const selectedMapped = selectedFilter === "all" ? null : mapSelected(selectedFilter);
 
-            if (selectedFilter === "all") {
-                return matchesSearch;
+        return normalizedProjects.filter((project) => {
+            const title = (project.title ?? "").toLowerCase();
+            const summary = (project.summary ?? "").toLowerCase();
+            const problem = String(project.description?.problem ?? "").toLowerCase();
+            const tags = (project.techStack ?? []).join(" ").toLowerCase();
+            const category = String(project.category ?? "").toLowerCase();
+            const year = String(project.year ?? "").toLowerCase();
+            const matchesSearch = title.includes(lowerSearch) || summary.includes(lowerSearch) || problem.includes(lowerSearch);
+            const matchesExtra = tags.includes(lowerSearch) || category.includes(lowerSearch) || year.includes(lowerSearch);
+
+            if (selectedMapped === null) {
+                return lowerSearch.length === 0 ? true : matchesSearch || matchesExtra;
             }
 
-            return matchesSearch && project.category === selectedFilter;
+            return (lowerSearch.length === 0 ? true : matchesSearch || matchesExtra) && project.category === selectedMapped;
         });
     }, [normalizedProjects, searchTerm, selectedFilter]);
-
+    // Show skeleton while server data is initializing
     if (allProjects === undefined) {
         return (
             <section id="portfolio" className="projects" aria-busy="true" aria-label="Loading projects">
@@ -152,66 +181,52 @@ export default function ProjectsWithFilter() {
     }
 
     return (
-        <section id="portfolio" className="projects">
-            <div className="container">
-                <header className="projects-header">
-                    <p className="projects-eyebrow">Projects</p>
-                    <h2>Selected Work</h2>
-                    <p className="projects-intro">
-                        A focused collection of games, web products, interface design, and multimedia work.
-                    </p>
-                </header>
+        <Section className="projects pt-32 pb-20 min-h-screen">
+            <Container>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="max-w-2xl mb-8"
+                >
+                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-white">Work Archive</h1>
+                    <p className="text-neutral-400 text-lg">A selection of projects spanning game development, software engineering, and creative design.</p>
+                </motion.div>
 
-                <div className="project-controls">
-                    <div className="project-toolbar">
-                        <FilterBar
-                            options={FILTER_OPTIONS}
-                            activeValue={selectedFilter}
-                            onChange={(value) => setSelectedFilter(value as ProjectCategory)}
-                        />
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-12">
+                    <div className="project-controls">
+                        <div className="project-toolbar">
+                            <FilterBar options={FILTER_OPTIONS} activeValue={selectedFilter} onChange={(value) => setSelectedFilter(value as ProjectCategory)} />
 
-                        <input
-                            type="text"
-                            placeholder="Search projects"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="project-search"
-                            aria-label="Search projects by name or description"
-                        />
+                            <input type="text" placeholder="Search projects" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="project-search" aria-label="Search projects by name or description" />
+                        </div>
                     </div>
-                </div>
+                </motion.div>
 
-                {/* Results Count */}
-                {projects.length > 0 && (
-                    <p className="project-results">
-                        {filteredProjects.length} of {projects.length} projects
-                    </p>
-                )}
-
-                {/* Project Grid */}
-                <GridContainer>
-                    {filteredProjects.length > 0 ? (
-                        filteredProjects.map((project, idx) => (
-                            <ProjectCard
-                                key={idx}
-                                slug={project.slug}
-                                title={project.title}
-                                description={project.description}
-                                image={project.image}
-                                tags={project.tags}
-                            />
-                        ))
-                    ) : projects.length === 0 ? (
-                        <p className="project-empty project-empty-none">
-                            No projects here yet — check back soon.
-                        </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
+                    {filteredProjects.length === 0 ? (
+                        <div className="project-empty project-empty-no-match">
+                            {searchTerm.trim().length > 0 ? (
+                                <>
+                                    <h3 className="text-xl font-semibold mb-2">No results for "{searchTerm}"</h3>
+                                    <p className="mb-4">Try different keywords, check spelling, or clear your search to browse all projects.</p>
+                                    <button className="btn btn-outline" onClick={() => setSearchTerm("")}>Clear search</button>
+                                </>
+                            ) : (
+                                <>
+                                    <h3 className="text-xl font-semibold mb-2">No projects found</h3>
+                                    <p>There are currently no projects to show.</p>
+                                </>
+                            )}
+                        </div>
                     ) : (
-                        <p className="project-empty project-empty-no-match">
-                            No matches found. Try a different search.
-                        </p>
+                        filteredProjects.map((project, index) => (
+                            <motion.div key={project.id ?? project.slug ?? index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: index * 0.06 }}>
+                                <ProjectCard project={project} />
+                            </motion.div>
+                        ))
                     )}
-                </GridContainer>
-            </div>
-        </section>
+                </div>
+            </Container>
+        </Section>
     );
 }

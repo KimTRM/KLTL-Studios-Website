@@ -2,11 +2,11 @@
   position: relative;
   overflow: clip;
   min-height: 100vh;
-  padding: clamp(2rem, 4vw, 4rem) 8vw 5rem;
+  padding: clamp(1.2rem, 1vw, 4rem) 8vw 5rem;
   background:
     radial-gradient(1100px 760px at 12% 5%, rgb(var(--palette-red-4-rgb) / 0.18), transparent 55%),
     radial-gradient(880px 520px at 88% 10%, rgb(var(--palette-light-1-rgb) / 0.08), transparent 58%),
-    linear-gradient(180deg, rgb(var(--palette-black-rgb) / 0.96), rgb(var(--palette-gray-3-rgb) / 0.98));
+    linear-gradient(180deg, rgb(var(--palette-black-rgb) / 0.96), rgb(var(--palette-gray-2-rgb) / 0.98));
 }
 
 .about-portfolio__ambient {

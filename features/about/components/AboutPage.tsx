@@ -6,6 +6,9 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import AnimatedSection from "@/features/ui/AnimatedSection";
 import "@/features/about/css/about.css";
+import { Story } from "./Story";
+import { Philosophy } from "./Philosophy";
+import { SkillList } from "./SkillList";
 
 type AboutSection = {
     heading: string;
@@ -104,7 +107,11 @@ export default function AboutPage() {
             <div className="about-portfolio__ambient about-portfolio__ambient--one" aria-hidden="true" />
             <div className="about-portfolio__ambient about-portfolio__ambient--two" aria-hidden="true" />
 
-            <section className="about-hero">
+            <Story />
+            <Philosophy />
+            <SkillList />
+
+            {/* <section className="about-hero">
                 <div className="about-hero__copy">
                     <p className="about-kicker">About Me</p>
                     <h1 className="about-title">{hero.heading}</h1>
@@ -149,7 +156,7 @@ export default function AboutPage() {
                         />
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             <AnimatedSection as="section" className="about-section-card" direction="up" duration={760}>
                 <div className="about-section-head">
@@ -183,6 +190,7 @@ export default function AboutPage() {
                     })}
                 </div>
             </AnimatedSection>
+
 
             <AnimatedSection as="section" className="about-section-card" direction="up" duration={760}>
                 <div className="about-section-head">

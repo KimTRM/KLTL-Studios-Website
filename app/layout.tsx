@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/features/site/components/Header";
-import Footer from "@/features/site/components/Footer";
+import { Inter } from 'next/font/google';
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import ConvexClientProvider from "./ConvexClientProvider";
 
 export const metadata: Metadata = {
   title: {
-    default: "KLTL Studios | Kim Louise Labrador - Developer, Designer, Musician",
-    template: "%s | KLTL Studios"
+    default: "KLTL Studios",
+    template: "KLTL Studios | %s "
   },
   description: "Portfolio of Kim Louise Labrador - Full-stack developer, game developer, UI/UX designer, and musician. Specializing in web development, game development with Godot, and interactive experiences.",
   keywords: ["Kim Louise Labrador", "KLTL Studios", "Web Developer", "Game Developer", "UI/UX Designer", "Full Stack Developer", "React", "Next.js", "Godot", "TypeScript", "Portfolio"],
@@ -58,19 +59,19 @@ export const metadata: Metadata = {
   },
 };
 
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} dark`} suppressHydrationWarning>
       <body>
         <ConvexClientProvider>
-          <a href="#main-content" className="skip-to-main">
-            Skip to main content
-          </a>
-          <Header />
+          <Navbar />
+          {/* <Header /> */}
           <main id="main-content">
             {children}
           </main>
