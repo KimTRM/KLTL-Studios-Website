@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { mockProjects } from "@/features/projects/data/mockProjects";
-import { ProjectCard } from "@/features/projects/components/NewProjectCard";
+import ProjectCard from "@/features/projects/components/ProjectCard";
 import Link from "next/link";
 import { motion } from "motion/react";
 
