@@ -48,7 +48,7 @@ export function Story() {
               src="/res/my-photos/with-bg.png"
               alt="Portrait of Kim Louise Labrador"
               fill
-              className="object-cover opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+              className="object-cover opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
               referrerPolicy="no-referrer"
             />
           </motion.div>
