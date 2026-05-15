@@ -13,6 +13,10 @@
         "convex:seed": "npx convex run seed:run"
     },
     "dependencies": {
+        "@hookform/resolvers": "^5.2.1",
+        "autoprefixer": "^10.4.21",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
         "convex": "^1.31.7",
         "framer-motion": "^12.34.0",
         "lucide-react": "1.14.0",
@@ -21,21 +25,17 @@
         "react": "^19.2.5",
         "react-dom": "^19.2.5",
         "react-icons": "^5.5.0",
-        "tailwind-merge": "^3.3.1",
-        "@hookform/resolvers": "^5.2.1",
-        "autoprefixer": "^10.4.21",
-        "class-variance-authority": "^0.7.1",
-        "clsx": "^2.1.1"
+        "tailwind-merge": "^3.3.1"
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3",
         "@tailwindcss/postcss": "^4",
-        "@types/node": "^20",
-        "@types/react": "^19",
-        "@types/react-dom": "^19",
+        "@types/node": "^20.19.41",
+        "@types/react": "^19.2.14",
+        "@types/react-dom": "^19.2.3",
         "eslint": "^9",
         "eslint-config-next": "^16.2.4",
         "tailwindcss": "^4",
-        "typescript": "^5"
+        "typescript": "^5.9.3"
     }
 }
