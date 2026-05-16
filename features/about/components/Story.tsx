@@ -4,8 +4,12 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { motion } from "motion/react";
 import Image from "next/image";
+import { useMobileScrollHover } from "@/features/ui/useMobileScrollHover";
+import { cn } from "@/lib/utils";
 
 export function Story() {
+  const { ref, isActive } = useMobileScrollHover<HTMLDivElement>({ threshold: 0.45 });
+
   return (
     <div className=" pb-8 overflow-hidden">
       <Container>
@@ -39,6 +43,7 @@ export function Story() {
           </motion.div>
 
           <motion.div
+            ref={ref}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -48,7 +53,10 @@ export function Story() {
               src="/res/my-photos/with-bg.png"
               alt="Portrait of Kim Louise Labrador"
               fill
-              className="object-cover opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+              className={cn(
+                "object-cover opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-700",
+                isActive && "grayscale-0 opacity-100"
+              )}
               referrerPolicy="no-referrer"
             />
           </motion.div>

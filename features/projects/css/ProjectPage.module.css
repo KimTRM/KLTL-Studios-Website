@@ -1,7 +1,7 @@
 .wrapper {
     --accent-crimson-soft: rgb(var(--palette-red-5-rgb) / 0.72);
     min-height: calc(100vh - 4rem);
-    padding: 5.3rem 8vw 6rem;
+    padding: 2.3rem 6vw 4rem;
     background:
         radial-gradient(circle at 8% 2%, rgb(var(--palette-red-4-rgb) / 0.16), transparent 36%),
         radial-gradient(circle at 92% 8%, rgb(var(--palette-red-5-rgb) / 0.12), transparent 34%),
@@ -11,6 +11,7 @@
 .container {
     max-width: 1080px;
     margin: 0 auto;
+    overflow-x: clip;
     background:
         linear-gradient(150deg, rgb(var(--palette-red-4-rgb) / 0.08), transparent 38%),
         linear-gradient(180deg, rgb(var(--palette-gray-2-rgb) / 0.94), rgb(var(--palette-gray-3-rgb) / 0.94));
@@ -38,10 +39,12 @@
 .heroSection {
     display: grid;
     gap: 1.2rem;
+    min-width: 0;
 }
 
 .heroText {
     max-width: 74ch;
+    min-width: 0;
 }
 
 .eyebrow {
@@ -66,6 +69,7 @@
     color: var(--palette-light-1);
     text-wrap: balance;
     text-shadow: 0 0 28px rgb(var(--palette-red-4-rgb) / 0.14);
+    overflow-wrap: anywhere;
 }
 
 .tagline {
@@ -74,6 +78,7 @@
     font-size: clamp(1.02rem, 2.05vw, 1.2rem);
     line-height: 1.7;
     max-width: 64ch;
+    overflow-wrap: anywhere;
 }
 
 .heroMediaCard {
@@ -83,6 +88,7 @@
     border: 1px solid rgb(var(--palette-light-3-rgb) / 0.2);
     background: rgb(var(--palette-black-rgb) / 0.16);
     box-shadow: 0 14px 32px rgb(var(--palette-black-rgb) / 0.28);
+    min-width: 0;
 }
 
 .heroImage {
@@ -109,6 +115,7 @@
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(12, minmax(0, 1fr));
+    min-width: 0;
 }
 
 .bentoWide {
@@ -144,6 +151,7 @@
     box-shadow: 0 8px 22px rgb(var(--palette-black-rgb) / 0.2);
     scroll-margin-top: 88px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    min-width: 0;
 }
 
 .sectionCard:hover {
@@ -164,6 +172,7 @@
     margin: 0.8rem 0 0;
     color: var(--text-body);
     line-height: 1.76;
+    overflow-wrap: anywhere;
 }
 
 .metaBlock + .metaBlock {
@@ -182,6 +191,7 @@
     margin: 0.4rem 0 0;
     color: var(--text-body);
     line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
 .toolList {
@@ -206,6 +216,7 @@
     display: grid;
     gap: 0.78rem;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    min-width: 0;
 }
 
 .mediaCard {
@@ -256,6 +267,7 @@
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 0.72rem;
     flex-wrap: wrap;
+    min-width: 0;
 }
 
 .btn,
@@ -411,7 +423,7 @@
 
 @media (max-width: 960px) {
     .wrapper {
-        padding: 4rem 6vw 4.8rem;
+        padding: 2rem 6vw 2.8rem;
     }
 
     .container {
@@ -448,7 +460,29 @@
 
 @media (max-width: 640px) {
     .wrapper {
-        padding: 3.6rem 4vw 4.4rem;
+        padding: 0.8rem 0.5rem 1.4rem;
+    }
+
+    .container {
+        border-radius: 16px;
+        max-width: none;
+        padding: 0.9rem;
+    }
+
+    .heroSection {
+        gap: 0.9rem;
+    }
+
+    .title {
+        font-size: clamp(1.9rem, 8vw, 2.3rem);
+        line-height: 1.02;
+        text-wrap: balance;
+    }
+
+    .tagline {
+        margin-top: 0.7rem;
+        font-size: 0.98rem;
+        line-height: 1.62;
     }
 
     .heroImage {
@@ -456,7 +490,7 @@
     }
 
     .sectionCard {
-        padding: 0.95rem;
+        padding: 0.92rem;
     }
 
     .mediaGrid {
