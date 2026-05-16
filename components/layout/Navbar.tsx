@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
@@ -18,6 +18,31 @@ const NAV_LINKS = [
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    function onDocClick(e: MouseEvent) {
+      if (!open) return;
+      const target = e.target as Node | null;
+      if (!target) return;
+
+      if (menuRef.current && (menuRef.current === target || menuRef.current.contains(target))) {
+        // click inside menu: ignore
+        return;
+      }
+
+      if (buttonRef.current && (buttonRef.current === target || buttonRef.current.contains(target))) {
+        // click on toggle button: ignore
+        return;
+      }
+
+      setOpen(false);
+    }
+
+    document.addEventListener("click", onDocClick);
+    return () => document.removeEventListener("click", onDocClick);
+  }, [open]);
 
   return (
     <header className="sticky top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-neutral-900 transition-colors duration-300">
@@ -33,7 +58,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className={`header-nav${open ? " open" : ""}`}>
+        <div ref={menuRef} className={`header-nav${open ? " open z-[9999]" : ""}`}>
           <ul className={`md:flex items-center space-x-9`}>
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
@@ -48,6 +73,7 @@ export default function Navbar() {
                         ? "text-red-700 font-black"
                         : "text-neutral-500 hover:text-white"
                     )}
+                    onClick={() => setOpen(false)}
                   >
                     {link.name}
                   </Link>
@@ -62,10 +88,14 @@ export default function Navbar() {
         <div className="md:hidden flex items-center">
           {/* Minimal generic placeholder for mobile */}
           <button
+            ref={buttonRef}
             className="hamburger"
             aria-label={open ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={open}
-            onClick={() => setOpen((prev) => !prev)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setOpen((prev) => !prev);
+            }}
           >
             &#9776;
           </button>
